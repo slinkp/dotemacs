@@ -389,18 +389,6 @@ XXX argument untested"
     (lambda () (set-fill-column 73)))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; turn on SYNTAX HIGHLIGHTING for language modes
-
-(add-hook 'perl-mode-hook 'font-lock-mode)
-(add-hook 'shell-script-mode-hook 'font-lock-mode)
-(add-hook 'sh-mode-hook 'font-lock-mode)
-
-(add-hook 'lisp-mode-hook 'font-lock-mode)
-(add-hook 'emacs-lisp-mode-hook 'font-lock-mode)
-(add-hook 'c-mode-hook 'font-lock-mode)
-
-
 
 ;; ========================================================================
 ;; CUSTOM output
@@ -462,6 +450,18 @@ XXX argument untested"
 
 (setq auto-mode-alist (cons '("\\.saol$" . c-mode) auto-mode-alist))
 
+;; turn on SYNTAX HIGHLIGHTING for language modes
+
+(add-hook 'c-mode-hook 'font-lock-mode)
+(add-hook 'emacs-lisp-mode-hook 'font-lock-mode)
+(add-hook 'lisp-mode-hook 'font-lock-mode)
+(add-hook 'makefile-mode-hook 'font-lock-mode)
+(add-hook 'perl-mode-hook 'font-lock-mode)
+(add-hook 'python-mode-hook 'font-lock-mode)
+(add-hook 'sgml-mode-hook 'font-lock-mode)
+(add-hook 'sh-mode-hook 'font-lock-mode)
+(add-hook 'shell-script-mode-hook 'font-lock-mode)
+
 ;; Whoops! This was double-toggling... font-lock-mode is already loaded by
 ;; sgml-mode, so loading again for html-mode turns it off...
 ; (add-hook 'html-mode-hook 'font-lock-mode)
@@ -480,10 +480,7 @@ XXX argument untested"
 (setq auto-mode-alist (cons '("\\.twill$" . sh-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.tsuite$" . sh-mode) auto-mode-alist))
 
-(add-hook 'sgml-mode-hook 'font-lock-mode)
 (setq auto-mode-alist (cons '("\\.sgml$" . sgml-mode) auto-mode-alist))
-(add-hook 'python-mode-hook 'font-lock-mode)
-(add-hook 'makefile-mode-hook 'font-lock-mode)
 
 ;; this is useful with Ian B's svncommit shell function
 (setq auto-mode-alist (cons '("svn-commit.tmp" . diff-mode) auto-mode-alist))
