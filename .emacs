@@ -370,13 +370,6 @@ XXX argument untested"
 ;(define-key global-map "\C-h" 'backward-delete-char)
 
 
-
-;; haven't used these in years
-; (global-set-key (quote [f2]) (quote undo))
-; (global-set-key (quote [M-f2]) (quote redo)) ;; aka "repeat last command" NOT "un-undo!"
-; (global-set-key (quote [pause]) (quote keyboard-quit)) ;;"cancel" like C-g
-
-
 ;; no tabs by default
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -543,14 +536,6 @@ XXX argument untested"
 
 ; (autoload 'cc-mode "cc-mode" "CC Mode" t)
 
-;;;; dot-mode.el, for repeating stuff more easily than macros,
-;;;; see http://www.wyrick.org/source/elisp/dot-mode/
-
-(autoload 'dot-mode "dot-mode" nil t) ; vi `.' command emulation
-(global-set-key [(control ?.)] (lambda () (interactive) (dot-mode 1)
-				 (message "Dot mode activated.")))
-
-
 ;;; ASP & VB highlighting
 ;(autoload 'visual-basic-mode "visual-basic-mode" nil t)
 ;(setq auto-mode-alist (cons '("\\.cls$" . visual-basic-mode) auto-mode-alist))
@@ -612,31 +597,6 @@ XXX argument untested"
 
 (portable-load-library "pymacs")
 (portable-load-library "python-mode")
-
-;; pycomplete stuff ... argh, breaks everything if  load fails.
-;(require 'pycomplete))
-;; Likewise with rope.
-;; (pymacs-load "ropemacs" "rope-")
-;; (setq ropemacs-enable-autoimport t)
-;; .... SIgh. In theory I like rope-mode's completion,
-;; but then I miss the default M-/ complete command since rope
-;; doesn't know how to complete other strings, filenames from dired buffers, etc.
-
-; or maybe try pysmell.
-;(require 'pysmell)
-;(add-hook 'python-mode-hook (lambda () (pysmell-mode 1)))
-
-
-;; etags for python
-
-;;  (load "etags")
-;; (setq tag-table-alist
-;; '((".py$" . "~/")
-;; ))
-;; (setq tags-def-pattern
-;; "(.*[ ]+)?**((sw|s_)+)[ ():;, ]*")
-;; '(tags-table-list (quote ("/TAGS")) t)
-;; (visit-tags-table "/TAGS")
 
 
 (when (load "flymake" t)
