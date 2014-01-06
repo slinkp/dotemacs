@@ -432,10 +432,10 @@ XXX argument untested"
  '(comint-scroll-to-bottom-on-input t)
  '(current-language-environment "English")
  '(default-frame-alist (quote ((menu-bar-lines . 1))))
- '(flymake-allowed-file-name-masks (quote ((".+\\.rake$" flymake-ruby-init) ("Rakefile$" flymake-ruby-init) (".+\\.rb$" flymake-ruby-init) ("\\.html$\\|\\.ctp" flymake-html-init) ("\\.py\\'" flymake-pyflakespep8-init) ("\\.xml\\'" flymake-xml-init) ("\\.html?\\'" flymake-xml-init) ("\\.cs\\'" flymake-simple-make-init) ("\\.p[ml]\\'" flymake-perl-init) ("\\.php[345]?\\'" flymake-php-init) ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup) ("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup) ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup) ("\\.tex\\'" flymake-simple-tex-init) ("\\.idl\\'" flymake-simple-make-init))))
+ '(flymake-allowed-file-name-masks (quote ((".+\\.rake$" flymake-ruby-init) ("Rakefile$" flymake-ruby-init) (".+\\.rb$" flymake-ruby-init) ("\\.py\\'" flymake-flake8-init) ("\\.xml\\'" flymake-xml-init) ("\\.cs\\'" flymake-simple-make-init) ("\\.p[ml]\\'" flymake-perl-init) ("\\.php[345]?\\'" flymake-php-init) ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup) ("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup) ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup) ("\\.tex\\'" flymake-simple-tex-init) ("\\.idl\\'" flymake-simple-make-init))))
  '(flymake-compilation-prevents-syntax-check t)
  '(flymake-log-level 0)
- '(flymake-no-changes-timeout 1.0)
+ '(flymake-no-changes-timeout 0.5)
  '(global-font-lock-mode t nil (font-lock))
  '(jit-lock-stealth-time 0.035)
  '(protect-buffer-bury-p nil)
@@ -451,8 +451,8 @@ XXX argument untested"
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#c4deb0" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
- '(flymake-errline ((((class color)) (:background "LightPink" :foreground "black"))))
- '(flymake-warnline ((((class color)) (:background "LightBlue2" :foreground "black"))))
+ '(flymake-errline ((t (:background "#d99" :foreground "black"))))
+ '(flymake-warnline ((t (:background "#226"))))
  '(font-lock-doc-face ((t (:inherit font-lock-string-face))))
  '(font-lock-reference-face ((((class color) (background light)) (:foreground "Yellow"))))
  '(font-lock-string-face ((((class color) (min-colors 88) (background dark)) (:background "#253040" :foreground "#E0B93E"))))
@@ -460,7 +460,7 @@ XXX argument untested"
  '(rst-level-1-face ((t (:background "grey85" :foreground "black" :inverse-video t))) t)
  '(rst-level-2-face ((t (:background "grey78" :foreground "black" :inverse-video t))) t)
  '(rst-level-3-face ((t (:background "grey71" :foreground "black" :inverse-video t))) t)
- '(trailing-whitespace ((nil (:background "#002222")))))
+ '(trailing-whitespace ((t (:background "#002232")))))
 
 
 ;; ========================================================================
@@ -648,53 +648,67 @@ XXX argument untested"
 ;; '(tags-table-list (quote ("/TAGS")) t)
 ;; (visit-tags-table "/TAGS")
 
-(when (load "flymake" t) 
-         ;; For Python, use pyflakes... thanks again to chrism...
-         ;; combined with pep8 via a little script that mashes them up.
-         ;; Might want to try flake8 (see pypi) ... it adds a complexity checker.
-         (defun flymake-pyflakespep8-init () 
-	   (let* ((temp-file (flymake-init-create-temp-buffer-copy
-			      'flymake-create-temp-inplace))
-		  (local-file (file-relative-name
-			       temp-file
-			       (file-name-directory buffer-file-name))))
-	     (list "pyflakespep8.py" (list local-file))))
 
-	 (add-to-list 'flymake-allowed-file-name-masks
-		      '("\\.py\\'" flymake-pyflakespep8-init))
+(when (load "flymake" t)
+    ;; Currently using the flymake-python-pyflakes package from melpa.
+    (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+    (setq flymake-python-pyflakes-executable "flake8")
 
-	 (add-hook 'find-file-hook 'flymake-find-file-hook)
+    ;; Older setup for my hacked pyflakespep8 script
+    ;; ;; For Python, I use pyflakes combined with pep8 via a little script
+    ;; ;; that mashes them up.  Might want to try flake8 (see pypi) ... it
+    ;; ;; adds a complexity checker.
+    ;; (defun flymake-pyflakespep8-init ()
+    ;;   (let* ((temp-file (flymake-init-create-temp-buffer-copy
+    ;;                      'flymake-create-temp-inplace))
+    ;;          (local-file (file-relative-name
+	;;    	      temp-file
+	;;    	      (file-name-directory buffer-file-name))))
+    ;;     (list "pyflakespep8.py" (list local-file))))
+    ;; (add-to-list 'flymake-allowed-file-name-masks
+    ;;              '("\\.py\\'" flymake-pyflakespep8-init))
 
-	 ;; I found that flymake wasn't recognizing pep8 output.
-	 ;; ... but this doesn't seem to result in anything being highlighted,
-	 ;; although if I test it in M-x regex-builder it works fine.
-	 ;; (add-to-list 'flymake-err-line-patterns
-	 ;; 	      '("^\\([^:]*\\):\\([0-9]+\\):\\([0-9]+\\): WARNING \\(.*\\)$" 1 2 3 4))
+    (add-hook 'find-file-hook 'flymake-find-file-hook)
 
-         ;; This is an add-on I keep in my ~/.emacs.d/ directory which
-         ;; ... "makes flymake error messages appear in the minibuffer
-         ;; when point is on a line containing a flymake error. This
-         ;; saves having to mouse over the error, which is a keyboard
-         ;; user's annoyance". See  http://www.emacswiki.org/emacs/flymake-cursor.el
-         (load-library "flymake-cursor")
+    ;; I found that flymake wasn't recognizing pep8 output.
+    ;; ... but this doesn't seem to result in anything being highlighted,
+    ;; although if I test it in M-x regex-builder it works fine.
+    ;; (add-to-list 'flymake-err-line-patterns
+    ;; 	      '("^\\([^:]*\\):\\([0-9]+\\):\\([0-9]+\\): WARNING \\(.*\\)$" 1 2 3 4))
 
-         ;; For HTML, use Tidy, don't treat it like XML
-         ;; (which is bad for HTML4).
-         ;; Thanks to http://www.emacswiki.org/emacs/FlymakeHtml
-         (defun flymake-html-init ()
+    ;; This is an add-on I keep in my ~/.emacs.d/ directory which
+    ;; ... "makes flymake error messages appear in the minibuffer
+    ;; when point is on a line containing a flymake error. This
+    ;; saves having to mouse over the error, which is a keyboard
+    ;; user's annoyance". See  http://www.emacswiki.org/emacs/flymake-cursor.el
+    (load-library "flymake-cursor")
+
+    ;; For HTML, use Tidy, don't treat it like XML
+    ;; (which is bad for HTML4).
+    ;; Thanks to http://www.emacswiki.org/emacs/FlymakeHtml
+    (defun flymake-html-init ()
 	  (let* ((temp-file (flymake-init-create-temp-buffer-copy
 	                     'flymake-create-temp-inplace))
 	         (local-file (file-relative-name
 	                      temp-file
 	                      (file-name-directory buffer-file-name))))
 	    (list "tidy" (list local-file))))
-	 (add-to-list 'flymake-allowed-file-name-masks
-	             '("\\.html$\\|\\.ctp" flymake-html-init))
-	 (add-to-list 'flymake-err-line-patterns
+    ;; Or actually, flymake on html with embedded js, templating, etc.
+    ;; is nearly useless... disable it.
+    ;; (add-to-list 'flymake-allowed-file-name-masks
+    ;;             '("\\.html$\\|\\.ctp" flymake-html-init))
+    (add-to-list 'flymake-err-line-patterns
 	             '("line \\([0-9]+\\) column \\([0-9]+\\) - \\(Warning\\|Error\\): \\(.*\\)"
 	               nil 1 2 4))
 )
 
+
+;; Keep flymake from throwing an exception if the compile phase passes
+;; but the actual checks do not.
+;; http://stackoverflow.com/questions/9358086/emacs-flymake-mode-fails-for-coffeescrit
+(defadvice flymake-post-syntax-check (before flymake-force-check-was-interrupted)
+  (setq flymake-check-was-interrupted t))
+(ad-activate 'flymake-post-syntax-check)
 
 
 ;; python-mode.el clobbers that, grr.
