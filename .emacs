@@ -506,19 +506,9 @@ XXX argument untested"
 ;; this should be in my .emacs.d/
 (load "django-html-mode.el")
 
-;; SLIME is some common lisp mode stuff for emacs.
-;; Needed by zencoding.
-; (add-to-list 'load-path "~/.emacs.d/slime-2010-05-03/")  ; your SLIME directory
-(add-to-list 'load-path "~/.emacs.d/slime-2012-01-31/")  ; your SLIME directory
-(setq inferior-lisp-program "/usr/bin/sbcl") ; your Lisp system ... doesn't seem to actually matter?
-(require 'slime)
-(slime-setup)
+;; likewise
+;(require 'handlebars-mode)
 
-
-;; ZenCoding, see http://www.emacswiki.org/emacs/ZenCoding
-;; allows typing HTML or XML markup as CSS selectors
-; (portable-load-library "zencoding-mode")
-; (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
 
 ;; Fill + markup = hell.
 (add-hook 'sgml-mode-hook 'turn-off-auto-fill)
@@ -722,7 +712,13 @@ XXX argument untested"
   )
 )
 
+;; Trying jedi for autocomplete.
 
+(setq jedi:setup-keys t)
+(autoload 'jedi:setup "jedi" nil t)
+(add-hook 'python-mode-hook 'jedi:setup)
+;; Or this for only keybindings:
+;;(add-hook 'python-mode-hook 'jedi:ac-setup)
 
 ;; ========================================================================
 ;; JAVASCRIPT
