@@ -623,7 +623,7 @@ XXX argument untested"
     ;; (add-to-list 'flymake-err-line-patterns
     ;; 	      '("^\\([^:]*\\):\\([0-9]+\\):\\([0-9]+\\): WARNING \\(.*\\)$" 1 2 3 4))
 
-    ;; This is an add-on I keep in my ~/.emacs.d/ directory which
+    ;; Installed from melpa,
     ;; ... "makes flymake error messages appear in the minibuffer
     ;; when point is on a line containing a flymake error. This
     ;; saves having to mouse over the error, which is a keyboard
