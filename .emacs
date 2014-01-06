@@ -1119,16 +1119,23 @@ the line, to capture multiline input. (This only has effect if
 
   ;; We may not have slinkp's favorite font.
   ;; TODO: See http://emacswiki.org/emacs/SetFonts about how to detect if a font is installed before setting it.
-  (set-frame-font
-    "-outline-menlo-medium-r-normal--15-*-*-*-*-*-iso10646-1")
-  ;; And in every new frame.
+
+  (set-frame-font "-outline-menlo-medium-r-normal--15-*-*-*-*-*-iso10646-1")
+  ;; (set-frame-font "-apple-Source_Code_Pro-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1")
+  ;; And in every new frame. 
   (add-to-list 'default-frame-alist
-   '(font . "-outline-menlo-medium-r-normal--15-*-*-*-*-*-iso10646-1")))
+    ;; '(font . "-apple-Source_Code_Pro-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1"))
+    '(font . "-outline-menlo-medium-r-normal--15-*-*-*-*-*-iso10646-1"))
+
+)
 
 ;; ========================================================================
 ;; Rotate fonts, with keybindings. Yay. 
 ;; Tweaked from http://ergoemacs.org/emacs/emacs_switching_fonts.html
 ;; ========================================================================
+
+
+;; TODO automate the copy/paste crap
 
 (defun cycle-font (num)
   "Change font in all visible frames.
@@ -1140,6 +1147,30 @@ If NUM is -1, cycle backward."
   (let (fontList fontToUse currentState nextState )
     (when (and darwin? gui?)
       (setq fontList (list
+                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-10-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-11-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-12-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-13-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-15-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-16-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-17-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-18-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-20-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-22-*-*-*-m-0-iso10646-1"
+
+                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-10-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-11-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-12-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-13-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-15-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-16-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-17-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-18-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-20-*-*-*-m-0-iso10646-1"
+                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-22-*-*-*-m-0-iso10646-1"
+
                       "-outline-menlo-medium-r-normal--10-*-*-*-*-*-iso10646-1"
                       "-outline-menlo-medium-r-normal--11-*-*-*-*-*-iso10646-1"
                       "-outline-menlo-medium-r-normal--12-*-*-*-*-*-iso10646-1"
@@ -1148,18 +1179,22 @@ If NUM is -1, cycle backward."
                       "-outline-menlo-medium-r-normal--15-*-*-*-*-*-iso10646-1"
                       "-outline-menlo-medium-r-normal--16-*-*-*-*-*-iso10646-1"
                       "-outline-menlo-medium-r-normal--17-*-*-*-*-*-iso10646-1"
+                      "-outline-menlo-medium-r-normal--18-*-*-*-*-*-iso10646-1"
+                      "-outline-menlo-medium-r-normal--20-*-*-*-*-*-iso10646-1"
+                      "-outline-menlo-medium-r-normal--22-*-*-*-*-*-iso10646-1" 
                       ))
     )
     (when (and linux? gui?)
       (setq fontList (list
-                      "-*-DejaVu_Sans_Mono-medium-normal-normal-*-10-*-*-*-m-0-*-*"
-                      "-*-DejaVu_Sans_Mono-medium-normal-normal-*-11-*-*-*-m-0-*-*"
-                      "-*-DejaVu_Sans_Mono-medium-normal-normal-*-12-*-*-*-m-0-*-*"
-                      "-*-DejaVu_Sans_Mono-medium-normal-normal-*-13-*-*-*-m-0-*-*"
-                      "-*-DejaVu_Sans_Mono-medium-normal-normal-*-14-*-*-*-m-0-*-*"
-                      "-*-DejaVu_Sans_Mono-medium-normal-normal-*-15-*-*-*-m-0-*-*"
-                      "-*-DejaVu_Sans_Mono-medium-normal-normal-*-16-*-*-*-m-0-*-*"
-                      "-*-DejaVu_Sans_Mono-medium-normal-normal-*-17-*-*-*-m-0-*-*"
+                      "-*-DejaVu Sans Mono-normal-normal-normal-*-10-*-*-*-m-0-*"
+                      "-*-DejaVu Sans Mono-normal-normal-normal-*-11-*-*-*-m-0-*"
+                      "-*-DejaVu Sans Mono-normal-normal-normal-*-12-*-*-*-m-0-*"
+                      "-*-DejaVu Sans Mono-normal-normal-normal-*-13-*-*-*-m-0-*"
+                      "-*-DejaVu Sans Mono-normal-normal-normal-*-14-*-*-*-m-0-*"
+                      "-*-DejaVu Sans Mono-normal-normal-normal-*-15-*-*-*-m-0-*"
+                      "-*-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-*"
+                      "-*-DejaVu Sans Mono-normal-normal-normal-*-17-*-*-*-m-0-*"
+                      "-*-DejaVu Sans Mono-normal-normal-normal-*-18-*-*-*-m-0-*"
                       ))
     )
 
@@ -1205,9 +1240,13 @@ See `cycle-font'."
   (cycle-font -1)
 )
 
+;;;; While emacs has something similar built-in...
+;; (global-set-key [(meta +)] 'text-scale-adjust )
+;; (global-set-key [(meta _)] 'text-scale-adjust )
+;;;; ... it only applies to the current buffer, bleh.
+;;;; So I'll use mine, at least for now.
 (global-set-key [(meta +)] 'cycle-font-forward)
 (global-set-key [(meta _)] 'cycle-font-backward)
-
 
 ;;============================================================================
 ;; Diminish minor modes in the modeline to leave room for stuff we care about.
