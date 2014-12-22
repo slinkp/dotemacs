@@ -302,10 +302,10 @@ XXX argument untested"
     (linum-mode -1)))
 
 
-;; expand-region, really cool selection tools from
-;; https://github.com/magnars/expand-region.el
-(require 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
+;; ;; expand-region, really cool selection tools from
+;; ;; https://github.com/magnars/expand-region.el
+;; (require 'expand-region)
+;; (global-set-key (kbd "C-=") 'er/expand-region)
 
 ;; ========================================================================
 ;; APPEARANCE
@@ -510,10 +510,6 @@ XXX argument untested"
 
 ;; this should be in my .emacs.d/
 (load "django-html-mode.el")
-
-;; likewise
-;(require 'handlebars-mode)
-
 
 ;; Fill + markup = hell.
 (add-hook 'sgml-mode-hook 'turn-off-auto-fill)
