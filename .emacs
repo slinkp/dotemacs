@@ -215,22 +215,8 @@ XXX argument untested"
   (annotate-pdb)
 )
 
-;; For some reason, any of these familiar forms causes
-;; an "invalid key sequence" error:
-;(global-set-key "\M-p" 'pw-pdb-set-trace)
-;(global-set-key [M-p] 'pw-pdb-set-trace)
-;(global-set-key (quote [M-p]) 'pw-pdb-set-trace)
-
-;; This works, but cryptic:
-;(global-set-key "\360" 'pw-pdb-set-trace)
-
-;; this should work only in python-mode, but doesn't seem to work at all.
-;(add-hook 'python-mode-hook
-;  (lambda ()
-;    (define-key py-mode-map (kbd "M-p") 'slinkp-pdb-set-trace)
-;  )
-;)
-
+;; To bind it globally:
+(global-set-key [(meta p)] 'pw-pdb-set-trace)
 
 ;; I've got a bit of vi-envy :)
 ;; I like the vi way of joining lines. Bind that to C-j.
@@ -635,7 +621,7 @@ XXX argument untested"
     ;; when point is on a line containing a flymake error. This
     ;; saves having to mouse over the error, which is a keyboard
     ;; user's annoyance". See  http://www.emacswiki.org/emacs/flymake-cursor.el
-    (load-library "flymake-cursor")
+    (portable-load-library "flymake-cursor")
 
     ;; For HTML, use Tidy, don't treat it like XML
     ;; (which is bad for HTML4).
@@ -665,14 +651,14 @@ XXX argument untested"
 (ad-activate 'flymake-post-syntax-check)
 
 
-;; python-mode.el clobbers that, grr.
+;; python-mode.el clobbers slinkp-vi-join, grr.
 ;; TODO: Why does this seem to sometimes work, and sometimes not
 ;; unless I've done (require 'python-mode)?
 ;; Why isn't (portable-load-library) enough?
 (add-hook 'python-mode-hook
   (lambda ()
     (define-key python-mode-map (kbd "C-j") 'slinkp-vi-join)
-    (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace)
+    ;; (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace)
   )
 )
 
