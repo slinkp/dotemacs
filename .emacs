@@ -332,7 +332,9 @@ XXX argument untested"
 ))
 
 ;; Show current function in status bar.
-(which-function-mode t)
+;;; OR NOT: This seems to be the cause of many hangs :(
+;;; And it doesn't seem to show python methods, only functions.
+;; (which-function-mode t)
 
 ;; show me the time
 ; (display-time)
