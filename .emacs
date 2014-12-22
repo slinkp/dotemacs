@@ -332,9 +332,8 @@ XXX argument untested"
 ))
 
 ;; Show current function in status bar.
-;;; OR NOT: This seems to be the cause of many hangs :(
-;;; And it doesn't seem to show python methods, only functions.
-;; (which-function-mode t)
+;; ... Maybe? This seems to be the cause of many hangs :(
+(which-function-mode t)
 
 ;; show me the time
 ; (display-time)
@@ -430,6 +429,8 @@ XXX argument untested"
  '(inhibit-startup-echo-area-message "pw")
  '(jit-lock-stealth-time 0.035)
  '(markdown-command "pandoc --from markdown_github --to html --standalone")
+ ;; Hacked mode line to move (vc-mode vc-mode)
+ '(mode-line-format (quote ("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification sml/pos-id-separator mode-line-position sml/pre-modes-separator mode-line-misc-info mode-line-modes (vc-mode vc-mode) mode-line-end-spaces)))
  '(protect-buffer-bury-p nil)
  '(py-load-pymacs-p nil t)
  '(py-pdbtrack-do-tracking-p t)
@@ -437,7 +438,11 @@ XXX argument untested"
  '(scroll-bar-mode nil)
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
- '(sml/name-width 38)
+ '(sml/mode-width 10)
+ '(sml/name-width (quote (10 . 24)))
+ '(sml/shorten-modes t)
+ '(sml/theme (quote light))
+ '(sml/vc-mode-show-backend nil)
  '(tramp-default-method "ssh"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -701,14 +706,13 @@ XXX argument untested"
 (add-hook 'python-mode-hook
   (lambda ()
     (define-key python-mode-map (kbd "C-j") 'slinkp-vi-join)
-    ;; (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace)
     (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace)
     (unless ropemacs-was-loaded
       (load-pymacs-and-ropemacs))
   )
 )
 
-;; Trying jedi for autocomplete.
+;; Trying jedi for autocomplete and code navigation.
 
 (setq jedi:setup-keys t)
 (autoload 'jedi:setup "jedi" nil t)
@@ -1290,12 +1294,9 @@ See `cycle-font'."
 (eval-after-load "hi-lock-mode"
   '(diminish 'hi-lock-mode))
 
-(eval-after-load "ropemacs"
-  '(diminish 'ropemacs "r"))
+;; (eval-after-load "python"
+;;   '(diminish 'ropemacs "R"))
 
-;; ;; "Smart" modeline takes up less space
+;; "Smart" modeline takes up less space?  ... not really
 ;; (require 'smart-mode-line)
 ;; (sml/setup)
-
-;; ;; ... or try this one
-;; (require 'powerline)
