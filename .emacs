@@ -13,7 +13,8 @@
 
 ;; Don't show the GNU splash screen on startup.
 (setq inhibit-startup-message t)
-
+;; Cleaner scratch buffer.
+(setq initial-scratch-message "**scratch**\n\n")
 
 ;;============================================================================
 ;; Platform information, from mccutchen
@@ -49,12 +50,6 @@
 ;; local stuff may be loaded from here.
 ;; I like my ~/.emacs.d/ to override, so it goes first.
 (setq load-path (cons user-emacs-directory load-path))
-;; Likewise my python mode first. And remove the built-in python mode.
-(when (featurep 'python) (unload-feature 'python t))
-(setq py-install-directory "~/.emacs.d/python-mode-current/")
-(add-to-list 'load-path "~/.emacs.d/python-mode-current")
-(require 'python-mode)
-
 ;; ;; Recursive loading, thanks Will McCutchen
 ;; (let ((default-directory "~/.emacs.d/site-lisp/"))
 ;;   (setq load-path
@@ -71,22 +66,42 @@
 
 (add-to-list 'load-path site-lisp-dir)
 
+;; Elpa stuff not being found for some reason.
+(add-to-list 'load-path (expand-file-name "elpa" user-emacs-directory))
+
 (dolist (project (directory-files site-lisp-dir t "\\w+"))
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
-
 
 ;; ========================================================================
 ;; Package management
 ;; ========================================================================
 
 (require 'package)
+(package-initialize)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives
+;; (add-to-list 'package-archives          ;
+;;              '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives          ;
              '("gnu" . "http://elpa.gnu.org/packages/"))
+
+;; =======================================================================
+;; PYTHON MODE: Load latest python-mode first. And remove the built-in
+;; built-in python.el.
+;; =======================================================================
+(when (featurep 'python) (unload-feature 'python t))
+;; I would like to just load the latest from ~/.emacs.d but
+;; I haven't been able to get it work without forcing the path here.
+(setq py-install-directory "~/.emacs.d/elpa/python-mode-6.1.3/")
+(add-to-list 'load-path "~/.emacs.d/elpa/python-mode-6.1.3")
+
+
+;; XXX apparently ropemacs loads it automatically and correctly?
+;; (require 'python-mode)
+(setq py-load-pymacs-p nil)
 
 ;; ========================================================================
 ;; FUNCTIONS AND COMMANDS
@@ -192,8 +207,6 @@ XXX argument untested"
 (global-set-key [(meta shift d)] 'kill-to-word-boundary)
 (global-set-key [(meta shift f)] 'forward-to-next-word-boundary)
 
-
-
 ;; Highlight lines with pdb.set_trace
 ;; from http://pedrokroger.net/2010/07/configuring-emacs-as-a-python-ide-2/
 (defun annotate-pdb ()
@@ -212,11 +225,11 @@ XXX argument untested"
   (indent-according-to-mode)
   (insert "import pdb; pdb.set_trace()")
   (indent-according-to-mode)
-  (annotate-pdb)
+;;  (annotate-pdb)
 )
 
 ;; To bind it globally:
-(global-set-key [(meta p)] 'pw-pdb-set-trace)
+(global-set-key [(meta p)] 'slinkp-pdb-set-trace)
 
 ;; I've got a bit of vi-envy :)
 ;; I like the vi way of joining lines. Bind that to C-j.
@@ -405,19 +418,24 @@ XXX argument untested"
  '(comint-scroll-show-maximum-output t)
  '(comint-scroll-to-bottom-on-input t)
  '(current-language-environment "English")
+ '(custom-safe-themes (quote ("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" default)))
  '(default-frame-alist (quote ((menu-bar-lines . 1))))
  '(flymake-allowed-file-name-masks (quote ((".+\\.rake$" flymake-ruby-init) ("Rakefile$" flymake-ruby-init) (".+\\.rb$" flymake-ruby-init) ("\\.py\\'" flymake-flake8-init) ("\\.xml\\'" flymake-xml-init) ("\\.cs\\'" flymake-simple-make-init) ("\\.p[ml]\\'" flymake-perl-init) ("\\.php[345]?\\'" flymake-php-init) ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup) ("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup) ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup) ("\\.tex\\'" flymake-simple-tex-init) ("\\.idl\\'" flymake-simple-make-init))))
  '(flymake-compilation-prevents-syntax-check t)
  '(flymake-log-level 0)
- '(flymake-no-changes-timeout 0.5)
+ '(flymake-no-changes-timeout 0.75)
  '(global-font-lock-mode t nil (font-lock))
+ '(inhibit-startup-echo-area-message "pw")
  '(jit-lock-stealth-time 0.035)
+ '(markdown-command "pandoc --from markdown_github --to html --standalone")
  '(protect-buffer-bury-p nil)
+ '(py-load-pymacs-p nil t)
  '(py-pdbtrack-do-tracking-p t)
  '(safe-local-variable-values (quote ((test-case-name . buildbot\.test\.test_transfer) (test-case-name . buildbot\.test\.test_vc) (test-case-name . buildbot\.test\.test_steps\,buildbot\.test\.test_properties) (test-case-name . buildbot\.test\.test_run))))
  '(scroll-bar-mode nil)
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
+ '(sml/name-width 38)
  '(tramp-default-method "ssh"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -428,7 +446,7 @@ XXX argument untested"
  '(flymake-errline ((t (:background "#d99" :foreground "black"))))
  '(flymake-warnline ((t (:background "#226"))))
  '(font-lock-doc-face ((t (:inherit font-lock-string-face))))
- '(font-lock-reference-face ((((class color) (background light)) (:foreground "Yellow"))))
+ '(font-lock-reference-face ((((class color) (background light)) (:foreground "Yellow"))) t)
  '(font-lock-string-face ((((class color) (min-colors 88) (background dark)) (:background "#253040" :foreground "#E0B93E"))))
  '(font-lock-variable-name-face ((((class color) (background light)) (:foreground "Goldenrod" :background "DarkSlateBlue"))))
  '(rst-level-1-face ((t (:background "grey85" :foreground "black" :inverse-video t))) t)
@@ -441,7 +459,11 @@ XXX argument untested"
 ;; MODES
 ;; ========================================================================
 
-(setq auto-mode-alist (cons '("\\.saol$" . c-mode) auto-mode-alist))
+;; Don't autoload pymacs along with python mode, it loads an
+;; old broken version.
+;; https://github.com/pinard/Pymacs#2012-05-06-python-modeel-difficulty
+;; (setq py-load-pymacs-p nil)
+;; (require 'python-mode)
 
 ;; turn on SYNTAX HIGHLIGHTING for language modes
 
@@ -555,6 +577,7 @@ XXX argument untested"
 ;; PYTHON
 ;; ========================================================================
 
+(portable-load-library "flymake-flake8")
 (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.vpy$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.cpy$" . python-mode))
@@ -584,10 +607,6 @@ XXX argument untested"
 (load "dired")
 (setq dired-omit-extensions (append '(".pyc" ".pyo" ".bak")
                              dired-omit-extensions))
-
-(portable-load-library "pymacs")
-(portable-load-library "python-mode")
-
 
 (when (load "flymake" t)
     ;; Currently using the flymake-python-pyflakes package from melpa.
@@ -651,14 +670,43 @@ XXX argument untested"
 (ad-activate 'flymake-post-syntax-check)
 
 
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+(autoload 'pymacs-autoload "pymacs")
+
+(defvar ropemacs-was-loaded nil)
+
+(defun load-pymacs-and-ropemacs ()
+  "Load pymacs and ropemacs"
+;;  (interactive)
+  (require 'pymacs)
+  (pymacs-load "ropemacs" "rope-")
+  ;; Automatically save project python buffers before refactorings
+  (setq ropemacs-confirm-saving 'nil)
+  (setq ropemacs-enable-shortcuts t)
+  (setq ropemacs-was-loaded t)
+)
+(global-set-key "\C-xpl" 'load-pymacs-and-ropemacs)
+
 ;; python-mode.el clobbers slinkp-vi-join, grr.
 ;; TODO: Why does this seem to sometimes work, and sometimes not
 ;; unless I've done (require 'python-mode)?
 ;; Why isn't (portable-load-library) enough?
+;; (portable-load-library "pymacs")
+;; (portable-load-library "python-mode")
+;; (require 'python-mode)
+;; (require 'pymacs)
+
 (add-hook 'python-mode-hook
   (lambda ()
     (define-key python-mode-map (kbd "C-j") 'slinkp-vi-join)
     ;; (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace)
+    (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace)
+    (unless ropemacs-was-loaded
+      (load-pymacs-and-ropemacs))
   )
 )
 
@@ -667,6 +715,7 @@ XXX argument untested"
 (setq jedi:setup-keys t)
 (autoload 'jedi:setup "jedi" nil t)
 (add-hook 'python-mode-hook 'jedi:setup)
+
 ;; Or this for only keybindings:
 ;;(add-hook 'python-mode-hook 'jedi:ac-setup)
 
@@ -930,12 +979,38 @@ comint-replace-by-expanded-history-before-point."
   "When I press enter, jump to the end of the *buffer*, instead of the end of
 the line, to capture multiline input. (This only has effect if
 `comint-eol-on-send' is non-nil."
-  (flet ((end-of-line () (end-of-buffer)))
+  (cl-flet ((end-of-line () (end-of-buffer)))
     ad-do-it))
 
 ;; not sure why, but comint needs to be reloaded from the source (*not*
 ;; compiled) elisp to make the above advise stick.
 (load "comint.elc")
+
+
+;; ===========================================================================
+;; MENUS
+;; ===========================================================================
+
+;; I like the imenu list of functions, etc. in programming language modes.
+;;(autoload 'idomenu "idomenu" nil t)
+
+(add-hook 'python-mode-hook 'imenu-add-menubar-index)
+(add-hook 'c-mode-hook 'imenu-add-menubar-index)
+(add-hook 'ruby-mode-hook 'imenu-add-menubar-index)
+(add-hook 'java-mode-hook 'imenu-add-menubar-index)
+(add-hook 'js2-mode-hook 'imenu-add-menubar-index)
+(add-hook 'js-mode-hook 'imenu-add-menubar-index)
+(add-hook 'sh-mode-hook 'imenu-add-menubar-index)
+(add-hook 'emacs-lisp-mode-hook 'imenu-add-menubar-index)
+(add-hook 'lisp-mode-hook 'imenu-add-menubar-index)
+
+;; Similar menu but keyboard-driven, thanks Kevin!
+;; https://gist.github.com/kevinbirch/8344414
+(autoload 'ido-goto "ido-goto" nil t)
+
+(global-set-key (kbd "C-c g") 'ido-goto)
+
+(setq auto-mode-alist (cons '("\\.saol$" . c-mode) auto-mode-alist))
 
 ;; ===========================================================================
 ;; MISC UNSORTED
