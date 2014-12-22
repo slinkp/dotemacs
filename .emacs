@@ -49,8 +49,11 @@
 ;; local stuff may be loaded from here.
 ;; I like my ~/.emacs.d/ to override, so it goes first.
 (setq load-path (cons user-emacs-directory load-path))
-;; Likewise my python mode first.
-(setq load-path (cons "~/.emacs.d/python-mode-current" load-path))
+;; Likewise my python mode first. And remove the built-in python mode.
+(when (featurep 'python) (unload-feature 'python t))
+(setq py-install-directory "~/.emacs.d/python-mode-current/")
+(add-to-list 'load-path "~/.emacs.d/python-mode-current")
+(require 'python-mode)
 
 ;; ;; Recursive loading, thanks Will McCutchen
 ;; (let ((default-directory "~/.emacs.d/site-lisp/"))
@@ -79,7 +82,11 @@
 
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives
+             '("gnu" . "http://elpa.gnu.org/packages/"))
 
 ;; ========================================================================
 ;; FUNCTIONS AND COMMANDS
