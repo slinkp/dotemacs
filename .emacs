@@ -1272,7 +1272,30 @@ See `cycle-font'."
 ;(diminish 'yas/minor-mode)
 
 (eval-after-load "flymake"
-  '(diminish 'flymake-mode "Fly"))
+  '(diminish 'flymake-mode "F"))
+
+;; Argh you can't diminish major modes.
+;; (eval-after-load "python"
+;;   '(diminish 'python-mode "Py"))
 
 (eval-after-load "multi-web"
-  '(diminish 'multi-web-mode "multi"))
+  '(diminish 'multi-web-mode "mw"))
+
+(eval-after-load "auto-complete-mode"
+  '(diminish 'auto-complete-mode))
+
+(eval-after-load "outline-mode"
+  '(diminish 'outline-mode "out"))
+
+(eval-after-load "hi-lock-mode"
+  '(diminish 'hi-lock-mode))
+
+(eval-after-load "ropemacs"
+  '(diminish 'ropemacs "r"))
+
+;; ;; "Smart" modeline takes up less space
+;; (require 'smart-mode-line)
+;; (sml/setup)
+
+;; ;; ... or try this one
+;; (require 'powerline)
