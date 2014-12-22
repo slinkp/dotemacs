@@ -1155,9 +1155,30 @@ the line, to capture multiline input. (This only has effect if
 ;; Tweaked from http://ergoemacs.org/emacs/emacs_switching_fonts.html
 ;; ========================================================================
 
+(defun set-font-in-frames (frames fontToUse)
+  "Sets font in each frame and redraws it."
+  ;; Future frames.
+  (set-frame-font fontToUse nil t)
+  ;; All current frames.
+  (if (not (eq frames nil))
+      (progn ;;(message "we got a frame %s" (car frames))
+             (set-frame-parameter (car frames) 'font fontToUse)
+             ;;(redraw-frame (car frames))  ;; this happens automatically
+             (set-font-in-frames (cdr frames) fontToUse)
+       )
+  )
+)
 
-;; TODO automate the copy/paste crap
+;; Set the default.
+(when (and linux? gui?)
+  ;; (set-font-in-frames (visible-frame-list) "-*-DejaVu Sans Mono-normal-normal-normal-*-14-*-*-*-m-0-*")
+  (set-font-in-frames (visible-frame-list) "-*-DejaVu Sans Mono-normal-normal-normal-*-12-*-*-*-m-0-*")
+)
+(when (and darwin? gui?)
+  (set-font-in-frames (visible-frame-list) "-outline-menlo-medium-r-normal--14-*-*-*-*-*-iso10646-1")
+)
 
+;; TODO automate the copy/paste font name crap
 (defun cycle-font (num)
   "Change font in all visible frames.
 Each time this is called, font cycles thru a predefined set of fonts.
@@ -1168,30 +1189,6 @@ If NUM is -1, cycle backward."
   (let (fontList fontToUse currentState nextState )
     (when (and darwin? gui?)
       (setq fontList (list
-                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-10-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-11-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-12-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-13-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-15-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-16-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-17-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-18-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-20-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Source_Code_Pro-medium-normal-normal-*-22-*-*-*-m-0-iso10646-1"
-
-                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-10-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-11-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-12-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-13-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-15-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-16-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-17-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-18-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-20-*-*-*-m-0-iso10646-1"
-                      ;; "-apple-Anonymous_Pro-medium-normal-normal-*-22-*-*-*-m-0-iso10646-1"
-
                       "-outline-menlo-medium-r-normal--10-*-*-*-*-*-iso10646-1"
                       "-outline-menlo-medium-r-normal--11-*-*-*-*-*-iso10646-1"
                       "-outline-menlo-medium-r-normal--12-*-*-*-*-*-iso10646-1"
@@ -1206,18 +1203,19 @@ If NUM is -1, cycle backward."
                       ))
     )
     (when (and linux? gui?)
+
       (setq fontList (list
                       "-*-DejaVu Sans Mono-normal-normal-normal-*-10-*-*-*-m-0-*"
                       "-*-DejaVu Sans Mono-normal-normal-normal-*-11-*-*-*-m-0-*"
                       "-*-DejaVu Sans Mono-normal-normal-normal-*-12-*-*-*-m-0-*"
-                      "-*-DejaVu Sans Mono-normal-normal-normal-*-13-*-*-*-m-0-*"
+                      ;; 13-point saves no space compared to 14 and looks worse.
+                      ;; "-*-DejaVu Sans Mono-normal-normal-normal-*-13-*-*-*-m-0-*"
                       "-*-DejaVu Sans Mono-normal-normal-normal-*-14-*-*-*-m-0-*"
                       "-*-DejaVu Sans Mono-normal-normal-normal-*-15-*-*-*-m-0-*"
                       "-*-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-*"
                       "-*-DejaVu Sans Mono-normal-normal-normal-*-17-*-*-*-m-0-*"
-                      "-*-DejaVu Sans Mono-normal-normal-normal-*-18-*-*-*-m-0-*"
+                      "-*-DejaVu Sans Mono-normal-normal-normal-*-22-*-*-*-m-0-*"
                       ))
-    )
 
     (setq currentState (if (get 'cycle-font 'state) (get 'cycle-font 'state) 0))
     (setq nextState (% (+ currentState (length fontList) num) (length fontList)))
@@ -1234,19 +1232,7 @@ If NUM is -1, cycle backward."
     (put 'cycle-font 'state nextState)
     )
   )
-
-(defun set-font-in-frames (frames fontToUse)
-  "Sets font in each frame and redraws it."
-  (if (not (eq frames nil))
-      (progn ;;(message "we got a frame %s" (car frames))
-             (set-frame-parameter (car frames) 'font fontToUse)
-             ;;(redraw-frame (car frames))  ;; this happens automatically
-             (set-font-in-frames (cdr frames) fontToUse)
-       )
-  )
 )
-
-
 (defun cycle-font-forward ()
   "Switch to the next font, in all frames.
 See `cycle-font'."
@@ -1267,9 +1253,14 @@ See `cycle-font'."
 ;;;; ... it only applies to the current buffer, bleh.
 ;;;; So I'll use mine, at least for now.
 (global-set-key [(meta +)] 'cycle-font-forward)
+(global-set-key (kbd "<C-+>") 'cycle-font-forward)
+(global-set-key [(control +)] 'cycle-font-forward)
 (global-set-key [(meta _)] 'cycle-font-backward)
 
+
 ;;============================================================================
+;; Modeline tweaks.
+;; --------------------------
 ;; Diminish minor modes in the modeline to leave room for stuff we care about.
 ;;============================================================================
 ;; see http://whattheemacsd.com/init.el-04.html
