@@ -428,7 +428,7 @@ XXX argument untested"
  '(jit-lock-stealth-time 0.035)
  '(markdown-command "pandoc --from markdown_github --to html --standalone")
  ;; Hacked mode line to move (vc-mode vc-mode)
- '(mode-line-format (quote ("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification sml/pos-id-separator mode-line-position sml/pre-modes-separator mode-line-misc-info mode-line-modes (vc-mode vc-mode) mode-line-end-spaces)))
+ '(mode-line-format (quote ("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification mode-line-position mode-line-misc-info mode-line-modes (vc-mode vc-mode) mode-line-end-spaces)))
  '(protect-buffer-bury-p nil)
  '(py-load-pymacs-p nil t)
  '(py-pdbtrack-do-tracking-p t)
@@ -436,11 +436,6 @@ XXX argument untested"
  '(scroll-bar-mode nil)
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
- '(sml/mode-width 10)
- '(sml/name-width (quote (10 . 24)))
- '(sml/shorten-modes t)
- '(sml/theme (quote light))
- '(sml/vc-mode-show-backend nil)
  '(tramp-default-method "ssh"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -689,6 +684,8 @@ XXX argument untested"
   (setq ropemacs-confirm-saving 'nil)
   (setq ropemacs-enable-shortcuts t)
   (setq ropemacs-was-loaded t)
+  ;; Can't seem to find the right place to hook this :(
+  (diminish 'ropemacs-mode)
 )
 (global-set-key "\C-xpl" 'load-pymacs-and-ropemacs)
 
@@ -1274,7 +1271,7 @@ See `cycle-font'."
 ;(diminish 'yas/minor-mode)
 
 (eval-after-load "flymake"
-  '(diminish 'flymake-mode "F"))
+  '(diminish 'flymake-mode))
 
 ;; Argh you can't diminish major modes.
 ;; (eval-after-load "python"
@@ -1284,17 +1281,14 @@ See `cycle-font'."
   '(diminish 'multi-web-mode "mw"))
 
 (eval-after-load "auto-complete-mode"
-  '(diminish 'auto-complete-mode))
+  '(diminish 'auto-complete-mode ""))
 
 (eval-after-load "outline-mode"
   '(diminish 'outline-mode "out"))
 
 (eval-after-load "hi-lock-mode"
-  '(diminish 'hi-lock-mode))
+  '(diminish 'hi-lock-mode ""))
 
-;; (eval-after-load "python"
-;;   '(diminish 'ropemacs "R"))
-
-;; "Smart" modeline takes up less space?  ... not really
-;; (require 'smart-mode-line)
-;; (sml/setup)
+;; No dice with any variant of this I tried; hacked into the pymacs loading func
+;; (eval-after-load "ropemacs-mode"
+;;   '(diminish 'ropemacs-mode " R"))
