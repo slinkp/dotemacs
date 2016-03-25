@@ -1354,3 +1354,24 @@ See `cycle-font'."
 ;; No dice with any variant of this I tried; hacked into the pymacs loading func
 ;; (eval-after-load "ropemacs-mode"
 ;;   '(diminish 'ropemacs-mode " R"))
+(put 'set-goal-column 'disabled nil)
+
+
+;; ===========================================================
+;; Helm
+;; ===========================================================
+
+(require 'helm)
+(when (fboundp 'helm)
+  ;; way cooler than default M-x
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  ;; I never use the default M-y "yank-pop" command.
+  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+  ;; Replace switch-to-buffer.
+  (global-set-key (kbd "C-x b") 'helm-mini)
+
+  (projectile-global-mode)
+  (setq projectile-completion-system 'helm)
+  (helm-projectile-on)
+)
+
