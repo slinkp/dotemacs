@@ -331,7 +331,8 @@ XXX argument untested"
 ))
 
 ;; Show current function in status bar.
-;; ... Maybe? This seems to be the cause of many hangs :(
+;; ... was horribly slow on some .py files before emacs 24.5, now YAYY i can
+;; use it again.
 (which-function-mode t)
 
 ;; show me the time
@@ -701,21 +702,51 @@ XXX argument untested"
 
 (add-hook 'python-mode-hook
   (lambda ()
+    (jedi:setup)
     (define-key python-mode-map (kbd "C-j") 'slinkp-vi-join)
-    (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace)
-    (unless ropemacs-was-loaded
-      (load-pymacs-and-ropemacs))
+    (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace) 
+    ;;; DISABLING ROPE BY DEFAULT ... it is choking too much on big stuff.
+    ;;; ... or maybe that was just which-function-mode? Trying without that.
+    ;; (unless ropemacs-was-loaded
+    ;;   (load-pymacs-and-ropemacs))
+    ;; Override rope-goto-definition binding because jedi has a back button!
+    (define-key python-mode-map (kbd "C-c g") 'jedi:goto-definition)
+    (define-key python-mode-map (kbd "C-c C-g") 'jedi:goto-definition-pop-marker)
   )
 )
 
-;; Trying jedi for autocomplete and code navigation.
+;; Neat function from Evan Bender: if a function def is too long,
+;; this splits it into multiple lines
 
-(setq jedi:setup-keys t)
-(autoload 'jedi:setup "jedi" nil t)
-(add-hook 'python-mode-hook 'jedi:setup)
+(defun multiline-it ()
+  (interactive)
+  ;; narrow to region around current line
+  (end-of-line)
+  (set-mark-command nil)
+  (beginning-of-line)
+  (narrow-to-region (mark) (point))
+  ;; TODO I want to insert a newline after the first (
+  ;; replace in region
+  (replace-string ", " ",\n")
+  ;; indent in region
+  (beginning-of-buffer)
+  (set-mark-command nil)
+  (end-of-buffer)
+  (indent-region (mark) (point))
+  ;; back to normal
+  (widen))
+
+
+;;;;;;;;;;;;;;;;;;;
+;; Trying jedi for autocomplete.
+
+;; (setq jedi:setup-keys t)
+;; (autoload 'jedi:setup "jedi" nil t)
+;; (add-hook 'python-mode-hook 'jedi:setup)
+;; (add-hook 'python-mode-hook 'jedi:setup)
 
 ;; Or this for only keybindings:
-;;(add-hook 'python-mode-hook 'jedi:ac-setup)
+;; (add-hook 'python-mode-hook 'jedi:ac-setup)
 
 ;; ========================================================================
 ;; JAVASCRIPT
@@ -1004,9 +1035,11 @@ the line, to capture multiline input. (This only has effect if
 
 ;; Similar menu but keyboard-driven, thanks Kevin!
 ;; https://gist.github.com/kevinbirch/8344414
-(autoload 'ido-goto "ido-goto" nil t)
+;; (autoload 'ido-goto "ido-goto" nil t)
 
-(global-set-key (kbd "C-c g") 'ido-goto)
+;; ... on second thought no, I'm using this key in python for
+;; goto-definition (either the rope or jedi variant).
+; (global-set-key (kbd "C-c g") 'ido-goto)
 
 (setq auto-mode-alist (cons '("\\.saol$" . c-mode) auto-mode-alist))
 
