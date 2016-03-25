@@ -1402,3 +1402,19 @@ See `cycle-font'."
 ;; ==========================================================
 ;; Misc
 ;; ==========================================================
+
+;; Hate hate hate auto-vscrolling to center of screen.
+(setq scroll-step 1)
+(setq scroll-conservatively 10000)
+(setq auto-window-vscroll nil)
+
+
+;; ========================================================
+;; Default GUI windows.
+;; ========================================================
+
+(when gui?
+  (add-to-list 'initial-frame-alist '(height . 29))
+  (add-to-list 'initial-frame-alist '(width . 80))
+  (make-frame))
+
