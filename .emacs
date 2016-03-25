@@ -604,6 +604,12 @@ XXX argument untested"
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 
+;; ========================================================================
+;; YAML
+;; ========================================================================
+
+(add-to-list 'auto-mode-alist '("\\.raml$" . yaml-mode))
+
 ;; Add missing shortcut for uncomment-region.
 ;; thanks chrism!
 ; ... only works in python-mode.el, not python.el
