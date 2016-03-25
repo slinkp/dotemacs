@@ -345,6 +345,16 @@ XXX argument untested"
 ;; Also, "DEL" deletes the selection.
 (delete-selection-mode t)
 
+(when (load "rainbow-delimiters" t)
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+)
+
+;; ========================================================================
+;; URLs
+;; ========================================================================
+
+(setq browse-url-generic-program "chrome")
+(global-set-key [S-mouse-2] 'browse-url-at-mouse)
 
 ;; ========================================================================
 ;; KEYBOARD, MOVEMENT
@@ -451,6 +461,10 @@ XXX argument untested"
  '(font-lock-reference-face ((((class color) (background light)) (:foreground "Yellow"))) t)
  '(font-lock-string-face ((((class color) (min-colors 88) (background dark)) (:background "#253040" :foreground "#E0B93E"))))
  '(font-lock-variable-name-face ((((class color) (background light)) (:foreground "Goldenrod" :background "DarkSlateBlue"))))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "#c0bfcf"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "#c0c173"))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "#d79078"))))
+ '(rainbow-delimiters-depth-5-face ((t (:foreground "#8ede98"))))
  '(rst-level-1-face ((t (:background "grey85" :foreground "black" :inverse-video t))) t)
  '(rst-level-2-face ((t (:background "grey78" :foreground "black" :inverse-video t))) t)
  '(rst-level-3-face ((t (:background "grey71" :foreground "black" :inverse-video t))) t)
