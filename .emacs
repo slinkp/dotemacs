@@ -1375,3 +1375,30 @@ See `cycle-font'."
   (helm-projectile-on)
 )
 
+;; ===========================================================
+;; Percolate hacks
+;; ===========================================================
+
+;; ;; thanks Nayef Copty
+;; (portable-load-library "s")
+;; (defun get-github-url ()
+;;   "Return the Github url for the current line."
+;;   (defvar github-url)
+;;   (setq github-url
+;;    (s-concat
+;;     "https://github.com/percolate/hotlanta/blob/master/"
+;;     (s-chop-prefix
+;;      "/home/pw/hacking/devolate/hotlanta/" buffer-file-name)
+;;     "#L"
+;;     (number-to-string (line-number-at-pos)))))
+;; (defun copy-hotlanta-github-url ()
+;;   "Put hotlanta URL for the line at point in kill ring."
+;;   (interactive)
+;;   (kill-new (get-github-url))
+;;   (message "Copied: %s" (get-github-url)))
+
+;; (global-set-key "\C-x a u" 'copy-hotlanta-github-url)
+
+;; ==========================================================
+;; Misc
+;; ==========================================================
