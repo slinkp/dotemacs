@@ -48,8 +48,7 @@
 ;;============================================================================
 
 ;; local stuff may be loaded from here.
-;; I like my ~/.emacs.d/ to override, so it goes first.
-(setq load-path (cons user-emacs-directory load-path))
+
 ;; ;; Recursive loading, thanks Will McCutchen
 ;; (let ((default-directory "~/.emacs.d/site-lisp/"))
 ;;   (setq load-path
@@ -64,7 +63,9 @@
 (setq site-lisp-dir
       (expand-file-name "site-lisp" user-emacs-directory))
 
-(add-to-list 'load-path site-lisp-dir)
+;; I like my ~/.emacs.d/ to override, so it goes first.
+(setq load-path (cons site-lisp-dir load-path))
+;; (add-to-list 'load-path site-lisp-dir)
 
 ;; Elpa stuff not being found for some reason.
 (add-to-list 'load-path (expand-file-name "elpa" user-emacs-directory))
@@ -83,7 +84,7 @@
              '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives          ;
+(add-to-list 'package-archives
              '("gnu" . "http://elpa.gnu.org/packages/"))
 
 ;; =======================================================================
@@ -427,7 +428,6 @@ XXX argument untested"
  '(inhibit-startup-echo-area-message "pw")
  '(jit-lock-stealth-time 0.035)
  '(markdown-command "pandoc --from markdown_github --to html --standalone")
- ;; Hacked mode line to move (vc-mode vc-mode)
  '(mode-line-format (quote ("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification mode-line-position mode-line-misc-info mode-line-modes (vc-mode vc-mode) mode-line-end-spaces)))
  '(protect-buffer-bury-p nil)
  '(py-load-pymacs-p nil t)
@@ -436,7 +436,8 @@ XXX argument untested"
  '(scroll-bar-mode nil)
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
- '(tramp-default-method "ssh"))
+ '(tramp-default-method "ssh")
+ '(undo-outer-limit 24000000))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -501,9 +502,9 @@ XXX argument untested"
 (setq auto-mode-alist (cons '("svn-commit.tmp" . diff-mode) auto-mode-alist))
 
 ;; Io
-(require 'io-mode)
-(setq auto-mode-alist (cons '("\\.io$" . io-mode) auto-mode-alist))
-(add-hook 'io-mode-hook 'font-lock-mode)
+;; (require 'io-mode)
+;; (setq auto-mode-alist (cons '("\\.io$" . io-mode) auto-mode-alist))
+;; (add-hook 'io-mode-hook 'font-lock-mode)
 
 ;; Handle ANSI colorization in shell mode.
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
