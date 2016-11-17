@@ -1247,8 +1247,9 @@ the line, to capture multiline input. (This only has effect if
 ;; Set the default.
 (when (and linux? gui?)
   ;; (set-font-in-frames (visible-frame-list) "-*-DejaVu Sans Mono-normal-normal-normal-*-14-*-*-*-m-0-*")
-  (set-font-in-frames (visible-frame-list) "-*-DejaVu Sans Mono-normal-normal-normal-*-12-*-*-*-m-0-*")
+  (set-font-in-frames (visible-frame-list) "-*-DejaVu Sans Mono-normal-normal-normal-*-14-*-*-*-m-0-*")
 )
+
 (when (and darwin? gui?)
   (set-font-in-frames (visible-frame-list) "-outline-menlo-medium-r-normal--14-*-*-*-*-*-iso10646-1")
 )
@@ -1283,8 +1284,8 @@ If NUM is -1, cycle backward."
                       "-*-DejaVu Sans Mono-normal-normal-normal-*-10-*-*-*-m-0-*"
                       "-*-DejaVu Sans Mono-normal-normal-normal-*-11-*-*-*-m-0-*"
                       "-*-DejaVu Sans Mono-normal-normal-normal-*-12-*-*-*-m-0-*"
-                      ;; 13-point saves no space compared to 14 and looks worse.
-                      ;; "-*-DejaVu Sans Mono-normal-normal-normal-*-13-*-*-*-m-0-*"
+                      ;; 13-point saves only verticl space compared to 14
+                      "-*-DejaVu Sans Mono-normal-normal-normal-*-13-*-*-*-m-0-*"
                       "-*-DejaVu Sans Mono-normal-normal-normal-*-14-*-*-*-m-0-*"
                       "-*-DejaVu Sans Mono-normal-normal-normal-*-15-*-*-*-m-0-*"
                       "-*-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-*"
