@@ -102,6 +102,8 @@
 ;; (require 'python-mode)
 (setq py-load-pymacs-p nil)
 
+
+
 ;; ========================================================================
 ;; FUNCTIONS AND COMMANDS
 ;; ========================================================================
@@ -753,13 +755,14 @@ XXX argument untested"
   (set-mark-command nil)
   (beginning-of-line)
   (narrow-to-region (mark) (point))
-  ;; TODO I want to insert a newline after the first (
+  ;; TODO insert newline after only the FIRST left-paren in region.
   ;; replace in region
+  (replace-string "\(" "(\n")
   (replace-string ", " ",\n")
   ;; indent in region
   (beginning-of-buffer)
   (set-mark-command nil)
-  (end-of-buffer)
+  (goto-char (point-max))
   (indent-region (mark) (point))
   ;; back to normal
   (widen))
