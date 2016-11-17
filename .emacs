@@ -768,6 +768,15 @@ XXX argument untested"
   (widen))
 
 
+;; sphinx-doc
+;; https://github.com/naiquevin/sphinx-doc.el
+;; use C-c M-d
+;; can insert skeletons and update existing docstrings!
+(add-hook 'python-mode-hook
+  (lambda ()
+    (require 'sphinx-doc)
+    (sphinx-doc-mode t)))
+
 ;;;;;;;;;;;;;;;;;;;
 ;; Trying jedi for autocomplete.
 
