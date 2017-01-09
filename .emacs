@@ -93,13 +93,17 @@
 ;; it seems we need to do this early.
 ;; Load latest python-mode.el first. And remove the
 ;; built-in python.el.
-;; =======================================================================
+;; ========================================================================
+
 (when (featurep 'python) (unload-feature 'python t))
 ;; I would like to just load the latest from ~/.emacs.d but
 ;; I haven't been able to get it work without forcing the path here.
-(setq py-install-directory "~/.emacs.d/elpa/python-mode-6.1.3/")
-(add-to-list 'load-path "~/.emacs.d/elpa/python-mode-6.1.3")
-
+;; (setq py-install-directory "~/.emacs.d/elpa/python-mode-20170102.523/")
+;; (add-to-list 'load-path "~/.emacs.d/elpa/python-mode-20170102.523")
+;; (setq py-install-directory "~/.emacs.d/elpa/python-mode-20170106.729/")
+;; (add-to-list 'load-path "~/.emacs.d/elpa/python-mode-20170106.729")
+(setq py-install-directory "~/.emacs.d/elpa/python-mode-20170108.801/")
+(add-to-list 'load-path "~/.emacs.d/elpa/python-mode-20170108.801")
 
 ;; XXX apparently ropemacs loads it automatically and correctly?
 ;; (require 'python-mode)
