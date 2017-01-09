@@ -103,12 +103,10 @@
 ;; (setq py-install-directory "~/.emacs.d/elpa/python-mode-20170106.729/")
 ;; (add-to-list 'load-path "~/.emacs.d/elpa/python-mode-20170106.729")
 (setq py-install-directory "~/.emacs.d/elpa/python-mode-20170108.801/")
-(add-to-list 'load-path "~/.emacs.d/elpa/python-mode-20170108.801")
+(add-to-list 'load-path py-install-directory)
 
-;; XXX apparently ropemacs loads it automatically and correctly?
-;; (require 'python-mode)
+;; Per https://gitlab.com/python-mode-devs/python-mode set this nil??
 (setq py-load-pymacs-p nil)
-
 
 
 ;; ========================================================================
