@@ -87,8 +87,11 @@
 (add-to-list 'package-archives
              '("gnu" . "http://elpa.gnu.org/packages/"))
 
-;; =======================================================================
-;; PYTHON MODE: Load latest python-mode first. And remove the built-in
+
+;; ========================================================================
+;; PYTHON part 1
+;; it seems we need to do this early.
+;; Load latest python-mode.el first. And remove the
 ;; built-in python.el.
 ;; =======================================================================
 (when (featurep 'python) (unload-feature 'python t))
@@ -230,7 +233,7 @@ XXX argument untested"
 )
 
 ;; To bind it globally:
-(global-set-key [(meta p)] 'slinkp-pdb-set-trace)
+; (global-set-key [(meta p)] 'slinkp-pdb-set-trace)
 
 ;; I've got a bit of vi-envy :)
 ;; I like the vi way of joining lines. Bind that to C-j.
@@ -299,7 +302,8 @@ XXX argument untested"
   (unwind-protect
       (progn
         (linum-mode 1)
-        (goto-line (read-number "Goto line: ")))
+        (with-no-warnings
+          (goto-line (read-number "Goto line: "))))
     (linum-mode -1)))
 
 
@@ -485,12 +489,6 @@ XXX argument untested"
 ;; MODES
 ;; ========================================================================
 
-;; Don't autoload pymacs along with python mode, it loads an
-;; old broken version.
-;; https://github.com/pinard/Pymacs#2012-05-06-python-modeel-difficulty
-;; (setq py-load-pymacs-p nil)
-;; (require 'python-mode)
-
 ;; turn on SYNTAX HIGHLIGHTING for language modes
 
 (add-hook 'c-mode-hook 'font-lock-mode)
@@ -595,16 +593,6 @@ XXX argument untested"
   (setq nxml-slash-auto-complete-flag t))
 (add-hook 'nxml-mode-hook 'nxml-mode-setup)
 
-;; ========================================================================
-;; PYTHON
-;; ========================================================================
-
-(portable-load-library "flymake-flake8")
-(add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.vpy$" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.cpy$" . python-mode))
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
-
 
 ;; ========================================================================
 ;; YAML
@@ -612,15 +600,17 @@ XXX argument untested"
 
 (add-to-list 'auto-mode-alist '("\\.raml$" . yaml-mode))
 
-;; Add missing shortcut for uncomment-region.
-;; thanks chrism!
-; ... only works in python-mode.el, not python.el
- ;; (add-hook 'python-mode-hook (lambda ()
- ;;   (define-key py-mode-map "\C-c3"
- ;;     (lambda (beg end) (interactive "r")
- ;;       (py-comment-region beg end '(4))))))
-; ... I do'nt use that anymore anyway, I just use comment-dwim.
-; remember that comment-dwim is M-;
+
+;; ========================================================================
+;; PYTHON part 2 - main config
+;; ========================================================================
+
+
+(portable-load-library "flymake-flake8")
+(add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.vpy$" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.cpy$" . python-mode))
+(add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 ;; Get dired to consider .pyc and .pyo files to be uninteresting
 (add-hook 'dired-load-hook
@@ -641,27 +631,13 @@ XXX argument untested"
     (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
     (setq flymake-python-pyflakes-executable "flake8")
 
-    ;; Older setup for my hacked pyflakespep8 script
-    ;; ;; For Python, I use pyflakes combined with pep8 via a little script
-    ;; ;; that mashes them up.  Might want to try flake8 (see pypi) ... it
-    ;; ;; adds a complexity checker.
-    ;; (defun flymake-pyflakespep8-init ()
-    ;;   (let* ((temp-file (flymake-init-create-temp-buffer-copy
-    ;;                      'flymake-create-temp-inplace))
-    ;;          (local-file (file-relative-name
-	;;    	      temp-file
-	;;    	      (file-name-directory buffer-file-name))))
-    ;;     (list "pyflakespep8.py" (list local-file))))
-    ;; (add-to-list 'flymake-allowed-file-name-masks
-    ;;              '("\\.py\\'" flymake-pyflakespep8-init))
-
     (add-hook 'find-file-hook 'flymake-find-file-hook)
 
     ;; I found that flymake wasn't recognizing pep8 output.
     ;; ... but this doesn't seem to result in anything being highlighted,
     ;; although if I test it in M-x regex-builder it works fine.
-    ;; (add-to-list 'flymake-err-line-patterns
-    ;; 	      '("^\\([^:]*\\):\\([0-9]+\\):\\([0-9]+\\): WARNING \\(.*\\)$" 1 2 3 4))
+    ;(add-to-list 'flymake-err-line-patterns
+    ;	      '("^\\([^:]*\\):\\([0-9]+\\):\\([0-9]+\\): WARNING \\(.*\\)$" 1 2 3 4))
 
     ;; Installed from melpa,
     ;; ... "makes flymake error messages appear in the minibuffer
@@ -669,6 +645,7 @@ XXX argument untested"
     ;; saves having to mouse over the error, which is a keyboard
     ;; user's annoyance". See  http://www.emacswiki.org/emacs/flymake-cursor.el
     (portable-load-library "flymake-cursor")
+    ;; ... hmm, redundant? Seem to have by default already.
 
     ;; For HTML, use Tidy, don't treat it like XML
     ;; (which is bad for HTML4).
@@ -745,7 +722,7 @@ XXX argument untested"
   )
 )
 
-;; Neat function from Evan Bender: if a function def is too long,
+;; Neat function from Evan Bender: if a python function def is too long,
 ;; this splits it into multiple lines
 
 (defun multiline-it ()
@@ -760,7 +737,7 @@ XXX argument untested"
   (replace-string "\(" "(\n")
   (replace-string ", " ",\n")
   ;; indent in region
-  (beginning-of-buffer)
+  (goto-char (point-min))
   (set-mark-command nil)
   (goto-char (point-max))
   (indent-region (mark) (point))
@@ -785,8 +762,6 @@ XXX argument untested"
 ;; (add-hook 'python-mode-hook 'jedi:setup)
 ;; (add-hook 'python-mode-hook 'jedi:setup)
 
-;; Or this for only keybindings:
-;; (add-hook 'python-mode-hook 'jedi:ac-setup)
 
 ;; ========================================================================
 ;; JAVASCRIPT
@@ -921,7 +896,8 @@ XXX argument untested"
 (push '("Rakefile$" flymake-ruby-init) flymake-allowed-file-name-masks)
 (push '(".+\\.rake$" flymake-ruby-init) flymake-allowed-file-name-masks)
 
-(push '("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3) flymake-err-line-patterns)
+(push '("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3) flymake-err-line-patterns
+     )
 
 (add-hook 'ruby-mode-hook
           '(lambda ()
@@ -1048,7 +1024,7 @@ comint-replace-by-expanded-history-before-point."
   "When I press enter, jump to the end of the *buffer*, instead of the end of
 the line, to capture multiline input. (This only has effect if
 `comint-eol-on-send' is non-nil."
-  (cl-flet ((end-of-line () (end-of-buffer)))
+  (cl-flet ((end-of-line () (goto-char (point-max))))
     ad-do-it))
 
 ;; not sure why, but comint needs to be reloaded from the source (*not*
@@ -1109,7 +1085,7 @@ the line, to capture multiline input. (This only has effect if
 ;; From http://whattheemacsd.com/setup-dired.el-02.html
 (defun dired-back-to-top ()
   (interactive)
-  (beginning-of-buffer)
+  (goto-char (point-min))
   (dired-next-line (if dired-omit-mode 2 4)))
 
 (define-key dired-mode-map
@@ -1117,7 +1093,7 @@ the line, to capture multiline input. (This only has effect if
 
 (defun dired-jump-to-bottom ()
   (interactive)
-  (end-of-buffer)
+  (goto-char (point-max))
   (dired-next-line -1))
 
 (define-key dired-mode-map
@@ -1383,7 +1359,7 @@ See `cycle-font'."
   ;; Replace switch-to-buffer.
   (global-set-key (kbd "C-x b") 'helm-mini)
 
-  (projectile-global-mode)
+  (projectile-mode)
   (setq projectile-completion-system 'helm)
   (helm-projectile-on)
 )
