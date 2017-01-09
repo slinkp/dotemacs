@@ -1043,7 +1043,8 @@ the line, to capture multiline input. (This only has effect if
 ;; I like the imenu list of functions, etc. in programming language modes.
 ;;(autoload 'idomenu "idomenu" nil t)
 
-(add-hook 'python-mode-hook 'imenu-add-menubar-index)
+;; ... broken lately in python-mode? :(
+; (add-hook 'python-mode-hook 'imenu-add-menubar-index)
 (add-hook 'c-mode-hook 'imenu-add-menubar-index)
 (add-hook 'ruby-mode-hook 'imenu-add-menubar-index)
 (add-hook 'java-mode-hook 'imenu-add-menubar-index)
