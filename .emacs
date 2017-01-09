@@ -447,7 +447,7 @@ XXX argument untested"
  '(current-language-environment "English")
  '(custom-safe-themes (quote ("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" default)))
  '(default-frame-alist (quote ((menu-bar-lines . 1))))
- '(flymake-allowed-file-name-masks (quote ((".+\\.rake$" flymake-ruby-init) ("Rakefile$" flymake-ruby-init) (".+\\.rb$" flymake-ruby-init) ("\\.py\\'" flymake-flake8-init) ("\\.xml\\'" flymake-xml-init) ("\\.cs\\'" flymake-simple-make-init) ("\\.p[ml]\\'" flymake-perl-init) ("\\.php[345]?\\'" flymake-php-init) ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup) ("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup) ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup) ("\\.tex\\'" flymake-simple-tex-init) ("\\.idl\\'" flymake-simple-make-init))))
+ '(flymake-allowed-file-name-masks (quote ((".+\\.rake$" flymake-ruby-init) ("Rakefile$" flymake-ruby-init) (".+\\.rb$" flymake-ruby-init) ("\\.xml\\'" flymake-xml-init) ("\\.cs\\'" flymake-simple-make-init) ("\\.p[ml]\\'" flymake-perl-init) ("\\.php[345]?\\'" flymake-php-init) ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup) ("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup) ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup) ("\\.tex\\'" flymake-simple-tex-init) ("\\.idl\\'" flymake-simple-make-init))))
  '(flymake-compilation-prevents-syntax-check t)
  '(flymake-log-level 0)
  '(flymake-no-changes-timeout 0.75)
@@ -607,12 +607,18 @@ XXX argument untested"
 ;; PYTHON part 2 - main config
 ;; ========================================================================
 
+(require 'python-mode)
 
-(portable-load-library "flymake-flake8")
 (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.vpy$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.cpy$" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+
+;; No more flymake? I'm using flycheck and flycheck-flake8
+(add-hook 'python-mode-hook
+  (lambda ()
+    (require 'flycheck)
+    (flycheck-mode t)))
 
 ;; Get dired to consider .pyc and .pyo files to be uninteresting
 (add-hook 'dired-load-hook
@@ -629,10 +635,6 @@ XXX argument untested"
                              dired-omit-extensions))
 
 (when (load "flymake" t)
-    ;; Currently using the flymake-python-pyflakes package from melpa.
-    (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
-    (setq flymake-python-pyflakes-executable "flake8")
-
     (add-hook 'find-file-hook 'flymake-find-file-hook)
 
     ;; I found that flymake wasn't recognizing pep8 output.
@@ -646,7 +648,7 @@ XXX argument untested"
     ;; when point is on a line containing a flymake error. This
     ;; saves having to mouse over the error, which is a keyboard
     ;; user's annoyance". See  http://www.emacswiki.org/emacs/flymake-cursor.el
-    (portable-load-library "flymake-cursor")
+    ; (portable-load-library "flymake-cursor")
     ;; ... hmm, redundant? Seem to have by default already.
 
     ;; For HTML, use Tidy, don't treat it like XML
@@ -1054,10 +1056,6 @@ the line, to capture multiline input. (This only has effect if
 ;; Similar menu but keyboard-driven, thanks Kevin!
 ;; https://gist.github.com/kevinbirch/8344414
 ;; (autoload 'ido-goto "ido-goto" nil t)
-
-;; ... on second thought no, I'm using this key in python for
-;; goto-definition (either the rope or jedi variant).
-; (global-set-key (kbd "C-c g") 'ido-goto)
 
 (setq auto-mode-alist (cons '("\\.saol$" . c-mode) auto-mode-alist))
 
