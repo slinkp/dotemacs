@@ -1387,7 +1387,8 @@ See `cycle-font'."
 ;;============================================================================
 ;; see http://whattheemacsd.com/init.el-04.html
 
-(require 'diminish)
+;; XXX Is this fucking up imenu?
+; (require 'diminish)
 ;(diminish 'wrap-region-mode)
 ;(diminish 'yas/minor-mode)
 
@@ -1476,4 +1477,3 @@ See `cycle-font'."
   (add-to-list 'initial-frame-alist '(height . 29))
   (add-to-list 'initial-frame-alist '(width . 80))
   (make-frame))
-
