@@ -341,7 +341,8 @@ XXX argument untested"
 ;; Show current function in status bar.
 ;; ... was horribly slow on some .py files before emacs 24.5, now YAYY i can
 ;; use it again.
-(which-function-mode t)
+;; ... And now horribly slow again as of 24.5.1 and python-mode 6.2.2+ :(
+; (which-function-mode t)
 
 ;; show me the time
 ; (display-time)
@@ -690,7 +691,7 @@ XXX argument untested"
 
 (defun load-pymacs-and-ropemacs ()
   "Load pymacs and ropemacs"
-;;  (interactive)
+  (interactive)
   (require 'pymacs)
   (pymacs-load "ropemacs" "rope-")
   ;; Automatically save project python buffers before refactorings
@@ -701,30 +702,6 @@ XXX argument untested"
   (diminish 'ropemacs-mode)
 )
 (global-set-key "\C-xpl" 'load-pymacs-and-ropemacs)
-
-;; python-mode.el clobbers slinkp-vi-join, grr.
-;; TODO: Why does this seem to sometimes work, and sometimes not
-;; unless I've done (require 'python-mode)?
-;; Why isn't (portable-load-library) enough?
-;; (portable-load-library "pymacs")
-;; (portable-load-library "python-mode")
-;; (require 'python-mode)
-;; (require 'pymacs)
-
-(add-hook 'python-mode-hook
-  (lambda ()
-    (jedi:setup)
-    (define-key python-mode-map (kbd "C-j") 'slinkp-vi-join)
-    (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace) 
-    ;;; DISABLING ROPE BY DEFAULT ... it is choking too much on big stuff.
-    ;;; ... or maybe that was just which-function-mode? Trying without that.
-    ;; (unless ropemacs-was-loaded
-    ;;   (load-pymacs-and-ropemacs))
-    ;; Override rope-goto-definition binding because jedi has a back button!
-    (define-key python-mode-map (kbd "C-c g") 'jedi:goto-definition)
-    (define-key python-mode-map (kbd "C-c C-g") 'jedi:goto-definition-pop-marker)
-  )
-)
 
 ;; Neat function from Evan Bender: if a python function def is too long,
 ;; this splits it into multiple lines
@@ -758,13 +735,94 @@ XXX argument untested"
     (require 'sphinx-doc)
     (sphinx-doc-mode t)))
 
-;;;;;;;;;;;;;;;;;;;
-;; Trying jedi for autocomplete.
 
-;; (setq jedi:setup-keys t)
-;; (autoload 'jedi:setup "jedi" nil t)
-;; (add-hook 'python-mode-hook 'jedi:setup)
-;; (add-hook 'python-mode-hook 'jedi:setup)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Virtualenvs for python
+(require 'virtualenvwrapper)
+; (venv-initialize-interactive-shells) ;; if you want interactive shell support
+; (venv-initialize-eshell) ;; if you want eshell support
+;; note that setting `venv-location` is not necessary if you
+;; use the default location (`~/.virtualenvs`), or if the
+;; the environment variable `WORKON_HOME` points to the right place
+(setq venv-location "/home/pw/.emacs.d/.python-environments/")
+
+
+;; Automatically activate a virtualenv for the current "project"
+;; as per http://stackoverflow.com/a/21246256/137635
+;; Convention: virtualenv has same name as project dir.
+(defun project-directory (buffer-name)
+  "Returns the root directory of the project that contains the
+given buffer. Any directory with a .git or .jedi file/directory
+is considered to be a project root."
+  (interactive)
+  (let ((root-dir (file-name-directory buffer-name)))
+    (while (and root-dir
+                (not (file-exists-p (concat root-dir ".git")))
+                (not (file-exists-p (concat root-dir ".jedi"))))
+      (setq root-dir
+            (if (equal root-dir "/")
+                nil
+              (file-name-directory (directory-file-name root-dir)))))
+    root-dir))
+
+(defun project-name (buffer-name)
+  "Returns the name of the project that contains the given buffer."
+  (let ((root-dir (project-directory buffer-name)))
+    (if root-dir
+        (file-name-nondirectory
+         (directory-file-name root-dir))
+      nil)))
+
+(defun jedi-setup-venv ()
+  "Activates the virtualenv of the current buffer."
+  (let ((project-name (project-name buffer-file-name))
+        (cur-project-directory (project-directory buffer-file-name))
+        )
+    ;; (message "Name %s and dir %s" project-name cur-project-directory)
+    (when project-name (venv-workon project-name))
+    ;; Also add root of virtualenv to sys.path.
+    ;; Why? Because eg. hotlanta we have piles of source dirs
+    ;; that are NOT installed locally as packages.
+    (when cur-project-directory
+      (set (make-local-variable 'jedi:server-args)
+           (list "--sys-path" cur-project-directory))
+      )
+    )
+  )
+
+
+(add-hook 'python-mode-hook 'jedi-setup-venv)
+(add-hook 'python-mode-hook 'jedi:setup)
+;; These seem to be sensitive to order.
+;; Works ok if I do which-function-mode late enough?
+(add-hook 'python-mode-hook 'which-function-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Python keyboard overrides.
+;; python-mode.el clobbers slinkp-vi-join, grr.
+;; TODO: Why does this seem to sometimes work, and sometimes not
+;; unless I've done (require 'python-mode)?
+;; Why isn't (portable-load-library) enough?
+;; (portable-load-library "pymacs")
+;; (portable-load-library "python-mode")
+;; (require 'python-mode)
+;; (require 'pymacs)
+
+
+(add-hook 'python-mode-hook
+  (lambda ()
+    (define-key python-mode-map (kbd "C-j") 'slinkp-vi-join)
+    (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace) 
+    ;;; DISABLING ROPE BY DEFAULT ... it is choking too much on big stuff.
+    ;;; ... or maybe that was just which-function-mode? Trying without that.
+    ;; (unless ropemacs-was-loaded
+    ;;   (load-pymacs-and-ropemacs))
+    ;; Override rope-goto-definition binding because jedi has a back button!
+    (define-key python-mode-map (kbd "C-c g") 'jedi:goto-definition)
+    (define-key python-mode-map (kbd "C-c C-g") 'jedi:goto-definition-pop-marker)
+  )
+)
+
 
 
 ;; ========================================================================
@@ -1044,6 +1102,7 @@ the line, to capture multiline input. (This only has effect if
 ;;(autoload 'idomenu "idomenu" nil t)
 
 ;; ... broken lately in python-mode? :(
+;; I get 'File mode specification error: (user-error "The mode `Py' does not support Imenu")'
 ; (add-hook 'python-mode-hook 'imenu-add-menubar-index)
 (add-hook 'c-mode-hook 'imenu-add-menubar-index)
 (add-hook 'ruby-mode-hook 'imenu-add-menubar-index)
