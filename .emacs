@@ -1280,14 +1280,24 @@ the line, to capture multiline input. (This only has effect if
   )
 )
 
+(defun linux-font (points)
+  "Make my fave font at the given point size"
+  (format "-*-DejaVu Sans Mono-normal-normal-normal-*-%d-*-*-*-m-0-*" points)
+)
+
+(defun darwin-font (points)
+  (format "-outline-menlo-medium-r-normal--%d-*-*-*-*-*-iso10646-1" points)
+)
+  
 ;; Set the default.
 (when (and linux? gui?)
   ;; (set-font-in-frames (visible-frame-list) "-*-DejaVu Sans Mono-normal-normal-normal-*-14-*-*-*-m-0-*")
-  (set-font-in-frames (visible-frame-list) "-*-DejaVu Sans Mono-normal-normal-normal-*-14-*-*-*-m-0-*")
+  (set-font-in-frames (visible-frame-list) (linux-font 14))
 )
 
+
 (when (and darwin? gui?)
-  (set-font-in-frames (visible-frame-list) "-outline-menlo-medium-r-normal--14-*-*-*-*-*-iso10646-1")
+  (set-font-in-frames (visible-frame-list) (darwin-font 14))
 )
 
 ;; TODO automate the copy/paste font name crap
@@ -1301,32 +1311,32 @@ If NUM is -1, cycle backward."
   (let (fontList fontToUse currentState nextState )
     (when (and darwin? gui?)
       (setq fontList (list
-                      "-outline-menlo-medium-r-normal--10-*-*-*-*-*-iso10646-1"
-                      "-outline-menlo-medium-r-normal--11-*-*-*-*-*-iso10646-1"
-                      "-outline-menlo-medium-r-normal--12-*-*-*-*-*-iso10646-1"
-                      "-outline-menlo-medium-r-normal--13-*-*-*-*-*-iso10646-1"
-                      "-outline-menlo-medium-r-normal--14-*-*-*-*-*-iso10646-1"
-                      "-outline-menlo-medium-r-normal--15-*-*-*-*-*-iso10646-1"
-                      "-outline-menlo-medium-r-normal--16-*-*-*-*-*-iso10646-1"
-                      "-outline-menlo-medium-r-normal--17-*-*-*-*-*-iso10646-1"
-                      "-outline-menlo-medium-r-normal--18-*-*-*-*-*-iso10646-1"
-                      "-outline-menlo-medium-r-normal--20-*-*-*-*-*-iso10646-1"
-                      "-outline-menlo-medium-r-normal--22-*-*-*-*-*-iso10646-1" 
+                      (darwin-font 10)
+                      (darwin-font 11)
+                      (darwin-font 12)
+                      (darwin-font 13)
+                      (darwin-font 14)
+                      (darwin-font 15)
+                      (darwin-font 16)
+                      (darwin-font 17)
+                      (darwin-font 18)
+                      (darwin-font 20)
+                      (darwin-font 22)
                       ))
     )
     (when (and linux? gui?)
 
       (setq fontList (list
-                      "-*-DejaVu Sans Mono-normal-normal-normal-*-10-*-*-*-m-0-*"
-                      "-*-DejaVu Sans Mono-normal-normal-normal-*-11-*-*-*-m-0-*"
-                      "-*-DejaVu Sans Mono-normal-normal-normal-*-12-*-*-*-m-0-*"
+                      (linux-font 10)
+                      (linux-font 11)
+                      (linux-font 12)
                       ;; 13-point saves only verticl space compared to 14
-                      "-*-DejaVu Sans Mono-normal-normal-normal-*-13-*-*-*-m-0-*"
-                      "-*-DejaVu Sans Mono-normal-normal-normal-*-14-*-*-*-m-0-*"
-                      "-*-DejaVu Sans Mono-normal-normal-normal-*-15-*-*-*-m-0-*"
-                      "-*-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-*"
-                      "-*-DejaVu Sans Mono-normal-normal-normal-*-17-*-*-*-m-0-*"
-                      "-*-DejaVu Sans Mono-normal-normal-normal-*-22-*-*-*-m-0-*"
+                      (linux-font 13)
+                      (linux-font 14)
+                      (linux-font 15)
+                      (linux-font 16)
+                      (linux-font 17)
+                      (linux-font 22)
                       ))
 
     (setq currentState (if (get 'cycle-font 'state) (get 'cycle-font 'state) 0))
