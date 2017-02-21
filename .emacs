@@ -1443,7 +1443,7 @@ See `cycle-font'."
 ;;    (s-concat
 ;;     "https://github.com/percolate/hotlanta/blob/master/"
 ;;     (s-chop-prefix
-;;      "/home/pw/hacking/devolate/hotlanta/" buffer-file-name)
+;;      "/Users/paul/hacking/devolate/hotlanta/" buffer-file-name)
 ;;     "#L"
 ;;     (number-to-string (line-number-at-pos)))))
 ;; (defun copy-hotlanta-github-url ()
