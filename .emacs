@@ -382,7 +382,13 @@ XXX argument untested"
 (global-set-key
  (kbd "C-x C-O") (lambda () (interactive) (other-window -2)))
 (global-set-key
- (kbd "C-x C-o") (lambda () (interactive) (other-frame 1))) ;; forward two
+ (kbd "C-x C-o") (lambda () (interactive) (other-frame 1)))
+
+;; Also use OSX-style application window switching.
+;; Note this leaves `tmm-menubar` unbound; I don't use it.
+(global-set-key
+ (kbd "M-`") (lambda () (interactive) (other-frame 1)))
+
 
 ;; These may be set by default in trunk? not sure.
 ;; ... eh, they don't work; overridden somewhere.
