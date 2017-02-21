@@ -108,7 +108,6 @@
 ;; Per https://gitlab.com/python-mode-devs/python-mode set this nil??
 (setq py-load-pymacs-p nil)
 
-
 ;; ========================================================================
 ;; FUNCTIONS AND COMMANDS
 ;; ========================================================================
@@ -1469,6 +1468,6 @@ See `cycle-font'."
 ;; ========================================================
 
 (when gui?
-  (add-to-list 'initial-frame-alist '(height . 29))
-  (add-to-list 'initial-frame-alist '(width . 80))
+  (add-to-list 'initial-frame-alist '(height . 33))
+  (add-to-list 'initial-frame-alist '(width . 120))
   (make-frame))
