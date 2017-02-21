@@ -1245,12 +1245,11 @@ the line, to capture multiline input. (This only has effect if
   ;; We may not have slinkp's favorite font.
   ;; TODO: See http://emacswiki.org/emacs/SetFonts about how to detect if a font is installed before setting it.
 
-  (set-frame-font "-outline-menlo-medium-r-normal--15-*-*-*-*-*-iso10646-1")
-  ;; (set-frame-font "-apple-Source_Code_Pro-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1")
+  (set-frame-font "-outline-menlo-medium-r-normal--12-*-*-*-*-*-iso10646-1")
   ;; And in every new frame. 
   (add-to-list 'default-frame-alist
     ;; '(font . "-apple-Source_Code_Pro-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1"))
-    '(font . "-outline-menlo-medium-r-normal--15-*-*-*-*-*-iso10646-1"))
+    '(font . "-outline-menlo-medium-r-normal--12-*-*-*-*-*-iso10646-1"))
 
 )
 
@@ -1281,7 +1280,7 @@ the line, to capture multiline input. (This only has effect if
 (defun darwin-font (points)
   (format "-outline-menlo-medium-r-normal--%d-*-*-*-*-*-iso10646-1" points)
 )
-  
+
 ;; Set the default.
 (when (and linux? gui?)
   ;; (set-font-in-frames (visible-frame-list) "-*-DejaVu Sans Mono-normal-normal-normal-*-14-*-*-*-m-0-*")
@@ -1290,7 +1289,7 @@ the line, to capture multiline input. (This only has effect if
 
 
 (when (and darwin? gui?)
-  (set-font-in-frames (visible-frame-list) (darwin-font 14))
+  (set-font-in-frames (visible-frame-list) (darwin-font 11))
 )
 
 ;; TODO automate the copy/paste font name crap
@@ -1304,6 +1303,8 @@ If NUM is -1, cycle backward."
   (let (fontList fontToUse currentState nextState )
     (when (and darwin? gui?)
       (setq fontList (list
+                      (darwin-font 8)
+                      (darwin-font 9)
                       (darwin-font 10)
                       (darwin-font 11)
                       (darwin-font 12)
@@ -1313,7 +1314,9 @@ If NUM is -1, cycle backward."
                       (darwin-font 16)
                       (darwin-font 17)
                       (darwin-font 18)
+                      (darwin-font 19)
                       (darwin-font 20)
+                      (darwin-font 21)
                       (darwin-font 22)
                       ))
     )
@@ -1331,7 +1334,7 @@ If NUM is -1, cycle backward."
                       (linux-font 17)
                       (linux-font 22)
                       ))
-
+    )
     (setq currentState (if (get 'cycle-font 'state) (get 'cycle-font 'state) 0))
     (setq nextState (% (+ currentState (length fontList) num) (length fontList)))
 
@@ -1345,7 +1348,6 @@ If NUM is -1, cycle backward."
     (set-font-in-frames (visible-frame-list) fontToUse)
     (message "Current font is: %s" fontToUse )
     (put 'cycle-font 'state nextState)
-    )
   )
 )
 (defun cycle-font-forward ()
