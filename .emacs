@@ -452,9 +452,24 @@ XXX argument untested"
  '(comint-scroll-show-maximum-output t)
  '(comint-scroll-to-bottom-on-input t)
  '(current-language-environment "English")
- '(custom-safe-themes (quote ("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" default)))
+ '(custom-safe-themes
+   (quote
+    ("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" default)))
  '(default-frame-alist (quote ((menu-bar-lines . 1))))
- '(flymake-allowed-file-name-masks (quote ((".+\\.rake$" flymake-ruby-init) ("Rakefile$" flymake-ruby-init) (".+\\.rb$" flymake-ruby-init) ("\\.xml\\'" flymake-xml-init) ("\\.cs\\'" flymake-simple-make-init) ("\\.p[ml]\\'" flymake-perl-init) ("\\.php[345]?\\'" flymake-php-init) ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup) ("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup) ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup) ("\\.tex\\'" flymake-simple-tex-init) ("\\.idl\\'" flymake-simple-make-init))))
+ '(flymake-allowed-file-name-masks
+   (quote
+    ((".+\\.rake$" flymake-ruby-init)
+     ("Rakefile$" flymake-ruby-init)
+     (".+\\.rb$" flymake-ruby-init)
+     ("\\.xml\\'" flymake-xml-init)
+     ("\\.cs\\'" flymake-simple-make-init)
+     ("\\.p[ml]\\'" flymake-perl-init)
+     ("\\.php[345]?\\'" flymake-php-init)
+     ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup)
+     ("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup)
+     ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup)
+     ("\\.tex\\'" flymake-simple-tex-init)
+     ("\\.idl\\'" flymake-simple-make-init))))
  '(flymake-compilation-prevents-syntax-check t)
  '(flymake-log-level 0)
  '(flymake-no-changes-timeout 0.75)
@@ -462,11 +477,23 @@ XXX argument untested"
  '(inhibit-startup-echo-area-message "pw")
  '(jit-lock-stealth-time 0.035)
  '(markdown-command "pandoc --from markdown_github --to html --standalone")
- '(mode-line-format (quote ("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification mode-line-position mode-line-misc-info mode-line-modes (vc-mode vc-mode) mode-line-end-spaces)))
+ '(mode-line-format
+   (quote
+    ("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification mode-line-position mode-line-misc-info mode-line-modes
+     (vc-mode vc-mode)
+     mode-line-end-spaces)))
+ '(package-selected-packages
+   (quote
+    (exec-path-from-shell jedi yaml-mode virtualenvwrapper sphinx-doc smart-mode-line scala-mode2 rainbow-delimiters pyvenv python-mode pymacs php-mode multiple-cursors multi-web-mode markdown-toc markdown-preview-mode magit lorem-ipsum less-css-mode js2-mode jedi-direx idomenu helm-projectile helm-git-grep helm-git handlebars-mode go-mode flymake-python-pyflakes flymake-cursor flycheck-pyflakes find-file-in-repository easy-kill diminish crontab-mode coffee-mode ack-and-a-half)))
  '(protect-buffer-bury-p nil)
- '(py-load-pymacs-p nil t)
+ '(py-load-pymacs-p nil)
  '(py-pdbtrack-do-tracking-p t)
- '(safe-local-variable-values (quote ((test-case-name . buildbot\.test\.test_transfer) (test-case-name . buildbot\.test\.test_vc) (test-case-name . buildbot\.test\.test_steps\,buildbot\.test\.test_properties) (test-case-name . buildbot\.test\.test_run))))
+ '(safe-local-variable-values
+   (quote
+    ((test-case-name . buildbot\.test\.test_transfer)
+     (test-case-name . buildbot\.test\.test_vc)
+     (test-case-name . buildbot\.test\.test_steps\,buildbot\.test\.test_properties)
+     (test-case-name . buildbot\.test\.test_run))))
  '(scroll-bar-mode nil)
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
