@@ -777,55 +777,15 @@ XXX argument untested"
 ;; note that setting `venv-location` is not necessary if you
 ;; use the default location (`~/.virtualenvs`), or if the
 ;; the environment variable `WORKON_HOME` points to the right place
-(setq venv-location "/home/pw/.emacs.d/.python-environments/")
+(setq venv-location "/Users/paul/.emacs.d/.python-environments/")
 
 
-;; Automatically activate a virtualenv for the current "project"
-;; as per http://stackoverflow.com/a/21246256/137635
-;; Convention: virtualenv has same name as project dir.
-(defun project-directory (buffer-name)
-  "Returns the root directory of the project that contains the
-given buffer. Any directory with a .git or .jedi file/directory
-is considered to be a project root."
-  (interactive)
-  (let ((root-dir (file-name-directory buffer-name)))
-    (while (and root-dir
-                (not (file-exists-p (concat root-dir ".git")))
-                (not (file-exists-p (concat root-dir ".jedi"))))
-      (setq root-dir
-            (if (equal root-dir "/")
-                nil
-              (file-name-directory (directory-file-name root-dir)))))
-    root-dir))
 
-(defun project-name (buffer-name)
-  "Returns the name of the project that contains the given buffer."
-  (let ((root-dir (project-directory buffer-name)))
-    (if root-dir
-        (file-name-nondirectory
-         (directory-file-name root-dir))
-      nil)))
-
-(defun jedi-setup-venv ()
-  "Activates the virtualenv of the current buffer."
-  (let ((project-name (project-name buffer-file-name))
-        (cur-project-directory (project-directory buffer-file-name))
-        )
-    ;; (message "Name %s and dir %s" project-name cur-project-directory)
-    (when project-name (venv-workon project-name))
-    ;; Also add root of virtualenv to sys.path.
-    ;; Why? Because eg. hotlanta we have piles of source dirs
-    ;; that are NOT installed locally as packages.
-    (when cur-project-directory
-      (set (make-local-variable 'jedi:server-args)
-           (list "--sys-path" cur-project-directory))
-      )
-    )
-  )
-
-
-(add-hook 'python-mode-hook 'jedi-setup-venv)
+;; Simpler way to activate as per https://github.com/porterjamesj/virtualenvwrapper.el#automatically-activating-a-virtualenv-when-using-projectile
+;; ... just use a venv or .venv dir in a projectile project root!
+(setq projectile-switch-project-action 'venv-projectile-auto-workon)
 (add-hook 'python-mode-hook 'jedi:setup)
+
 ;; These seem to be sensitive to order.
 ;; Works ok if I do which-function-mode late enough?
 (add-hook 'python-mode-hook 'which-function-mode)
