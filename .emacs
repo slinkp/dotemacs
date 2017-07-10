@@ -236,7 +236,7 @@ XXX argument untested"
   (end-of-line)
   (insert "\n")
   (indent-according-to-mode)
-  (insert "import pdb; pdb.set_trace()")
+  (insert "import ipdb; ipdb.set_trace()")
   (indent-according-to-mode)
 ;;  (annotate-pdb)
 )
