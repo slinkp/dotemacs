@@ -1304,7 +1304,7 @@ the line, to capture multiline input. (This only has effect if
 
 
 (when (and darwin? gui?)
-  (set-font-in-frames (visible-frame-list) (darwin-font 11))
+  (set-font-in-frames (visible-frame-list) (darwin-font 13))
 )
 
 ;; TODO automate the copy/paste font name crap
