@@ -491,7 +491,7 @@ XXX argument untested"
      mode-line-end-spaces)))
  '(package-selected-packages
    (quote
-    (ag fill-column-indicator modeline-posn exec-path-from-shell jedi yaml-mode virtualenvwrapper sphinx-doc smart-mode-line scala-mode2 rainbow-delimiters pyvenv python-mode php-mode multiple-cursors multi-web-mode markdown-toc markdown-preview-mode magit lorem-ipsum less-css-mode js2-mode jedi-direx idomenu helm-projectile helm-git-grep helm-git handlebars-mode go-mode flymake-python-pyflakes flymake-cursor flycheck-pyflakes find-file-in-repository easy-kill diminish crontab-mode coffee-mode ack-and-a-half)))
+    (pymacs ag fill-column-indicator modeline-posn exec-path-from-shell jedi yaml-mode virtualenvwrapper sphinx-doc smart-mode-line scala-mode2 rainbow-delimiters pyvenv python-mode php-mode multiple-cursors multi-web-mode markdown-toc markdown-preview-mode magit lorem-ipsum less-css-mode js2-mode jedi-direx idomenu helm-projectile helm-git-grep helm-git handlebars-mode go-mode flymake-python-pyflakes flymake-cursor flycheck-pyflakes find-file-in-repository easy-kill diminish crontab-mode coffee-mode ack-and-a-half)))
  '(protect-buffer-bury-p nil)
  '(py-load-pymacs-p nil)
  '(py-pdbtrack-do-tracking-p t)

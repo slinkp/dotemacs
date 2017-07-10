@@ -1,2 +1,13 @@
 *.elc
 *~
+.emacs.d/session.*
+.emacs.d/projectile-bookmarks.eld
+.emacs.d/projectile.cache
+.emacs.d/recentf
+.emacs.d/network-security.data
+.emacs.d/*gz
+.emacs.d/.python-environments
+.emacs.d/image-direct/
+.emacs.d/.emacs.desktop
+.emacs.d/.mc-lists.el
+.emacs.d/.places

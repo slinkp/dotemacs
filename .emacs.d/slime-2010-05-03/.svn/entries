@@ -1,0 +1,308 @@
+10
+
+dir
+0
+file:///home/pw/SVN/dotfiles/trunk/.emacs.d/slime-2010-05-03
+file:///home/pw/SVN
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+27a2369a-a505-0410-af0a-ec888237e338
+
+swank-lispworks.lisp
+file
+
+
+
+add
+
+test.sh
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+swank-ccl.lisp
+file
+
+
+
+add
+
+swank.lisp
+file
+
+
+
+add
+
+swank.asd
+file
+
+
+
+add
+
+swank-cmucl.lisp
+file
+
+
+
+add
+
+swank-ecl.lisp
+file
+
+
+
+add
+
+swank-clisp.lisp
+file
+
+
+
+add
+
+hyperspec.el
+file
+
+
+
+add
+
+swank-source-file-cache.lisp
+file
+
+
+
+add
+
+doc
+dir
+
+
+
+add
+
+swank-corman.lisp
+file
+
+
+
+add
+
+slime.el
+file
+
+
+
+add
+
+swank-scl.lisp
+file
+
+
+
+add
+
+swank-rpc.lisp
+file
+
+
+
+add
+
+swank-source-path-parser.lisp
+file
+
+
+
+add
+
+NEWS
+file
+
+
+
+add
+
+.cvsignore
+file
+
+
+
+add
+
+metering.lisp
+file
+
+
+
+add
+
+swank-match.lisp
+file
+
+
+
+add
+
+PROBLEMS
+file
+
+
+
+add
+
+start-swank.lisp
+file
+
+
+
+add
+
+ChangeLog
+file
+
+
+
+add
+
+swank-abcl.lisp
+file
+
+
+
+add
+
+swank-gray.lisp
+file
+
+
+
+add
+
+CVS
+dir
+
+
+
+add
+
+README
+file
+
+
+
+add
+
+swank-loader.lisp
+file
+
+
+
+add
+
+nregex.lisp
+file
+
+
+
+add
+
+sbcl-pprint-patch.lisp
+file
+
+
+
+add
+
+contrib
+dir
+
+
+
+add
+
+slime-autoloads.el
+file
+
+
+
+add
+
+mkdist.sh
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+HACKING
+file
+
+
+
+add
+
+xref.lisp
+file
+
+
+
+add
+
+swank-sbcl.lisp
+file
+
+
+
+add
+
+swank-allegro.lisp
+file
+
+
+
+add
+
+swank-backend.lisp
+file
+
+
+
+add
+

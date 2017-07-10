@@ -1,0 +1,51 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Thu Dec 13 11:11:18 2012
+;; Desktop file format version 206
+;; Emacs version 24.2.1
+
+;; Global section:
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name "TAGS")
+(setq tags-table-list nil)
+(setq search-ring '("deskt" "desk" "desktop" "(when" "desktop-"))
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq file-name-history '("~/.emacs.d/desktop/" "~/.emacs-quick" "~/sh/emacs-lite" "~/.emacs" "/bitly/src/github/bitly/pro_api/app/pro.py" "~/tmp/notes.txt" "/bitly/src/github/bitly/pro_api/app/ctron_accessors.py" "/bitly/src/github/bitly/bitly2/bitly2.py" "/bitly/src/github/bitly/bitly2/app/enterprise.py" "/bitly/src/github/bitly/libbitly/libbitly/BaseReader.py" "/bitly/src/github/bitly/libbitly/libbitly/logatron_client.py" "/bitly/src/github/bitly/pro_api/lib/enterprise_data.py" "/bitly/src/github/bitly/pro_api/pro_api.py" "/bitly/src/github/bitly/pro_api/lib/enterprise_offline_reports_sq.py" "/bitly/src/github/bitly/pro_api/queuereader_enterprise_offline_reports.py" "/bitly/src/github/bitly/services.py" "/bitly/src/github/bitly/bitly2/settings.py" "/bitly/src/github/bitly/testcount.py" "/bitly/src/github/bitly/bitly2/tests/test_wilcard_redirect.py" "/bitly/src/github/bitly/test.sh" "/bitly/src/github/bitly/bitly2/templates/pro/enterprise2/trend.html" "/bitly/src/github/bitly/bitly2/templates/pro/enterprise2/links.html" "/bitly/src/github/bitly/bitly2/static/css/enterprise2/pro/enterprise.css"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/Users/pw/sh/emacs-lite"
+  "emacs-lite"
+  'sh-mode
+  nil
+  12
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/Users/pw/.emacs"
+  ".emacs"
+  'text-mode
+  nil
+  39520
+  '(39545 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+
+(desktop-create-buffer 206
+  nil
+  ".saves-*"
+  'dired-mode
+  '(dired-omit-mode)
+  227
+  '(227 t)
+  t
+  '("/Users/pw/.emacs.d/auto-save-list/.saves-*")
+  nil)
+

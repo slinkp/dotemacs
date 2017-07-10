@@ -1,0 +1,455 @@
+10
+
+dir
+0
+file:///home/pw/SVN/dotfiles/trunk/.emacs.d/slime-2010-05-03/contrib
+file:///home/pw/SVN
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+27a2369a-a505-0410-af0a-ec888237e338
+
+swank-arglists.lisp
+file
+
+
+
+add
+
+swank-sprof.lisp
+file
+
+
+
+add
+
+slime-parse.el
+file
+
+
+
+add
+
+slime-mdot-fu.el
+file
+
+
+
+add
+
+swank-jolt.k
+file
+
+
+
+add
+
+slime-indentation.el
+file
+
+
+
+add
+
+swank-presentations.lisp
+file
+
+
+
+add
+
+swank.rb
+file
+
+
+
+add
+
+swank-snapshot.lisp
+file
+
+
+
+add
+
+swank-clipboard.lisp
+file
+
+
+
+add
+
+swank-c-p-c.lisp
+file
+
+
+
+add
+
+swank-goo.goo
+file
+
+
+
+add
+
+slime-editing-commands.el
+file
+
+
+
+add
+
+slime-tramp.el
+file
+
+
+
+add
+
+swank-package-fu.lisp
+file
+
+
+
+add
+
+slime-fontifying-fu.el
+file
+
+
+
+add
+
+swank-sbcl-exts.lisp
+file
+
+
+
+add
+
+slime-xref-browser.el
+file
+
+
+
+add
+
+swank-fancy-inspector.lisp
+file
+
+
+
+add
+
+slime-scratch.el
+file
+
+
+
+add
+
+swank-mit-scheme.scm
+file
+
+
+
+add
+
+swank-r6rs.scm
+file
+
+
+
+add
+
+swank-larceny.scm
+file
+
+
+
+add
+
+slime-sprof.el
+file
+
+
+
+add
+
+swank-ikarus.ss
+file
+
+
+
+add
+
+swank-hyperdoc.lisp
+file
+
+
+
+add
+
+slime-presentations.el
+file
+
+
+
+add
+
+swank-asdf.lisp
+file
+
+
+
+add
+
+slime-clipboard.el
+file
+
+
+
+add
+
+slime-c-p-c.el
+file
+
+
+
+add
+
+slime-snapshot.el
+file
+
+
+
+add
+
+slime-enclosing-context.el
+file
+
+
+
+add
+
+slime-package-fu.el
+file
+
+
+
+add
+
+slime-sbcl-exts.el
+file
+
+
+
+add
+
+slime-fancy-inspector.el
+file
+
+
+
+add
+
+swank-presentation-streams.lisp
+file
+
+
+
+add
+
+swank-fuzzy.lisp
+file
+
+
+
+add
+
+slime-asdf.el
+file
+
+
+
+add
+
+slime-hyperdoc.el
+file
+
+
+
+add
+
+inferior-slime.el
+file
+
+
+
+add
+
+slime-highlight-edits.el
+file
+
+
+
+add
+
+slime-mrepl.el
+file
+
+
+
+add
+
+swank-kawa.scm
+file
+
+
+
+add
+
+slime-references.el
+file
+
+
+
+add
+
+ChangeLog
+file
+
+
+
+add
+
+swank-motd.lisp
+file
+
+
+
+add
+
+CVS
+dir
+
+
+
+add
+
+bridge.el
+file
+
+
+
+add
+
+swank-listener-hooks.lisp
+file
+
+
+
+add
+
+slime-presentation-streams.el
+file
+
+
+
+add
+
+README
+file
+
+
+
+add
+
+slime-fuzzy.el
+file
+
+
+
+add
+
+swank-indentation.lisp
+file
+
+
+
+add
+
+slime-compiler-notes-tree.el
+file
+
+
+
+add
+
+slime-autodoc.el
+file
+
+
+
+add
+
+slime-fancy.el
+file
+
+
+
+add
+
+slime-typeout-frame.el
+file
+
+
+
+add
+
+slime-repl.el
+file
+
+
+
+add
+
+slime-motd.el
+file
+
+
+
+add
+
+slime-scheme.el
+file
+
+
+
+add
+
+slime-banner.el
+file
+
+
+
+add
+

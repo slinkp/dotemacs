@@ -1,0 +1,9 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:meta="http://namespaces.zope.org/meta"
+    i18n_domain="zope"
+    >
+
+</configure>
