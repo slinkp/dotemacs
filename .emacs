@@ -220,6 +220,14 @@ XXX argument untested"
   (highlight-lines-matching-regexp "pdb.set_trace()"))
 (add-hook 'python-mode-hook 'annotate-pdb)
 
+;; Long line column marker
+(add-hook 'python-mode-hook
+  (lambda ()
+     (set-fill-column 100)
+     (fci-mode)
+  )
+)
+
 ;; handy M-p binding for quick python debugging.
 (defun slinkp-pdb-set-trace ()
   "Insert a set_trace() call after the previous line, maintaining indentation"
@@ -483,7 +491,7 @@ XXX argument untested"
      mode-line-end-spaces)))
  '(package-selected-packages
    (quote
-    (exec-path-from-shell jedi yaml-mode virtualenvwrapper sphinx-doc smart-mode-line scala-mode2 rainbow-delimiters pyvenv python-mode pymacs php-mode multiple-cursors multi-web-mode markdown-toc markdown-preview-mode magit lorem-ipsum less-css-mode js2-mode jedi-direx idomenu helm-projectile helm-git-grep helm-git handlebars-mode go-mode flymake-python-pyflakes flymake-cursor flycheck-pyflakes find-file-in-repository easy-kill diminish crontab-mode coffee-mode ack-and-a-half)))
+    (ag fill-column-indicator modeline-posn exec-path-from-shell jedi yaml-mode virtualenvwrapper sphinx-doc smart-mode-line scala-mode2 rainbow-delimiters pyvenv python-mode php-mode multiple-cursors multi-web-mode markdown-toc markdown-preview-mode magit lorem-ipsum less-css-mode js2-mode jedi-direx idomenu helm-projectile helm-git-grep helm-git handlebars-mode go-mode flymake-python-pyflakes flymake-cursor flycheck-pyflakes find-file-in-repository easy-kill diminish crontab-mode coffee-mode ack-and-a-half)))
  '(protect-buffer-bury-p nil)
  '(py-load-pymacs-p nil)
  '(py-pdbtrack-do-tracking-p t)
@@ -635,6 +643,13 @@ XXX argument untested"
 
 (add-to-list 'auto-mode-alist '("\\.raml$" . yaml-mode))
 
+;; ========================================================================
+;; ReST
+;; ========================================================================
+
+;; Turn on long line indicator
+(require 'fill-column-indicator)
+(add-hook 'rst-mode-hook 'fci-mode)
 
 ;; ========================================================================
 ;; PYTHON part 2 - main config
@@ -651,6 +666,7 @@ XXX argument untested"
 (add-hook 'python-mode-hook
   (lambda ()
     (require 'flycheck)
+    (setq flycheck-checker-error-threshold 800)  ;; default 400
     (flycheck-mode t)))
 
 ;; Get dired to consider .pyc and .pyo files to be uninteresting
