@@ -487,6 +487,21 @@ XXX argument untested"
  '(flymake-compilation-prevents-syntax-check t)
  '(flymake-log-level 0)
  '(flymake-no-changes-timeout 0.75)
+ '(flymake-proc-allowed-file-name-masks
+   (quote
+    ((".+\\.rake$" flymake-ruby-init)
+     ("Rakefile$" flymake-ruby-init)
+     (".+\\.rb$" flymake-ruby-init)
+     ("\\.xml\\'" flymake-xml-init)
+     ("\\.cs\\'" flymake-simple-make-init)
+     ("\\.p[ml]\\'" flymake-perl-init)
+     ("\\.php[345]?\\'" flymake-php-init)
+     ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup)
+     ("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup)
+     ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup)
+     ("\\.tex\\'" flymake-simple-tex-init)
+     ("\\.idl\\'" flymake-simple-make-init))))
+ '(flymake-proc-compilation-prevents-syntax-check t)
  '(global-font-lock-mode t nil (font-lock))
  '(inhibit-startup-echo-area-message "pw")
  '(jit-lock-stealth-time 0.035)
@@ -519,8 +534,8 @@ XXX argument untested"
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#c4deb0" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
- '(flymake-errline ((t (:background "#d99" :foreground "black"))))
- '(flymake-warnline ((t (:background "#226"))))
+ '(flymake-errline ((t (:background "#d99" :foreground "black"))) t)
+ '(flymake-warnline ((t (:background "#226"))) t)
  '(font-lock-doc-face ((t (:inherit font-lock-string-face))))
  '(font-lock-reference-face ((((class color) (background light)) (:foreground "Yellow"))) t)
  '(font-lock-string-face ((((class color) (min-colors 88) (background dark)) (:background "#253040" :foreground "#E0B93E"))))
