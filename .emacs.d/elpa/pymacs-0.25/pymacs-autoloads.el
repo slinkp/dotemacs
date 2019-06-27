@@ -1,10 +1,14 @@
 ;;; pymacs-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
+
+(add-to-list 'load-path (directory-file-name
+                         (or (file-name-directory #$) (car load-path))))
+
 
-;;;### (autoloads nil "pymacs" "pymacs.el" (22883 43542 0 0))
-;;; Generated autoloads from pymacs.el
+;;;### (autoloads nil "pymacs" "../../../../../.emacs.d/elpa/pymacs-0.25/pymacs.el"
+;;;;;;  "2b992b661034d2a09824d899ffba8078")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/pymacs-0.25/pymacs.el
 
 (autoload 'pymacs-load "pymacs" "\
 Import the Python module named MODULE into Emacs.
@@ -53,6 +57,20 @@ Lisp expressions.  Immutable Lisp constants are converted to Python
 equivalents, other structures are converted into Lisp handles.
 
 \(fn FUNCTION ARGUMENTS)" nil nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "pymacs" "../../../../../.emacs.d/elpa/pymacs-0.25/pymacs.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/pymacs-0.25/pymacs.el
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "pymacs" '("pymacs-")))
+
+;;;***
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/pymacs-0.25/pymacs-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/pymacs-0.25/pymacs.el") (0
+;;;;;;  0 0 0))
 
 ;;;***
 
@@ -60,5 +78,6 @@ equivalents, other structures are converted into Lisp handles.
 ;; version-control: never
 ;; no-byte-compile: t
 ;; no-update-autoloads: t
+;; coding: utf-8
 ;; End:
 ;;; pymacs-autoloads.el ends here
