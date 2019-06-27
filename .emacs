@@ -1471,6 +1471,9 @@ See `cycle-font'."
   (projectile-mode)
   (setq projectile-completion-system 'helm)
   (helm-projectile-on)
+
+  ;; Performance tweak per #emacs on shopify slack. Try 40 if too slow?
+  (setq helm-candidate-number-limit 60)
 )
 
 ;; ===========================================================
