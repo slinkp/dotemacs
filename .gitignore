@@ -9,5 +9,8 @@
 .emacs.d/.python-environments
 .emacs.d/image-direct/
 .emacs.d/.emacs.desktop
+.emacs.d/.emacs.desktop.lock
 .emacs.d/.mc-lists.el
+.emacs.d/ac-comphist.dat
 .emacs.d/.places
+
