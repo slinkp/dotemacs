@@ -855,6 +855,8 @@ XXX argument untested"
     ;; Override rope-goto-definition binding because jedi has a back button!
     (define-key python-mode-map (kbd "C-c g") 'jedi:goto-definition)
     (define-key python-mode-map (kbd "C-c C-g") 'jedi:goto-definition-pop-marker)
+    ;; Jedi complete is super annoying when implicit
+    (setq jedi:complete-on-dot nil)
   )
 )
 
