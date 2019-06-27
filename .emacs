@@ -237,7 +237,7 @@ XXX argument untested"
 (add-hook 'python-mode-hook
   (lambda ()
      (set-fill-column 100)
-     (fci-mode)
+     ;; (fci-mode)
   )
 )
 
