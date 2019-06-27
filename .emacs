@@ -358,12 +358,6 @@ XXX argument untested"
 	(setq font-lock-maximum-decoration t)
 ))
 
-;; Show current function in status bar.
-;; ... was horribly slow on some .py files before emacs 24.5, now YAYY i can
-;; use it again.
-;; ... And now horribly slow again as of 24.5.1 and python-mode 6.2.2+ :(
-; (which-function-mode t)
-
 ;; show me the time
 ; (display-time)
 
@@ -816,6 +810,8 @@ XXX argument untested"
 
 ;; These seem to be sensitive to order.
 ;; Works ok if I do which-function-mode late enough?
+;; Show current function in status bar.
+;; ... was horribly slow on some .py files before emacs 24.5, seems ok now?
 (add-hook 'python-mode-hook 'which-function-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
