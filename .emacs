@@ -88,6 +88,19 @@
              '("gnu" . "http://elpa.gnu.org/packages/"))
 
 
+;; May help after Emacs upgrades or moving to a new system
+;; from https://stackoverflow.com/a/40272361
+(defun package-reinstall-all-activated-packages ()
+  "Refresh and reinstall all activated packages."
+  (interactive)
+  (package-refresh-contents)
+  (dolist (package-name package-activated-list)
+    (when (package-installed-p package-name)
+      (unless (ignore-errors                   ;some packages may fail to install
+                (package-reinstall package-name))
+        (warn "Package %s failed to reinstall" package-name)))))
+
+
 ;; ========================================================================
 ;; PYTHON part 1
 ;; it seems we need to do this early.
