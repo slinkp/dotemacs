@@ -698,51 +698,6 @@ XXX argument untested"
 (setq dired-omit-extensions (append '(".pyc" ".pyo" ".bak")
                              dired-omit-extensions))
 
-(when (load "flymake" t)
-    (add-hook 'find-file-hook 'flymake-find-file-hook)
-
-    ;; I found that flymake wasn't recognizing pep8 output.
-    ;; ... but this doesn't seem to result in anything being highlighted,
-    ;; although if I test it in M-x regex-builder it works fine.
-    ;(add-to-list 'flymake-err-line-patterns
-    ;	      '("^\\([^:]*\\):\\([0-9]+\\):\\([0-9]+\\): WARNING \\(.*\\)$" 1 2 3 4))
-
-    ;; Installed from melpa,
-    ;; ... "makes flymake error messages appear in the minibuffer
-    ;; when point is on a line containing a flymake error. This
-    ;; saves having to mouse over the error, which is a keyboard
-    ;; user's annoyance". See  http://www.emacswiki.org/emacs/flymake-cursor.el
-    ; (portable-load-library "flymake-cursor")
-    ;; ... hmm, redundant? Seem to have by default already.
-
-    ;; For HTML, use Tidy, don't treat it like XML
-    ;; (which is bad for HTML4).
-    ;; Thanks to http://www.emacswiki.org/emacs/FlymakeHtml
-    (defun flymake-html-init ()
-	  (let* ((temp-file (flymake-init-create-temp-buffer-copy
-	                     'flymake-create-temp-inplace))
-	         (local-file (file-relative-name
-	                      temp-file
-	                      (file-name-directory buffer-file-name))))
-	    (list "tidy" (list local-file))))
-    ;; Or actually, flymake on html with embedded js, templating, etc.
-    ;; is nearly useless... disable it.
-    ;; (add-to-list 'flymake-allowed-file-name-masks
-    ;;             '("\\.html$\\|\\.ctp" flymake-html-init))
-    (add-to-list 'flymake-err-line-patterns
-	             '("line \\([0-9]+\\) column \\([0-9]+\\) - \\(Warning\\|Error\\): \\(.*\\)"
-	               nil 1 2 4))
-)
-
-
-;; Keep flymake from throwing an exception if the compile phase passes
-;; but the actual checks do not.
-;; http://stackoverflow.com/questions/9358086/emacs-flymake-mode-fails-for-coffeescrit
-(defadvice flymake-post-syntax-check (before flymake-force-check-was-interrupted)
-  (setq flymake-check-was-interrupted t))
-(ad-activate 'flymake-post-syntax-check)
-
-
 (autoload 'pymacs-apply "pymacs")
 (autoload 'pymacs-call "pymacs")
 (autoload 'pymacs-eval "pymacs" nil t)
