@@ -1462,3 +1462,18 @@ See `cycle-font'."
   (add-to-list 'initial-frame-alist '(height . 33))
   (add-to-list 'initial-frame-alist '(width . 120))
   (make-frame))
+
+
+;; ===========================================================
+;; Flymd for live markdown previews
+;; ===========================================================
+
+(defun my-flymd-browser-function (url)
+  (let ((process-environment (browse-url-process-environment)))
+    (apply 'start-process
+           (concat "firefox " url)
+           nil
+           "/usr/bin/open"
+           (list "-a" "firefox" url))))
+(setq flymd-browser-open-function 'my-flymd-browser-function)
+
