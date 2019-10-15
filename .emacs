@@ -238,6 +238,13 @@ XXX argument untested"
   (highlight-lines-matching-regexp "pdb.set_trace()"))
 (add-hook 'python-mode-hook 'annotate-pdb)
 
+
+(defun annotate-pry ()
+  (interactive)
+  (highlight-lines-matching-regexp "require 'pry'")
+  (highlight-lines-matching-regexp "binding.pry"))
+(add-hook 'ruby-mode-hook 'annotate-pry)
+
 ;; Long line column marker
 (add-hook 'python-mode-hook
   (lambda ()
@@ -257,6 +264,18 @@ XXX argument untested"
   (insert "import ipdb; ipdb.set_trace()")
   (indent-according-to-mode)
 ;;  (annotate-pdb)
+)
+
+;; M-p binding for ruby debugging.
+(defun slinkp-binding-pry ()
+  "Insert a binding.pry call after the previous line, maintaining indentation"
+  (interactive)
+  (forward-line -1)
+  (end-of-line)
+  (insert "\n")
+  (indent-according-to-mode)
+  (insert "require 'pry'; binding.pry")
+  (indent-according-to-mode)
 )
 
 ;; To bind it globally:
@@ -475,38 +494,6 @@ XXX argument untested"
    (quote
     ("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" default)))
  '(default-frame-alist (quote ((menu-bar-lines . 1))))
- '(flymake-allowed-file-name-masks
-   (quote
-    ((".+\\.rake$" flymake-ruby-init)
-     ("Rakefile$" flymake-ruby-init)
-     (".+\\.rb$" flymake-ruby-init)
-     ("\\.xml\\'" flymake-xml-init)
-     ("\\.cs\\'" flymake-simple-make-init)
-     ("\\.p[ml]\\'" flymake-perl-init)
-     ("\\.php[345]?\\'" flymake-php-init)
-     ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup)
-     ("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup)
-     ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup)
-     ("\\.tex\\'" flymake-simple-tex-init)
-     ("\\.idl\\'" flymake-simple-make-init))))
- '(flymake-compilation-prevents-syntax-check t)
- '(flymake-log-level 0)
- '(flymake-no-changes-timeout 0.75)
- '(flymake-proc-allowed-file-name-masks
-   (quote
-    ((".+\\.rake$" flymake-ruby-init)
-     ("Rakefile$" flymake-ruby-init)
-     (".+\\.rb$" flymake-ruby-init)
-     ("\\.xml\\'" flymake-xml-init)
-     ("\\.cs\\'" flymake-simple-make-init)
-     ("\\.p[ml]\\'" flymake-perl-init)
-     ("\\.php[345]?\\'" flymake-php-init)
-     ("\\.h\\'" flymake-master-make-header-init flymake-master-cleanup)
-     ("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup)
-     ("[0-9]+\\.tex\\'" flymake-master-tex-init flymake-master-cleanup)
-     ("\\.tex\\'" flymake-simple-tex-init)
-     ("\\.idl\\'" flymake-simple-make-init))))
- '(flymake-proc-compilation-prevents-syntax-check t)
  '(global-font-lock-mode t nil (font-lock))
  '(helm-M-x-fuzzy-match nil)
  '(helm-ff-fuzzy-matching nil)
@@ -521,7 +508,7 @@ XXX argument untested"
      mode-line-end-spaces)))
  '(package-selected-packages
    (quote
-    (pymacs ag fill-column-indicator modeline-posn exec-path-from-shell jedi yaml-mode virtualenvwrapper sphinx-doc smart-mode-line rainbow-delimiters pyvenv python-mode php-mode multiple-cursors multi-web-mode markdown-toc markdown-preview-mode magit lorem-ipsum js2-mode jedi-direx idomenu helm-projectile helm-git-grep helm-git handlebars-mode go-mode flycheck-pyflakes find-file-in-repository easy-kill diminish crontab-mode coffee-mode ack-and-a-half)))
+    (dumb-jump robe use-package shadowenv helm-ag pymacs ag fill-column-indicator modeline-posn exec-path-from-shell jedi yaml-mode virtualenvwrapper sphinx-doc smart-mode-line rainbow-delimiters pyvenv python-mode php-mode multiple-cursors multi-web-mode markdown-toc markdown-preview-mode magit lorem-ipsum js2-mode jedi-direx idomenu helm-projectile helm-git-grep helm-git handlebars-mode go-mode flycheck-pyflakes find-file-in-repository easy-kill diminish crontab-mode coffee-mode ack-and-a-half)))
  '(protect-buffer-bury-p nil)
  '(py-load-pymacs-p nil)
  '(py-pdbtrack-do-tracking-p t)
@@ -534,7 +521,7 @@ XXX argument untested"
  '(scroll-bar-mode nil)
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
- '(tramp-default-method "ssh" nil (tramp))
+ '(tramp-default-method "ssh")
  '(undo-outer-limit 24000000))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -542,8 +529,6 @@ XXX argument untested"
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#c4deb0" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
- '(flymake-errline ((t (:background "#d99" :foreground "black"))) t)
- '(flymake-warnline ((t (:background "#226"))) t)
  '(font-lock-doc-face ((t (:inherit font-lock-string-face))))
  '(font-lock-reference-face ((((class color) (background light)) (:foreground "Yellow"))) t)
  '(font-lock-string-face ((((class color) (min-colors 88) (background dark)) (:background "#253040" :foreground "#E0B93E"))))
@@ -985,33 +970,32 @@ XXX argument untested"
 ;; RUBY
 ;; ========================================================================
 
-;; Flymake for ruby, see http://www.emacswiki.org/emacs/FlymakeRuby
-;; Invoke ruby with '-c' to get syntax checking
-(defun flymake-ruby-init ()
-  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-	 (local-file  (file-relative-name
-                       temp-file
-                       (file-name-directory buffer-file-name))))
-    (list "ruby" (list "-c" local-file))))
+(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 
-(push '(".+\\.rb$" flymake-ruby-init) flymake-allowed-file-name-masks)
-(push '("Rakefile$" flymake-ruby-init) flymake-allowed-file-name-masks)
-(push '(".+\\.rake$" flymake-ruby-init) flymake-allowed-file-name-masks)
 
-(push '("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3) flymake-err-line-patterns
-     )
+;; Shopify ruby shadowenv support
+
+(use-package shadowenv
+   :hook (after-init . shadowenv-global-mode))
+
+;; Navigation
+(add-hook 'ruby-mode-hook 'robe-mode)
+
+;; Flycheck
 
 (add-hook 'ruby-mode-hook
-          '(lambda ()
-
-	     ;; Don't want flymake mode for ruby regions in rhtml files and also on read only files
-	     (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
-		 (flymake-mode))
-	     ))
-
-
-(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+  (lambda ()
+    (require 'flycheck)
+    ;; The related modes (ruby-rubocop, ruby-rubylint, etc) should come automatically if available.
+    ;; Not working though, need to investigate.
+    (setq flycheck-checker-error-threshold 800)  ;; default 400
+    (flycheck-mode t)
+    (define-key ruby-mode-map (kbd "M-p") 'slinkp-binding-pry)
+    )
+)
+;; Wrapper script to fix rubocop not using bundle exec.
+;; It should degrade gracefully if there's no `bundle`.
+(setq flycheck-ruby-rubocop-executable "bundle-exec-rubocop.sh")
 
 ;; ===========================================================================
 ;; HTML / XML
@@ -1042,8 +1026,8 @@ XXX argument untested"
 	("\\.\\zpt$" . "template.zpt")
 	("\\.pt" . "template.zpt")
 	("setup.py" . "setup.py")
-	)
-      )
+    ("\\.rb" . "template.rb")
+	))
 
 ;;============================================================================
 ;; fic mode (highlights TODO FIXME etc in comments)
@@ -1435,8 +1419,8 @@ See `cycle-font'."
 ;(diminish 'wrap-region-mode)
 ;(diminish 'yas/minor-mode)
 
-(eval-after-load "flymake"
-  '(diminish 'flymake-mode))
+;; (eval-after-load "flymake"
+;;   '(diminish 'flymake-mode))
 
 ;; Argh you can't diminish major modes.
 ;; (eval-after-load "python"
