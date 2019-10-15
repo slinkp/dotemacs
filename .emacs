@@ -85,8 +85,13 @@
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
-             '("gnu" . "http://elpa.gnu.org/packages/"))
+             '("gnu" . "https://elpa.gnu.org/packages/"))
 
+;; use-package is New Improved package management?
+(eval-when-compile
+  ;; Following line is not needed if use-package.el is in ~/.emacs.d
+  (add-to-list 'load-path "<path where use-package is installed>")
+  (require 'use-package))
 
 ;; May help after Emacs upgrades or moving to a new system
 ;; from https://stackoverflow.com/a/40272361
