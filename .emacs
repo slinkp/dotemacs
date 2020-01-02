@@ -930,8 +930,11 @@ XXX argument untested"
 
 ;; Shopify ruby shadowenv support
 
-(use-package shadowenv
-   :hook (after-init . shadowenv-global-mode))
+;; TODO: after Catalina upgrade, shadowenv-global-mode seems to break commands that need
+;; the minibuffer -just get `Buffer is read-only: #<buffer *shadowenv output*>`
+;; (use-package shadowenv
+;;     :hook (after-init . shadowenv-global-mode))
+(use-package shadowenv)
 
 ;; Navigation
 (add-hook 'ruby-mode-hook 'robe-mode)
@@ -951,6 +954,10 @@ XXX argument untested"
 ;; Wrapper script to fix rubocop not using bundle exec.
 ;; It should degrade gracefully if there's no `bundle`.
 (setq flycheck-ruby-rubocop-executable "bundle-exec-rubocop.sh")
+
+;; Sigh. Rubocop seems broken even with wrapper while i'm having shadowenv problems
+(setq-default flycheck-disabled-checkers '(ruby-rubocop))
+
 
 ;; ===========================================================================
 ;; HTML / XML
