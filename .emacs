@@ -1148,29 +1148,6 @@ the line, to capture multiline input. (This only has effect if
 ;; Auto refresh buffers
 (global-auto-revert-mode 1)
 
-;; Also auto refresh dired, but be quiet about it
-(setq global-auto-revert-non-file-buffers t)
-(setq auto-revert-verbose nil)
-
-;; Dired: M-< and M-> should go to first and last file.
-;; From http://whattheemacsd.com/setup-dired.el-02.html
-(defun dired-back-to-top ()
-  (interactive)
-  (goto-char (point-min))
-  (dired-next-line (if dired-omit-mode 2 4)))
-
-(define-key dired-mode-map
-  (vector 'remap 'beginning-of-buffer) 'dired-back-to-top)
-
-(defun dired-jump-to-bottom ()
-  (interactive)
-  (goto-char (point-max))
-  (dired-next-line -1))
-
-(define-key dired-mode-map
-  (vector 'remap 'end-of-buffer) 'dired-jump-to-bottom)
-
-
 ;; Always end a file with a newline, avoids confusing some tools.
 (setq require-final-newline t)
 
@@ -1447,4 +1424,42 @@ See `cycle-font'."
   (make-frame))
 
 
+;; ============================================================================
+;; DIRED
+;; Doing this last because the subtree stuff seems to break if I do it too early
+;; but I'm not sure what it depends on.
+;; ============================================================================
 
+;; Also auto refresh dired, but be quiet about it
+(setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-verbose nil)
+
+;; Dired: M-< and M-> should go to first and last file.
+;; From http://whattheemacsd.com/setup-dired.el-02.html
+(defun dired-back-to-top ()
+  (interactive)
+  (goto-char (point-min))
+  (dired-next-line (if dired-omit-mode 2 4)))
+
+;; ;; dired on cygwin has path problems, grrr.
+;; ;; So use lisp version of ls, this should always work.
+;; (load-library "ls-lisp")
+
+(define-key dired-mode-map
+  (vector 'remap 'beginning-of-buffer) 'dired-back-to-top)
+
+(defun dired-jump-to-bottom ()
+  (interactive)
+  (goto-char (point-max))
+  (dired-next-line -1))
+
+(define-key dired-mode-map
+  (vector 'remap 'end-of-buffer) 'dired-jump-to-bottom)
+
+;; Dired: TAB expands subdirectories in-place, thanks Dante Catafalmo
+;; TODO: Why does this give an error on startup but work if I later do eval-region?
+(use-package dired-subtree
+  :ensure t
+  :after dired
+  :bind (:map dired-mode-map
+              ("TAB" . dired-subtree-toggle)))
