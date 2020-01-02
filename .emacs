@@ -5,7 +5,6 @@
 ;; Do these early to avoid things jumping in and out on startup.
 ;; ============================================================================
 
-
 ;; Simple clean interface.
 (if (boundp 'tool-bar-mode) (tool-bar-mode 0))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -90,7 +89,7 @@
 ;; use-package is New Improved package management?
 (eval-when-compile
   ;; Following line is not needed if use-package.el is in ~/.emacs.d
-  (add-to-list 'load-path "<path where use-package is installed>")
+  ;; (add-to-list 'load-path "<path where use-package is installed>")
   (require 'use-package))
 
 ;; May help after Emacs upgrades or moving to a new system
@@ -1097,7 +1096,42 @@ the line, to capture multiline input. (This only has effect if
 ;; https://gist.github.com/kevinbirch/8344414
 ;; (autoload 'ido-goto "ido-goto" nil t)
 
-(setq auto-mode-alist (cons '("\\.saol$" . c-mode) auto-mode-alist))
+
+;; ===========================================================
+;; Flymd for live markdown previews
+;; ===========================================================
+
+(defun my-flymd-browser-function (url)
+  (let ((process-environment (browse-url-process-environment)))
+    (apply 'start-process
+           (concat "firefox " url)
+           nil
+           "/usr/bin/open"
+           (list "-a" "firefox" url))))
+(setq flymd-browser-open-function 'my-flymd-browser-function)
+
+
+
+;; ===========================================================
+;; Helm
+;; ===========================================================
+
+(require 'helm)
+(when (fboundp 'helm)
+  ;; way cooler than default M-x
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  ;; I never use the default M-y "yank-pop" command.
+  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+  ;; Replace switch-to-buffer.
+  (global-set-key (kbd "C-x b") 'helm-mini)
+
+  (projectile-mode)
+  (setq projectile-completion-system 'helm)
+  (helm-projectile-on)
+
+  ;; Performance tweak per #emacs on shopify slack. Try 40 if too slow?
+  (setq helm-candidate-number-limit 60)
+)
 
 ;; ===========================================================================
 ;; MISC UNSORTED
@@ -1109,10 +1143,6 @@ the line, to capture multiline input. (This only has effect if
 
 ;; been killing by mistake a lot lately.
 (setq confirm-kill-emacs 'yes-or-no-p)
-
-;; dired on cygwin has path problems, grrr.
-;; So use lisp version of ls, this should always work.
-(load-library "ls-lisp")
 
 ;; Auto refresh buffers
 (global-auto-revert-mode 1)
@@ -1180,6 +1210,11 @@ the line, to capture multiline input. (This only has effect if
 (require 'server)
 (unless (server-running-p)
   (server-start))
+
+;; Hate hate hate auto-vscrolling to center of screen.
+(setq scroll-step 1)
+(setq scroll-conservatively 10000)
+(setq auto-window-vscroll nil)
 
 ;;============================================================================
 ;; "Here's a pretty comprehensive group of magic invocations to make Emacs use
@@ -1399,60 +1434,6 @@ See `cycle-font'."
 (put 'set-goal-column 'disabled nil)
 
 
-;; ===========================================================
-;; Helm
-;; ===========================================================
-
-(require 'helm)
-(when (fboundp 'helm)
-  ;; way cooler than default M-x
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  ;; I never use the default M-y "yank-pop" command.
-  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-  ;; Replace switch-to-buffer.
-  (global-set-key (kbd "C-x b") 'helm-mini)
-
-  (projectile-mode)
-  (setq projectile-completion-system 'helm)
-  (helm-projectile-on)
-
-  ;; Performance tweak per #emacs on shopify slack. Try 40 if too slow?
-  (setq helm-candidate-number-limit 60)
-)
-
-;; ===========================================================
-;; Percolate hacks
-;; ===========================================================
-
-;; ;; thanks Nayef Copty
-;; (portable-load-library "s")
-;; (defun get-github-url ()
-;;   "Return the Github url for the current line."
-;;   (defvar github-url)
-;;   (setq github-url
-;;    (s-concat
-;;     "https://github.com/percolate/hotlanta/blob/master/"
-;;     (s-chop-prefix
-;;      "/Users/paul/hacking/devolate/hotlanta/" buffer-file-name)
-;;     "#L"
-;;     (number-to-string (line-number-at-pos)))))
-;; (defun copy-hotlanta-github-url ()
-;;   "Put hotlanta URL for the line at point in kill ring."
-;;   (interactive)
-;;   (kill-new (get-github-url))
-;;   (message "Copied: %s" (get-github-url)))
-
-;; (global-set-key "\C-x a u" 'copy-hotlanta-github-url)
-
-;; ==========================================================
-;; Misc
-;; ==========================================================
-
-;; Hate hate hate auto-vscrolling to center of screen.
-(setq scroll-step 1)
-(setq scroll-conservatively 10000)
-(setq auto-window-vscroll nil)
-
 
 ;; ========================================================
 ;; Default GUI windows.
@@ -1464,16 +1445,4 @@ See `cycle-font'."
   (make-frame))
 
 
-;; ===========================================================
-;; Flymd for live markdown previews
-;; ===========================================================
-
-(defun my-flymd-browser-function (url)
-  (let ((process-environment (browse-url-process-environment)))
-    (apply 'start-process
-           (concat "firefox " url)
-           nil
-           "/usr/bin/open"
-           (list "-a" "firefox" url))))
-(setq flymd-browser-open-function 'my-flymd-browser-function)
 
