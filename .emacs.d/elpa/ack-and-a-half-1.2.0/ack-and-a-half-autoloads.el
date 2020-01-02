@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "ack-and-a-half" "ack-and-a-half.el" (0 0 0
-;;;;;;  0))
-;;; Generated autoloads from ack-and-a-half.el
+;;;### (autoloads nil "ack-and-a-half" "../../../../../.emacs.d/elpa/ack-and-a-half-1.2.0/ack-and-a-half.el"
+;;;;;;  "b733d1b0d96b54711094e710383fdfac")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/ack-and-a-half-1.2.0/ack-and-a-half.el
 
 (autoload 'ack-and-a-half "ack-and-a-half" "\
 Run ack.
@@ -47,8 +47,21 @@ Prompt to find a file found by ack in DIRECTORY.
 Prompt to find a file found by ack in DIRECTORY.
 
 \(fn &optional DIRECTORY)" t nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "ack-and-a-half"
+;;;;;;  "../../../../../.emacs.d/elpa/ack-and-a-half-1.2.0/ack-and-a-half.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/ack-and-a-half-1.2.0/ack-and-a-half.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ack-and-a-half" '("ack-")))
+
+;;;***
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/ack-and-a-half-1.2.0/ack-and-a-half-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/ack-and-a-half-1.2.0/ack-and-a-half.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

@@ -6,10 +6,17 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "helm-git" "helm-git.el" (0 0 0 0))
-;;; Generated autoloads from helm-git.el
+;;;### (autoloads "actual autoloads are elsewhere" "helm-git" "../../../../../.emacs.d/elpa/helm-git-20120630.2103/helm-git.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/helm-git-20120630.2103/helm-git.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-git" '("helm-")))
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/helm-git-20120630.2103/helm-git-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/helm-git-20120630.2103/helm-git.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

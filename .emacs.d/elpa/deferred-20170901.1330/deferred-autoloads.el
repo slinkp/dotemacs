@@ -6,10 +6,17 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "deferred" "deferred.el" (0 0 0 0))
-;;; Generated autoloads from deferred.el
+;;;### (autoloads "actual autoloads are elsewhere" "deferred" "../../../../../.emacs.d/elpa/deferred-20170901.1330/deferred.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/deferred-20170901.1330/deferred.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "deferred" '("deferred:")))
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/deferred-20170901.1330/deferred-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/deferred-20170901.1330/deferred.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "handlebars-mode" "handlebars-mode.el" (0 0
-;;;;;;  0 0))
-;;; Generated autoloads from handlebars-mode.el
+;;;### (autoloads nil "handlebars-mode" "../../../../../.emacs.d/elpa/handlebars-mode-20150211.1749/handlebars-mode.el"
+;;;;;;  "6fbda959c738643c074ebbffab86b123")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/handlebars-mode-20150211.1749/handlebars-mode.el
 
 (autoload 'handlebars-mode "handlebars-mode" "\
 
@@ -18,8 +18,21 @@
 (add-to-list 'auto-mode-alist '("\\.handlebars$" . handlebars-mode))
 
 (add-to-list 'auto-mode-alist '("\\.hbs$" . handlebars-mode))
+
+;;;### (autoloads "actual autoloads are elsewhere" "handlebars-mode"
+;;;;;;  "../../../../../.emacs.d/elpa/handlebars-mode-20150211.1749/handlebars-mode.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/handlebars-mode-20150211.1749/handlebars-mode.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "handlebars-mode" '("handlebars-")))
+
+;;;***
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/handlebars-mode-20150211.1749/handlebars-mode-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/handlebars-mode-20150211.1749/handlebars-mode.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

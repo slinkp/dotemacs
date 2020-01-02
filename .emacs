@@ -508,7 +508,7 @@ XXX argument untested"
      mode-line-end-spaces)))
  '(package-selected-packages
    (quote
-    (dumb-jump robe use-package shadowenv helm-ag pymacs ag fill-column-indicator modeline-posn exec-path-from-shell jedi yaml-mode virtualenvwrapper sphinx-doc smart-mode-line rainbow-delimiters pyvenv python-mode php-mode multiple-cursors multi-web-mode markdown-toc markdown-preview-mode magit lorem-ipsum js2-mode jedi-direx idomenu helm-projectile helm-git-grep helm-git handlebars-mode go-mode flycheck-pyflakes find-file-in-repository easy-kill diminish crontab-mode coffee-mode ack-and-a-half)))
+    (aggressive-indent dired-subtree dumb-jump robe use-package shadowenv helm-ag pymacs ag fill-column-indicator modeline-posn exec-path-from-shell jedi yaml-mode virtualenvwrapper sphinx-doc smart-mode-line rainbow-delimiters pyvenv python-mode php-mode multiple-cursors multi-web-mode markdown-toc markdown-preview-mode magit lorem-ipsum js2-mode jedi-direx idomenu helm-projectile helm-git-grep helm-git handlebars-mode go-mode flycheck-pyflakes find-file-in-repository easy-kill diminish crontab-mode coffee-mode ack-and-a-half)))
  '(protect-buffer-bury-p nil)
  '(py-load-pymacs-p nil)
  '(py-pdbtrack-do-tracking-p t)

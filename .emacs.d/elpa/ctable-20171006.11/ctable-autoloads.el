@@ -6,10 +6,17 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "ctable" "ctable.el" (0 0 0 0))
-;;; Generated autoloads from ctable.el
+;;;### (autoloads "actual autoloads are elsewhere" "ctable" "../../../../../.emacs.d/elpa/ctable-20171006.11/ctable.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/ctable-20171006.11/ctable.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ctable" '("ctbl:")))
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/ctable-20171006.11/ctable-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/ctable-20171006.11/ctable.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

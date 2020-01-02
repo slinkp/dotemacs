@@ -6,8 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "helm-git-grep" "helm-git-grep.el" (0 0 0 0))
-;;; Generated autoloads from helm-git-grep.el
+;;;### (autoloads nil "helm-git-grep" "../../../../../.emacs.d/elpa/helm-git-grep-20170614.1411/helm-git-grep.el"
+;;;;;;  "f54a00f62fe2c801828ac59bb092c24d")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/helm-git-grep-20170614.1411/helm-git-grep.el
 
 (autoload 'helm-git-grep-ls-files-limited-by-pathspec "helm-git-grep" "\
 Show result of `git ls-files' to check files limited by pathspec which is defined by `helm-git-grep-pathspecs'.
@@ -51,8 +52,21 @@ Obsolete.
 (define-obsolete-function-alias 'helm-git-grep-from-here 'helm-git-grep-at-point "0.5")
 
 (make-obsolete 'helm-git-grep-with-exclude-file-pattern helm-git-grep-with-exclude-file-pattern-obsolete-message "0.10.0")
+
+;;;### (autoloads "actual autoloads are elsewhere" "helm-git-grep"
+;;;;;;  "../../../../../.emacs.d/elpa/helm-git-grep-20170614.1411/helm-git-grep.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/helm-git-grep-20170614.1411/helm-git-grep.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "helm-git-grep" '("helm-git-grep-")))
+
+;;;***
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/helm-git-grep-20170614.1411/helm-git-grep-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/helm-git-grep-20170614.1411/helm-git-grep.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

@@ -6,8 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "modeline-posn" "modeline-posn.el" (0 0 0 0))
-;;; Generated autoloads from modeline-posn.el
+;;;### (autoloads nil "modeline-posn" "../../../../../.emacs.d/elpa/modeline-posn-22.0/modeline-posn.el"
+;;;;;;  "04d1f9968774df1bd60c8b246f42a026")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/modeline-posn-22.0/modeline-posn.el
 
 (defface modelinepos-column-warning '((t (:foreground "Red"))) "\
 *Face used to highlight the modeline column number.
@@ -45,6 +46,12 @@ region size is shown; otherwise, the size of the accessible part
 of the buffer is shown.
 
 \(fn &optional ARG)" t nil)
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/modeline-posn-22.0/modeline-posn-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/modeline-posn-22.0/modeline-posn.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 
