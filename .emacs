@@ -1268,15 +1268,16 @@ the line, to capture multiline input. (This only has effect if
   ;; We may not have slinkp's favorite font.
   ;; TODO: See http://emacswiki.org/emacs/SetFonts about how to detect if a font is installed before setting it.
 
-  (set-frame-font "-outline-menlo-medium-r-normal--12-*-*-*-*-*-iso10646-1")
-  ;; And in every new frame. 
-  (add-to-list 'default-frame-alist
-    ;; '(font . "-apple-Source_Code_Pro-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1"))
-    '(font . "-outline-menlo-medium-r-normal--12-*-*-*-*-*-iso10646-1"))
+  ;; (set-frame-font "-outline-menlo-medium-r-normal--12-*-*-*-*-*-iso10646-1")
+  ;; ;; And in every new frame. 
+  ;; (add-to-list 'default-frame-alist
+  ;;   ;; '(font . "-apple-Source_Code_Pro-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1"))
+  ;;   '(font . "-outline-menlo-medium-r-normal--12-*-*-*-*-*-iso10646-1"))
 
 )
 
 ;; ========================================================================
+;; FONTS
 ;; Rotate fonts, with keybindings. Yay. 
 ;; Tweaked from http://ergoemacs.org/emacs/emacs_switching_fonts.html
 ;; ========================================================================
@@ -1312,7 +1313,7 @@ the line, to capture multiline input. (This only has effect if
 
 
 (when (and darwin? gui?)
-  (set-font-in-frames (visible-frame-list) (darwin-font 13))
+  (set-font-in-frames (visible-frame-list) (darwin-font 12))
 )
 
 ;; TODO automate the copy/paste font name crap
