@@ -6,11 +6,18 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "dired-hacks-utils" "dired-hacks-utils.el"
+;;;### (autoloads "actual autoloads are elsewhere" "dired-hacks-utils"
+;;;;;;  "../../../../../.emacs.d/elpa/dired-hacks-utils-20190522.950/dired-hacks-utils.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from dired-hacks-utils.el
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/dired-hacks-utils-20190522.950/dired-hacks-utils.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "dired-hacks-utils" '("dired-")))
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/dired-hacks-utils-20190522.950/dired-hacks-utils-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/dired-hacks-utils-20190522.950/dired-hacks-utils.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

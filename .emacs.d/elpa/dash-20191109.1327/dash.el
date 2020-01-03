@@ -4,7 +4,6 @@
 
 ;; Author: Magnar Sveen <magnars@gmail.com>
 ;; Version: 2.16.0
-;; Package-Version: 20191109.1327
 ;; Keywords: lists
 
 ;; This program is free software; you can redistribute it and/or modify

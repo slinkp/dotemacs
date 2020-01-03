@@ -6,8 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "dired-subtree" "dired-subtree.el" (0 0 0 0))
-;;; Generated autoloads from dired-subtree.el
+;;;### (autoloads nil "dired-subtree" "../../../../../.emacs.d/elpa/dired-subtree-20180922.1615/dired-subtree.el"
+;;;;;;  "6aca8254eae41b76b9eb2df072c19f52")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/dired-subtree-20180922.1615/dired-subtree.el
 
 (autoload 'dired-subtree-narrow "dired-subtree" "\
 Narrow the buffer to this subtree.
@@ -118,8 +119,21 @@ restricted to a subtree.  The global filter is also applied to
 the subtree.  The filter action is read from `dired-filter-map'.
 
 \(fn)" t nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "dired-subtree"
+;;;;;;  "../../../../../.emacs.d/elpa/dired-subtree-20180922.1615/dired-subtree.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/dired-subtree-20180922.1615/dired-subtree.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "dired-subtree" '("dired-")))
+
+;;;***
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/dired-subtree-20180922.1615/dired-subtree-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/dired-subtree-20180922.1615/dired-subtree.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 
