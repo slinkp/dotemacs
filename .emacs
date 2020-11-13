@@ -496,7 +496,7 @@ XXX argument untested"
      mode-line-end-spaces)))
  '(package-selected-packages
    (quote
-    (aggressive-indent dired-subtree dumb-jump robe use-package shadowenv helm-ag pymacs ag fill-column-indicator modeline-posn exec-path-from-shell jedi yaml-mode virtualenvwrapper sphinx-doc smart-mode-line rainbow-delimiters pyvenv python-mode php-mode multiple-cursors multi-web-mode markdown-toc markdown-preview-mode magit lorem-ipsum js2-mode jedi-direx idomenu helm-projectile helm-git-grep helm-git handlebars-mode go-mode flycheck-pyflakes find-file-in-repository easy-kill diminish crontab-mode coffee-mode ack-and-a-half)))
+    (typescript-mode string-inflection lua-mode flymake-lua highlight-indentation highlight-indentation-mode git-link vterm graphql-mode aggressive-indent dumb-jump robe use-package shadowenv helm-ag pymacs ag fill-column-indicator modeline-posn exec-path-from-shell jedi yaml-mode virtualenvwrapper sphinx-doc smart-mode-line rainbow-delimiters pyvenv python-mode php-mode multiple-cursors multi-web-mode markdown-toc markdown-preview-mode magit lorem-ipsum js2-mode jedi-direx idomenu helm-projectile helm-git-grep helm-git handlebars-mode go-mode flycheck-pyflakes find-file-in-repository easy-kill diminish crontab-mode coffee-mode ack-and-a-half)))
  '(protect-buffer-bury-p nil)
  '(py-load-pymacs-p nil)
  '(py-pdbtrack-do-tracking-p t)
@@ -510,7 +510,8 @@ XXX argument untested"
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
  '(tramp-default-method "ssh")
- '(undo-outer-limit 24000000))
+ '(undo-outer-limit 24000000)
+ '(vterm-shell "/usr/local/bin/bash --login"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -920,9 +921,8 @@ XXX argument untested"
 
 ;; TODO: after Catalina upgrade, shadowenv-global-mode seems to break commands that need
 ;; the minibuffer -just get `Buffer is read-only: #<buffer *shadowenv output*>`
-;; (use-package shadowenv
-;;     :hook (after-init . shadowenv-global-mode))
-(use-package shadowenv)
+(use-package shadowenv
+   :hook (after-init . shadowenv-global-mode))
 
 ;; Navigation
 (add-hook 'ruby-mode-hook 'robe-mode)
@@ -933,7 +933,6 @@ XXX argument untested"
   (lambda ()
     (require 'flycheck)
     ;; The related modes (ruby-rubocop, ruby-rubylint, etc) should come automatically if available.
-    ;; Not working though, need to investigate.
     (setq flycheck-checker-error-threshold 800)  ;; default 400
     (flycheck-mode t)
     (define-key ruby-mode-map (kbd "M-p") 'slinkp-binding-pry)
@@ -943,8 +942,6 @@ XXX argument untested"
 ;; It should degrade gracefully if there's no `bundle`.
 (setq flycheck-ruby-rubocop-executable "bundle-exec-rubocop.sh")
 
-;; Sigh. Rubocop seems broken even with wrapper while i'm having shadowenv problems
-(setq-default flycheck-disabled-checkers '(ruby-rubocop))
 
 
 ;; ===========================================================================
