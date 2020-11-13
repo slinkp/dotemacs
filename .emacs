@@ -613,6 +613,10 @@ XXX argument untested"
    (tab-mark 9 [9655 9] [92 9]) ; tab, ▷
 ))
 
+;; Prettier than whitespace-mode?
+(use-package highlight-indentation
+  :ensure t)
+
 ; (autoload 'cc-mode "cc-mode" "CC Mode" t)
 
 ;;; ASP & VB highlighting
