@@ -967,7 +967,7 @@ XXX argument untested"
 (auto-insert-mode 1)
 (setq auto-insert t)
 (setq auto-insert-query nil)
-(add-hook 'find-file-hooks 'auto-insert)
+(add-hook 'find-file-hook 'auto-insert)
 (setq auto-insert-directory "~/.emacs.d/templates/")
 (setq auto-insert-alist
       '(("\\.\\zcml$" . "template.zcml")
