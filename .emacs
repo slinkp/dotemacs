@@ -18,23 +18,23 @@
 ;;============================================================================
 ;; Platform information, from mccutchen
 ;;============================================================================
-(defconst windows?
+(defconst running-on-windows?
   (eq system-type 'windows-nt))
 
-(defconst linux?
+(defconst running-on-linux?
   (or (eq system-type 'gnu/linux)
       (eq system-type 'linux)))
 
-(defconst darwin?
+(defconst running-on-darwin?
   (eq system-type 'darwin))
 
-(defconst unixp?
-  (or linux?
-      darwin?
+(defconst running-on-unix?
+  (or running-on-linux?
+      running-on-darwin?
       (eq system-type 'usg-unix-v)
       (eq system-type 'berkeley-unix)))
 
-(defconst gui?
+(defconst we-have-gui?
   (or (or window-system)
       nil))
 
@@ -1218,7 +1218,7 @@ the line, to capture multiline input. (This only has effect if
 ;; Remember where we were.
 ;;============================================================================
 
-(when gui?
+(when we-have-gui?
   ;; Remember state of everything... if we're in a GUI.
   ;; Otherwise I probably don't want that much.
   (desktop-save-mode 1))
@@ -1232,7 +1232,7 @@ the line, to capture multiline input. (This only has effect if
 ;;============================================================================
 ;; OS X specific settings, thanks Will McCutchen
 ;;============================================================================
-(when darwin?
+(when running-on-darwin?
   ;; These seem to fix the command key
   ;; (from http://www.webweavertech.com/ovidiu/emacs.html)
   (setq mac-option-modifier 'super)
@@ -1290,13 +1290,13 @@ the line, to capture multiline input. (This only has effect if
 )
 
 ;; Set the default.
-(when (and linux? gui?)
+(when (and running-on-linux? we-have-gui?)
   ;; (set-font-in-frames (visible-frame-list) "-*-DejaVu Sans Mono-normal-normal-normal-*-14-*-*-*-m-0-*")
   (set-font-in-frames (visible-frame-list) (linux-font 14))
 )
 
 
-(when (and darwin? gui?)
+(when (and running-on-darwin? we-have-gui?)
   (set-font-in-frames (visible-frame-list) (darwin-font 12))
 )
 
@@ -1309,7 +1309,7 @@ If NUM is -1, cycle backward."
   (interactive "p")
   ;; this function sets a property “state”. It is a integer. Possible values are any index to the fontList.
   (let (fontList fontToUse currentState nextState )
-    (when (and darwin? gui?)
+    (when (and running-on-darwin? we-have-gui?)
       (setq fontList (list
                       (darwin-font 8)
                       (darwin-font 9)
@@ -1328,7 +1328,7 @@ If NUM is -1, cycle backward."
                       (darwin-font 22)
                       ))
     )
-    (when (and linux? gui?)
+    (when (and running-on-linux? we-have-gui?)
 
       (setq fontList (list
                       (linux-font 10)
@@ -1425,7 +1425,7 @@ See `cycle-font'."
 ;; Default GUI windows.
 ;; ========================================================
 
-(when gui?
+(when we-have-gui?
   (add-to-list 'initial-frame-alist '(height . 33))
   (add-to-list 'initial-frame-alist '(width . 120))
   (make-frame))
