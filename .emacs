@@ -946,8 +946,6 @@ XXX argument untested"
 ;; It should degrade gracefully if there's no `bundle`.
 (setq flycheck-ruby-rubocop-executable "bundle-exec-rubocop.sh")
 
-
-
 ;; ===========================================================================
 ;; HTML / XML
 ;; ==========================================================================
@@ -1452,14 +1450,6 @@ See `cycle-font'."
 (define-key dired-mode-map
   (vector 'remap 'end-of-buffer) 'dired-jump-to-bottom)
 
-;; Dired: TAB expands subdirectories in-place, thanks Dante Catafalmo
-;; TODO: Why does this give an error on startup but work if I later do eval-region?
-(use-package dired-subtree
-  :ensure t
-  :after dired
-  :bind (:map dired-mode-map
-              ("TAB" . dired-subtree-toggle)))
-
 ;; ===========================================
 ;; Git / Github
 ;; ===========================================
@@ -1486,4 +1476,3 @@ See `cycle-font'."
                         (file-truename (buffer-file-name))))
   (kill-new filename)
   (message filename))
-
