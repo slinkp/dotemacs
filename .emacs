@@ -1455,3 +1455,31 @@ See `cycle-font'."
   :after dired
   :bind (:map dired-mode-map
               ("TAB" . dired-subtree-toggle)))
+
+;; ===========================================
+;; Git / Github
+;; ===========================================
+
+(use-package git-link
+  :ensure t)
+
+(defun git-path ()
+  "Find the path to the current file relative to repository root. Like git-link but just the relative path"
+  (interactive)
+  (setq filename    (git-link--relative-filename))
+  (cond ((null filename)
+          (message "Can't figure out what to link to"))
+        (t
+          (kill-new filename)
+          (message filename))
+  ))
+
+;; similar but based on projectile rather than git repo
+(defun projectile-path ()
+  "Find the path to the current file relative to projectile root. Like git-path but for projects, not repos"
+  (interactive)
+  (setq filename (string-remove-prefix (projectile-project-root)
+                        (file-truename (buffer-file-name))))
+  (kill-new filename)
+  (message filename))
+
