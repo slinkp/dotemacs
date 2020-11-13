@@ -2,50 +2,18 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Thu Dec 13 11:11:18 2012
-;; Desktop file format version 206
-;; Emacs version 24.2.1
+;; Created Mon Oct 19 14:21:58 2020
+;; Desktop file format version 208
+;; Emacs version 26.3
 
 ;; Global section:
+(setq desktop-saved-frameset [frameset 1 (24461 55622 329397 0) (desktop . "208") "paul@Pauls-MBP-2" nil nil ((((minibuffer . t) (font-backend mac-ct) (fontsize . 0) (font . "-*-Menlo-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1") (border-width . 0) (internal-border-width . 2) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars) (horizontal-scroll-bars) (foreground-color . "#c4deb0") (background-color . "black") (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (undecorated) (ns-appearance . unbound) (ns-transparent-titlebar . unbound) (z-group) (no-focus-on-map) (no-accept-focus) (menu-bar-lines . 1) (tool-bar-lines . 0) (title) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 0) (scroll-bar-height . 0) (alpha) (fullscreen) (display-type . color) (background-mode . dark) (cursor-color . "white") (frameset--id . "7F6E-E596-1F19-98BD") (frameset--mini t) (height . 36) (width . 80) (modeline . t) (unsplittable) (left . 990) (top . 23) (icon-name) (visibility . t) (display . "Pauls-MBP-2") (explicit-name) (tool-bar-position . top)) ((min-height . 4) (min-width . 10) (min-height-ignore . 2) (min-width-ignore . 5) (min-height-safe . 1) (min-width-safe . 2) (min-pixel-height . 56) (min-pixel-width . 70) (min-pixel-height-ignore . 28) (min-pixel-width-ignore . 35) (min-pixel-height-safe . 14) (min-pixel-width-safe . 14)) leaf (pixel-width . 576) (pixel-height . 490) (total-width . 82) (total-height . 35) (normal-height . 1.0) (normal-width . 1.0) (buffer "*scratch*" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 14) (start . 1))) (((minibuffer . t) (font-backend mac-ct) (fontsize . 0) (font . "-*-Menlo-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1") (border-width . 0) (internal-border-width . 2) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars) (horizontal-scroll-bars) (foreground-color . "#c4deb0") (background-color . "black") (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (undecorated) (ns-appearance . unbound) (ns-transparent-titlebar . unbound) (z-group) (no-focus-on-map) (no-accept-focus) (menu-bar-lines . 1) (tool-bar-lines . 0) (title) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 0) (scroll-bar-height . 0) (alpha) (fullscreen) (display-type . color) (background-mode . dark) (cursor-color . "white") (environment) (frameset--id . "93A0-D120-EA33-3F97") (frameset--mini t . t) (height . 33) (width . 120) (modeline . t) (unsplittable) (left . 1700) (top . 23) (icon-name) (visibility . t) (display . "Pauls-MBP-2") (explicit-name) (tool-bar-position . top)) ((min-height . 4) (min-width . 10) (min-height-ignore . 2) (min-width-ignore . 5) (min-height-safe . 1) (min-width-safe . 2) (min-pixel-height . 56) (min-pixel-width . 70) (min-pixel-height-ignore . 28) (min-pixel-width-ignore . 35) (min-pixel-height-safe . 14) (min-pixel-width-safe . 14)) leaf (pixel-width . 856) (pixel-height . 448) (total-width . 122) (total-height . 32) (normal-height . 1.0) (normal-width . 1.0) (buffer "*scratch*" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 1) (start . 1))))])
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name "TAGS")
 (setq tags-table-list nil)
-(setq search-ring '("deskt" "desk" "desktop" "(when" "desktop-"))
+(setq search-ring nil)
 (setq regexp-search-ring nil)
 (setq register-alist nil)
-(setq file-name-history '("~/.emacs.d/desktop/" "~/.emacs-quick" "~/sh/emacs-lite" "~/.emacs" "/bitly/src/github/bitly/pro_api/app/pro.py" "~/tmp/notes.txt" "/bitly/src/github/bitly/pro_api/app/ctron_accessors.py" "/bitly/src/github/bitly/bitly2/bitly2.py" "/bitly/src/github/bitly/bitly2/app/enterprise.py" "/bitly/src/github/bitly/libbitly/libbitly/BaseReader.py" "/bitly/src/github/bitly/libbitly/libbitly/logatron_client.py" "/bitly/src/github/bitly/pro_api/lib/enterprise_data.py" "/bitly/src/github/bitly/pro_api/pro_api.py" "/bitly/src/github/bitly/pro_api/lib/enterprise_offline_reports_sq.py" "/bitly/src/github/bitly/pro_api/queuereader_enterprise_offline_reports.py" "/bitly/src/github/bitly/services.py" "/bitly/src/github/bitly/bitly2/settings.py" "/bitly/src/github/bitly/testcount.py" "/bitly/src/github/bitly/bitly2/tests/test_wilcard_redirect.py" "/bitly/src/github/bitly/test.sh" "/bitly/src/github/bitly/bitly2/templates/pro/enterprise2/trend.html" "/bitly/src/github/bitly/bitly2/templates/pro/enterprise2/links.html" "/bitly/src/github/bitly/bitly2/static/css/enterprise2/pro/enterprise.css"))
+(setq file-name-history '("~/.emacs.d/desktop/" "~/hacking/dotemacs/.emacs.d/elpa/helm-git-grep-20170614.1411/helm-git-grep.el" "~/.emacs.d/elpa/helm-git-grep-20170614.1411/helm-git-grep.el" "~/src/github.com/Shopify/shopify/components/access_and_auth/app/helpers/access_and_auth/admin/presenters/request_grant_cards/collapsibles/customer_scopes.rb" "~/src/github.com/Shopify/shopify/.rubocop_todo.yml" "~/src/github.com/Shopify/shopify/components/access_and_auth/README.md" "~/.emacs" "~/Documents/jobs/shopify/NOTES.md" "~/src/github.com/Shopify/web/node_modules/typescript/lib/typingsInstaller.js" "~/sh/git-branch-activity" "~/.gitconfig" "~/src/github.com/Shopify/shopify/components/checkouts/core/app/services/checkouts/core/checkout_to_order.rb" "~/src/github.com/Shopify/shopify/components/checkouts/core/app/models/checkouts/data_events/source/order.rb" "~/src/github.com/Shopify/shopify/components/notifications/app/models/customer_notification/recipient.rb" "/opt/dev/dev.sh" "~/src/github.com/Shopify/shopify/components/notifications/app/models/customer_notification/notification_factory.rb" "~/src/github.com/Shopify/shopify/components/notifications/app/models/customer_notification/notification.rb" "~/src/github.com/Shopify/shopify/components/notifications/app/models/customer_notification/broker.rb" "~/src/github.com/Shopify/shopify/components/customers/app/models/customer_notification_suppression.rb" "~/src/github.com/Shopify/shopify/components/sales/app/models/order.rb"))
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
-(desktop-create-buffer 206
-  "/Users/pw/sh/emacs-lite"
-  "emacs-lite"
-  'sh-mode
-  nil
-  12
-  '(nil nil)
-  nil
-  nil
-  '((buffer-file-coding-system . undecided-unix)))
-
-(desktop-create-buffer 206
-  "/Users/pw/.emacs"
-  ".emacs"
-  'text-mode
-  nil
-  39520
-  '(39545 nil)
-  nil
-  nil
-  '((buffer-file-coding-system . utf-8-unix)))
-
-(desktop-create-buffer 206
-  nil
-  ".saves-*"
-  'dired-mode
-  '(dired-omit-mode)
-  227
-  '(227 t)
-  t
-  '("/Users/pw/.emacs.d/auto-save-list/.saves-*")
-  nil)
-
