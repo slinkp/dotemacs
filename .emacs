@@ -920,11 +920,19 @@ XXX argument untested"
 
 ;; TODO: after Catalina upgrade, shadowenv-global-mode seems to break commands that need
 ;; the minibuffer -just get `Buffer is read-only: #<buffer *shadowenv output*>`
-(use-package shadowenv
-   :hook (after-init . shadowenv-global-mode))
+;; (use-package shadowenv
+;;    :ensure t
+;;    :hook (after-init . shadowenv-global-mode))
 
 ;; Navigation
-(add-hook 'ruby-mode-hook 'robe-mode)
+;; ... nope too slow for Shopify/shopify
+;; (add-hook 'ruby-mode-hook 'robe-mode)
+
+;; Dumb navigation thanks to dumb-jump
+
+(add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+
+
 
 ;; Flycheck
 
