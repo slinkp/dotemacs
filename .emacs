@@ -476,9 +476,8 @@ XXX argument untested"
  '(comint-scroll-to-bottom-on-input t)
  '(current-language-environment "English")
  '(custom-safe-themes
-   (quote
-    ("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" default)))
- '(default-frame-alist (quote ((menu-bar-lines . 1))))
+   '("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" default))
+ '(default-frame-alist '((menu-bar-lines . 1)))
  '(dumb-jump-max-find-time 4)
  '(git-link-open-in-browser t)
  '(global-font-lock-mode t nil (font-lock))
@@ -490,22 +489,19 @@ XXX argument untested"
  '(jit-lock-stealth-time 0.035)
  '(markdown-command "pandoc --from markdown_github --to html --standalone")
  '(mode-line-format
-   (quote
-    ("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification mode-line-position mode-line-misc-info mode-line-modes
+   '("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification mode-line-position mode-line-misc-info mode-line-modes
      (vc-mode vc-mode)
-     mode-line-end-spaces)))
+     mode-line-end-spaces))
  '(package-selected-packages
-   (quote
-    (typescript-mode string-inflection lua-mode flymake-lua highlight-indentation highlight-indentation-mode git-link graphql-mode aggressive-indent dumb-jump robe use-package shadowenv helm-ag pymacs ag fill-column-indicator modeline-posn exec-path-from-shell jedi yaml-mode virtualenvwrapper sphinx-doc smart-mode-line rainbow-delimiters pyvenv python-mode php-mode multiple-cursors multi-web-mode markdown-toc markdown-preview-mode magit lorem-ipsum js2-mode jedi-direx idomenu helm-projectile helm-git-grep helm-git handlebars-mode go-mode flycheck-pyflakes find-file-in-repository easy-kill diminish crontab-mode coffee-mode ack-and-a-half)))
+   '(typescript-mode string-inflection lua-mode flymake-lua highlight-indentation highlight-indentation-mode git-link graphql-mode aggressive-indent dumb-jump use-package shadowenv helm-ag pymacs ag fill-column-indicator modeline-posn exec-path-from-shell jedi yaml-mode virtualenvwrapper sphinx-doc smart-mode-line rainbow-delimiters pyvenv python-mode php-mode multiple-cursors multi-web-mode markdown-toc markdown-preview-mode magit lorem-ipsum js2-mode jedi-direx idomenu helm-projectile helm-git-grep helm-git handlebars-mode go-mode flycheck-pyflakes find-file-in-repository easy-kill diminish crontab-mode coffee-mode ack-and-a-half))
  '(protect-buffer-bury-p nil)
  '(py-load-pymacs-p nil)
  '(py-pdbtrack-do-tracking-p t)
  '(safe-local-variable-values
-   (quote
-    ((test-case-name . buildbot\.test\.test_transfer)
+   '((test-case-name . buildbot\.test\.test_transfer)
      (test-case-name . buildbot\.test\.test_vc)
      (test-case-name . buildbot\.test\.test_steps\,buildbot\.test\.test_properties)
-     (test-case-name . buildbot\.test\.test_run))))
+     (test-case-name . buildbot\.test\.test_run)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
