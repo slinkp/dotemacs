@@ -6,45 +6,32 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "dumb-jump" "dumb-jump.el" (0 0 0 0))
-;;; Generated autoloads from dumb-jump.el
+;;;### (autoloads nil "dumb-jump" "../../../../../.emacs.d/elpa/dumb-jump-20201017.205/dumb-jump.el"
+;;;;;;  "6fd92fb75632fdf6d96c20ddefbea0d6")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/dumb-jump-20201017.205/dumb-jump.el
 
 (defvar dumb-jump-mode-map (let ((map (make-sparse-keymap))) (define-key map (kbd "C-M-g") 'dumb-jump-go) (define-key map (kbd "C-M-p") 'dumb-jump-back) (define-key map (kbd "C-M-q") 'dumb-jump-quick-look) map))
 
 (autoload 'dumb-jump-back "dumb-jump" "\
-Jump back to where the last jump was done.
-
-\(fn)" t nil)
+Jump back to where the last jump was done." t nil)
 
 (autoload 'dumb-jump-quick-look "dumb-jump" "\
-Run dumb-jump-go in quick look mode.  That is, show a tooltip of where it would jump instead.
-
-\(fn)" t nil)
+Run dumb-jump-go in quick look mode.  That is, show a tooltip of where it would jump instead." t nil)
 
 (autoload 'dumb-jump-go-other-window "dumb-jump" "\
-Like 'dumb-jump-go' but use 'find-file-other-window' instead of 'find-file'.
-
-\(fn)" t nil)
+Like 'dumb-jump-go' but use 'find-file-other-window' instead of 'find-file'." t nil)
 
 (autoload 'dumb-jump-go-current-window "dumb-jump" "\
-Like dumb-jump-go but always use 'find-file'.
-
-\(fn)" t nil)
+Like dumb-jump-go but always use 'find-file'." t nil)
 
 (autoload 'dumb-jump-go-prefer-external "dumb-jump" "\
-Like dumb-jump-go but prefer external matches from the current file.
-
-\(fn)" t nil)
+Like dumb-jump-go but prefer external matches from the current file." t nil)
 
 (autoload 'dumb-jump-go-prompt "dumb-jump" "\
-Like dumb-jump-go but prompts for function instead of using under point
-
-\(fn)" t nil)
+Like dumb-jump-go but prompts for function instead of using under point" t nil)
 
 (autoload 'dumb-jump-go-prefer-external-other-window "dumb-jump" "\
-Like dumb-jump-go-prefer-external but use 'find-file-other-window' instead of 'find-file'.
-
-\(fn)" t nil)
+Like dumb-jump-go-prefer-external but use 'find-file-other-window' instead of 'find-file'." t nil)
 
 (autoload 'dumb-jump-go "dumb-jump" "\
 Go to the function/variable declaration for thing at point.
@@ -64,6 +51,11 @@ for a description of this minor mode.")
 (autoload 'dumb-jump-mode "dumb-jump" "\
 Minor mode for jumping to variable and function definitions
 
+If called interactively, enable Dumb-Jump mode if ARG is
+positive, and disable it if ARG is zero or negative.  If called
+from Lisp, also enable the mode if ARG is omitted or nil, and
+toggle it if ARG is `toggle'; disable the mode otherwise.
+
 \(fn &optional ARG)" t nil)
 
 (autoload 'dumb-jump-xref-activate "dumb-jump" "\
@@ -71,11 +63,21 @@ Function to activate xref backend.
 Add this function to `xref-backend-functions' to dumb jump to be
 activiated, whenever it finds a project. It is recommended to add
 it to the end, so that it only gets activated when no better
-option is found.
-
-\(fn)" nil nil)
+option is found." nil nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "dumb-jump" "../../../../../.emacs.d/elpa/dumb-jump-20201017.205/dumb-jump.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/dumb-jump-20201017.205/dumb-jump.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "dumb-jump" '("dumb-jump-")))
+
+;;;***
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/dumb-jump-20201017.205/dumb-jump-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/dumb-jump-20201017.205/dumb-jump.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 
