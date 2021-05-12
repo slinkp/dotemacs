@@ -673,6 +673,7 @@ XXX argument untested"
 ;; https://github.com/naiquevin/sphinx-doc.el
 ;; use C-c M-d
 ;; can insert skeletons and update existing docstrings!
+(use-package sphinx-doc)
 (add-hook 'python-mode-hook
   (lambda ()
     (require 'sphinx-doc)
@@ -681,7 +682,7 @@ XXX argument untested"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Virtualenvs for python
-(require 'virtualenvwrapper)
+;(require 'virtualenvwrapper)
 ; (venv-initialize-interactive-shells) ;; if you want interactive shell support
 ; (venv-initialize-eshell) ;; if you want eshell support
 ;; note that setting `venv-location` is not necessary if you
@@ -767,17 +768,6 @@ XXX argument untested"
 ;; js2-mode is not that happy with raw JSON
 (add-to-list 'auto-mode-alist '("\\.json$" . javascript-mode))
 
-;; ===================================================================
-;; DOCTEST
-;; ===================================================================
-
-
-(autoload 'doctest-mode "doctest-mode" "doctest mode" t)
-(add-to-list 'auto-mode-alist '("\\.doctest$" . doctest-mode))
-
-(fset 'yes-or-no-p 'y-or-n-p) ; stop forcing me to spell out "yes"
-
-
 ;; ========================================================================
 ;; C
 ;; ========================================================================
@@ -829,8 +819,9 @@ XXX argument untested"
     "<body>\n"
     "</body>\n</html>\n"))
 
-;; ; Multi-web mode, see https://github.com/fgallina/multi-web-mode
-(require 'multi-web-mode)
+;; Multi-web mode, see https://github.com/fgallina/multi-web-mode
+
+(use-package multi-web-mode)
 (setq mweb-default-major-mode 'html-mode)
  (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
                   ;; (js2-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
@@ -843,6 +834,7 @@ XXX argument untested"
 (multi-web-global-mode 1)
 
 
+;; ========================================================================
 ;; CSS
 ;; (add-to-list 'auto-mode-alist '("\\.less" . less-css-mode))
 
