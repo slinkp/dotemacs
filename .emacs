@@ -514,10 +514,6 @@ XXX argument untested"
 (add-hook 'sh-mode-hook 'font-lock-mode)
 (add-hook 'shell-script-mode-hook 'font-lock-mode)
 
-;; Whoops! This was double-toggling... font-lock-mode is already loaded by
-;; sgml-mode, so loading again for html-mode turns it off...
-; (add-hook 'html-mode-hook 'font-lock-mode)
-
 (setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.html\.raw$" . sgml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.dtml$" . sgml-mode) auto-mode-alist))
@@ -528,25 +524,14 @@ XXX argument untested"
 ;;(setq auto-mode-alist (cons '("\\.php3$" . html-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.mako$" . html-mode) auto-mode-alist))
 
-;; flunc/twill stuff... sh mode is decent i guess.
-(setq auto-mode-alist (cons '("\\.twill$" . sh-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.tsuite$" . sh-mode) auto-mode-alist))
-
 (setq auto-mode-alist (cons '("\\.sgml$" . sgml-mode) auto-mode-alist))
 
 ;; this is useful with Ian B's svncommit shell function
 (setq auto-mode-alist (cons '("svn-commit.tmp" . diff-mode) auto-mode-alist))
 
-;; Io
-;; (require 'io-mode)
-;; (setq auto-mode-alist (cons '("\\.io$" . io-mode) auto-mode-alist))
-;; (add-hook 'io-mode-hook 'font-lock-mode)
 
 ;; Handle ANSI colorization in shell mode.
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-
-;; this should be in my .emacs.d/
-(load "django-html-mode.el")
 
 ;; Fill + markup = hell.
 (add-hook 'sgml-mode-hook 'turn-off-auto-fill)
@@ -585,31 +570,12 @@ XXX argument untested"
 
 ; (autoload 'cc-mode "cc-mode" "CC Mode" t)
 
-;;; ASP & VB highlighting
-;(autoload 'visual-basic-mode "visual-basic-mode" nil t)
-;(setq auto-mode-alist (cons '("\\.cls$" . visual-basic-mode) auto-mode-alist))
-
-;(autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
-;(setq auto-mode-alist (cons '("\\.asp$" . html-helper-mode) auto-mode-alist))
-
 ;; PHP
 (portable-load-library "php-mode-improved")
 
 ;; TCL
 
 (add-to-list 'auto-mode-alist '("\\.adp$" . tcl-mode))
-
-;; ========================================================================
-;; NXML
-;; ========================================================================
-
-;; Set indentation, per Will McCutchen.
-(defun nxml-mode-setup()
-  (message "NXML hook run")
-  (setq nxml-child-indent 4)
-  (setq nxml-slash-auto-complete-flag t))
-(add-hook 'nxml-mode-hook 'nxml-mode-setup)
-
 
 ;; ========================================================================
 ;; YAML
@@ -622,7 +588,7 @@ XXX argument untested"
 ;; ========================================================================
 
 ;; Turn on long line indicator
-(require 'fill-column-indicator)
+(use-package fill-column-indicator)
 (add-hook 'rst-mode-hook 'fci-mode)
 
 ;; ========================================================================
