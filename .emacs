@@ -843,15 +843,15 @@ XXX argument untested"
 ;; ========================================================================
 
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
-
+(add-to-list 'auto-mode-alist '("\\.rbi\\'" . ruby-mode))
 
 ;; Shopify ruby shadowenv support
 
 ;; TODO: after Catalina upgrade, shadowenv-global-mode seems to break commands that need
 ;; the minibuffer -just get `Buffer is read-only: #<buffer *shadowenv output*>`
-;; (use-package shadowenv
-;;    :ensure t
-;;    :hook (after-init . shadowenv-global-mode))
+(use-package shadowenv
+   :ensure t
+   :hook (after-init . shadowenv-global-mode))
 
 ;; Navigation
 ;; ... nope too slow for Shopify/shopify
@@ -859,11 +859,15 @@ XXX argument untested"
 
 ;; Dumb navigation thanks to dumb-jump
 
-(add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+(use-package s)
+(use-package dumb-jump)
+;; (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
 
 
 
 ;; Flycheck
+
+(use-package flycheck)
 
 (add-hook 'ruby-mode-hook
   (lambda ()
@@ -872,6 +876,7 @@ XXX argument untested"
     (setq flycheck-checker-error-threshold 800)  ;; default 400
     (flycheck-mode t)
     (define-key ruby-mode-map (kbd "M-p") 'slinkp-binding-pry)
+    (setq flycheck-ruby-rubocop-executable "bundle-exec-rubocop.sh")
     )
 )
 ;; Wrapper script to fix rubocop not using bundle exec.
