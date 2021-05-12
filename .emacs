@@ -902,6 +902,10 @@ XXX argument untested"
 
   ;; Performance tweak per #emacs on shopify slack. Try 40 if too slow?
   (setq helm-candidate-number-limit 60)
+
+  ;; Searching commands vaguely on par with VSCode
+  (global-set-key (kbd "M-P") 'helm-projectile)
+  (global-set-key (kbd "M-F") 'helm-git-grep)
 )
 
 ;; ===========================================================================
