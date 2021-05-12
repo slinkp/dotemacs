@@ -916,6 +916,10 @@ XXX argument untested"
 ;; should be done by the global site-lisp.el
 ; (load "/usr/share/emacs/site-lisp/site-gentoo")
 
+
+(fset 'yes-or-no-p 'y-or-n-p) ; stop forcing me to spell out "yes"
+
+
 ;; been killing by mistake a lot lately.
 (setq confirm-kill-emacs 'yes-or-no-p)
 
