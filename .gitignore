@@ -4,6 +4,7 @@
 .emacs.d/projectile-bookmarks.eld
 .emacs.d/projectile.cache
 .emacs.d/recentf
+.emacs.d/recentf*
 .emacs.d/network-security.data
 .emacs.d/*gz
 .emacs.d/.python-environments
@@ -13,4 +14,10 @@
 .emacs.d/.mc-lists.el
 .emacs.d/ac-comphist.dat
 .emacs.d/.places
+.emacs.d/*desktop
+.emacs.d/elpa
+.emacs.d/*lock
+.emacs.d/*~
+.emacs.d/*.eld
+.emacs.d/*.dat
 
