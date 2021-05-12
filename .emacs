@@ -1175,7 +1175,7 @@ See `cycle-font'."
 ;; see http://whattheemacsd.com/init.el-04.html
 
 ;; XXX Is this fucking up imenu?
-; (require 'diminish)
+(use-package diminish)
 ;(diminish 'wrap-region-mode)
 ;(diminish 'yas/minor-mode)
 
