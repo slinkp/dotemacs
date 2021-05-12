@@ -925,6 +925,8 @@ XXX argument untested"
 
 ;; Auto refresh buffers
 (global-auto-revert-mode 1)
+;; ... except that breaks buffer-menu
+(add-to-list 'global-auto-revert-ignore-modes 'buffer-menu-mode)
 
 ;; Always end a file with a newline, avoids confusing some tools.
 (setq require-final-newline t)
