@@ -64,10 +64,7 @@
 
 ;; I like my ~/.emacs.d/ to override, so it goes first.
 (setq load-path (cons site-lisp-dir load-path))
-;; (add-to-list 'load-path site-lisp-dir)
 
-;; Elpa stuff not being found for some reason.
-(add-to-list 'load-path (expand-file-name "elpa" user-emacs-directory))
 
 (dolist (project (directory-files site-lisp-dir t "\\w+"))
   (when (file-directory-p project)
@@ -80,11 +77,6 @@
 (require 'package)
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Marmalade cert expired?
-;; (add-to-list 'package-archives
-;;              '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives
-             '("gnu" . "https://elpa.gnu.org/packages/"))
 
 ;; use-package is New Improved package management?
 (eval-when-compile
@@ -100,7 +92,7 @@
   (package-refresh-contents)
   (dolist (package-name package-activated-list)
     (when (package-installed-p package-name)
-      (unless (ignore-errors                   ;some packages may fail to install
+      (unless (ignore-errors                ;some packages may fail to install
                 (package-reinstall package-name))
         (warn "Package %s failed to reinstall" package-name)))))
 
