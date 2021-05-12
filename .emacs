@@ -48,15 +48,6 @@
 
 ;; local stuff may be loaded from here.
 
-;; ;; Recursive loading, thanks Will McCutchen
-;; (let ((default-directory "~/.emacs.d/site-lisp/"))
-;;   (setq load-path
-;;         (append
-;;          (let ((load-path (copy-sequence load-path)))
-;;            (normal-top-level-add-subdirs-to-load-path))
-;;          load-path))
-;;   (add-to-list 'load-path (expand-file-name default-directory)))
-
 ;; Try that again, per https://github.com/magnars/.emacs.d/blob/master/init.el
 ;; Add external projects to load path
 (setq site-lisp-dir
@@ -315,11 +306,6 @@ XXX argument untested"
           (goto-line (read-number "Goto line: "))))
     (linum-mode -1)))
 
-
-;; ;; expand-region, really cool selection tools from
-;; ;; https://github.com/magnars/expand-region.el
-;; (require 'expand-region)
-;; (global-set-key (kbd "C-=") 'er/expand-region)
 
 ;; ========================================================================
 ;; APPEARANCE
@@ -1231,10 +1217,6 @@ See `cycle-font'."
   (interactive)
   (goto-char (point-min))
   (dired-next-line (if dired-omit-mode 2 4)))
-
-;; ;; dired on cygwin has path problems, grrr.
-;; ;; So use lisp version of ls, this should always work.
-;; (load-library "ls-lisp")
 
 (define-key dired-mode-map
   (vector 'remap 'beginning-of-buffer) 'dired-back-to-top)
