@@ -958,6 +958,7 @@ XXX argument untested"
 
 ;; etags maybe?
 (setq tags-file-name "TAGS")
+(setq tags-revert-without-query 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; recent files
