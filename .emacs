@@ -449,6 +449,7 @@ XXX argument untested"
    '("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" default))
  '(default-frame-alist '((menu-bar-lines . 1)))
  '(dumb-jump-max-find-time 4)
+ '(flycheck-display-errors-delay 0.25)
  '(git-link-open-in-browser t)
  '(global-font-lock-mode t nil (font-lock))
  '(helm-M-x-fuzzy-match nil)
