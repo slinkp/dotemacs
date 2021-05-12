@@ -1,1 +1,3 @@
-nil
+((magit-blame
+  ("-w")
+  nil))
