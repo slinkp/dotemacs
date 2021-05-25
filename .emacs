@@ -184,53 +184,6 @@ XXX argument untested"
 (global-set-key [(meta shift d)] 'kill-to-word-boundary)
 (global-set-key [(meta shift f)] 'forward-to-next-word-boundary)
 
-;; Highlight lines with pdb.set_trace
-;; from http://pedrokroger.net/2010/07/configuring-emacs-as-a-python-ide-2/
-(defun annotate-pdb ()
-  (interactive)
-  (highlight-lines-matching-regexp "import pdb")
-  (highlight-lines-matching-regexp "pdb.set_trace()"))
-(add-hook 'python-mode-hook 'annotate-pdb)
-
-
-(defun annotate-pry ()
-  (interactive)
-  (highlight-lines-matching-regexp "require 'pry'")
-  (highlight-lines-matching-regexp "binding.pry"))
-(add-hook 'ruby-mode-hook 'annotate-pry)
-
-;; Long line column marker
-(add-hook 'python-mode-hook
-  (lambda ()
-     (set-fill-column 100)
-     ;; (fci-mode)
-  )
-)
-
-;; handy M-p binding for quick python debugging.
-(defun slinkp-pdb-set-trace ()
-  "Insert a set_trace() call after the previous line, maintaining indentation"
-  (interactive)
-  (forward-line -1)
-  (end-of-line)
-  (insert "\n")
-  (indent-according-to-mode)
-  (insert "import ipdb; ipdb.set_trace()")
-  (indent-according-to-mode)
-;;  (annotate-pdb)
-)
-
-;; M-p binding for ruby debugging.
-(defun slinkp-binding-pry ()
-  "Insert a binding.pry call after the previous line, maintaining indentation"
-  (interactive)
-  (forward-line -1)
-  (end-of-line)
-  (insert "\n")
-  (indent-according-to-mode)
-  (insert "require 'pry'; binding.pry")
-  (indent-according-to-mode)
-)
 
 ;; To bind it globally:
 ; (global-set-key [(meta p)] 'slinkp-pdb-set-trace)
@@ -665,6 +618,36 @@ XXX argument untested"
     (require 'sphinx-doc)
     (sphinx-doc-mode t)))
 
+;; Highlight lines with pdb.set_trace
+;; from http://pedrokroger.net/2010/07/configuring-emacs-as-a-python-ide-2/
+(defun annotate-pdb ()
+  (interactive)
+  (highlight-lines-matching-regexp "import pdb")
+  (highlight-lines-matching-regexp "pdb.set_trace()"))
+(add-hook 'python-mode-hook 'annotate-pdb)
+
+
+;; Long line column marker
+(add-hook 'python-mode-hook
+  (lambda ()
+     (set-fill-column 100)
+     ;; (fci-mode)
+  )
+)
+
+;; handy M-p binding for quick python debugging.
+(defun slinkp-pdb-set-trace ()
+  "Insert a set_trace() call after the previous line, maintaining indentation"
+  (interactive)
+  (forward-line -1)
+  (end-of-line)
+  (insert "\n")
+  (indent-according-to-mode)
+  (insert "import ipdb; ipdb.set_trace()")
+  (indent-according-to-mode)
+;;  (annotate-pdb)
+)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Virtualenvs for python
@@ -845,28 +828,25 @@ XXX argument untested"
 
 ;; Dumb navigation thanks to dumb-jump
 
-(use-package s)
-(use-package dumb-jump)
-;; (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+
+(defun annotate-pry ()
+  (interactive)
+  (highlight-lines-matching-regexp "require 'pry'")
+  (highlight-lines-matching-regexp "binding.pry"))
+(add-hook 'ruby-mode-hook 'annotate-pry)
 
 
-
-;; Flycheck
-
-(use-package flycheck)
-
-(add-hook 'ruby-mode-hook
-  (lambda ()
-    (require 'flycheck)
-    ;; The related modes (ruby-rubocop, ruby-rubylint, etc) should come automatically if available.
-    (setq flycheck-checker-error-threshold 800)  ;; default 400
-    (flycheck-mode t)
-    (define-key ruby-mode-map (kbd "M-p") 'slinkp-binding-pry)
-    (setq flycheck-ruby-rubocop-executable "bundle-exec-rubocop.sh")
-    )
+;; M-p binding for ruby debugging.
+(defun slinkp-binding-pry ()
+  "Insert a binding.pry call after the previous line, maintaining indentation"
+  (interactive)
+  (forward-line -1)
+  (end-of-line)
+  (insert "\n")
+  (indent-according-to-mode)
+  (insert "require 'pry'; binding.pry")
+  (indent-according-to-mode)
 )
-;; Wrapper script to fix rubocop not using bundle exec.
-;; It should degrade gracefully if there's no `bundle`.
 
 
 ;; ===========================================================
