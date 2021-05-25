@@ -1266,3 +1266,20 @@ See `cycle-font'."
   (message filename))
 
 
+;; ============================================================
+;; SPIN
+;; from https://github.com/Shopify/spin.el
+;; ============================================================
+
+(require 'spin)
+
+;; Tramp speedups
+(setq vc-handled-backends '(Git))
+
+;; Avoid tramp hang per https://www.emacswiki.org/emacs/TrampMode#h5o-9
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
+
+;; Projectile speedup over tramp? UNTESTED
+;; https://github.com/bbatsov/projectile/issues/1232#issuecomment-536281335
+(defadvice projectile-project-root (around ignore-remote first activate)
+    (unless (file-remote-p default-directory) ad-do-it))
