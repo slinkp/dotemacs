@@ -883,9 +883,29 @@ XXX argument untested"
   (global-set-key (kbd "M-F") 'helm-git-grep)
 )
 
+
 ;; ===========================================================================
 ;; MISC UNSORTED
 ;; ===========================================================================
+
+(use-package s)
+(use-package dumb-jump)
+;; (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+
+;; Flycheck
+
+(use-package flycheck)
+
+(add-hook 'ruby-mode-hook
+  (lambda ()
+    (require 'flycheck)
+    ;; The related modes (ruby-rubocop, ruby-rubylint, etc) should come automatically if available.
+    (setq flycheck-checker-error-threshold 800)  ;; default 400
+    (flycheck-mode t)
+    (define-key ruby-mode-map (kbd "M-p") 'slinkp-binding-pry)
+    (setq flycheck-ruby-rubocop-executable "bundle-exec-rubocop.sh")
+    )
+)
 
 ;; gentoo stuff
 ;; should be done by the global site-lisp.el
