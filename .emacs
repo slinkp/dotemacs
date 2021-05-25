@@ -848,6 +848,15 @@ XXX argument untested"
   (indent-according-to-mode)
 )
 
+;; Hideshow support for ruby, minimal per https://chrisbarrettnz.wordpress.com/2013/06/15/ruby-code-folding-with-emacs/
+
+(eval-after-load "hideshow"
+  '(add-to-list 'hs-special-modes-alist
+                `(ruby-mode
+                  ,(rx (or "def" "class" "module" "{" "[")) ; Block start
+                  ,(rx (or "}" "]" "end"))                  ; Block end
+                  ,(rx (or "#" "=begin"))                   ; Comment start
+                  ruby-forward-sexp nil)))
 
 ;; ===========================================================
 ;; Helm
