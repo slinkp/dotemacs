@@ -514,9 +514,6 @@ XXX argument untested"
 
 ; (autoload 'cc-mode "cc-mode" "CC Mode" t)
 
-;; PHP
-(portable-load-library "php-mode-improved")
-
 ;; TCL
 
 (add-to-list 'auto-mode-alist '("\\.adp$" . tcl-mode))
