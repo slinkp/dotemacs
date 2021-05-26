@@ -1023,13 +1023,6 @@ XXX argument untested"
   ;; stop interference from OS X
   (setq mac-pass-command-to-system nil)
   (setq mac-pass-control-to-system nil)
-  ;; fixup exec-path and $PATH used for subprocesses
-  (add-to-list 'exec-path "/usr/local/bin")
-  (add-to-list 'exec-path (expand-file-name "~/bin"))
-  (add-to-list 'exec-path (expand-file-name "~/bin/py"))
-  (add-to-list 'exec-path (expand-file-name "~/sh"))
-  (setenv "PATH" (mapconcat 'identity exec-path path-separator))
-
   ;; We may not have slinkp's favorite font.
   ;; TODO: See http://emacswiki.org/emacs/SetFonts about how to detect if a font is installed before setting it.
 
@@ -1040,6 +1033,17 @@ XXX argument untested"
   ;;   '(font . "-outline-menlo-medium-r-normal--12-*-*-*-*-*-iso10646-1"))
 
 )
+
+;; ======================================================================
+;; Path
+;; ======================================================================
+
+;; fixup exec-path and $PATH used for subprocesses
+(add-to-list 'exec-path "/usr/local/bin")
+(add-to-list 'exec-path (expand-file-name "~/bin"))
+(add-to-list 'exec-path (expand-file-name "~/bin/py"))
+(add-to-list 'exec-path (expand-file-name "~/sh"))
+(setenv "PATH" (mapconcat 'identity exec-path path-separator))
 
 ;; ========================================================================
 ;; FONTS
