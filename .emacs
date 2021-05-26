@@ -408,7 +408,7 @@ XXX argument untested"
      (vc-mode vc-mode)
      mode-line-end-spaces))
  '(package-selected-packages
-   '(yaml-mode aggressive-indent shadowenv helm-flycheck multi-web-mode git-link fill-column-indicator diminish sphinx-doc highlight-indentation flycheck s use-package pyvenv python-mode php-mode multiple-cursors markdown-preview-mode magit js2-mode jedi-core helm-projectile go-mode find-file-in-repository exec-path-from-shell dumb-jump ctable auto-complete))
+   '(yaml-mode aggressive-indent helm-flycheck multi-web-mode git-link fill-column-indicator diminish sphinx-doc highlight-indentation flycheck s use-package pyvenv python-mode php-mode multiple-cursors markdown-preview-mode magit js2-mode jedi-core helm-projectile go-mode find-file-in-repository exec-path-from-shell dumb-jump ctable auto-complete))
  '(protect-buffer-bury-p nil)
  '(py-load-pymacs-p nil)
  '(py-pdbtrack-do-tracking-p t)
@@ -823,7 +823,7 @@ XXX argument untested"
 ;; (use-package shadowenv
 ;;    :ensure t
 ;;    :hook (after-init . shadowenv-global-mode))
-(use-packge shadowenv)
+;; (use-packge shadowenv)
 
 ;; Navigation
 ;; ... nope too slow for Shopify/shopify
