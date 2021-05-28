@@ -1044,6 +1044,7 @@ XXX argument untested"
 (add-to-list 'exec-path (expand-file-name "~/bin"))
 (add-to-list 'exec-path (expand-file-name "~/bin/py"))
 (add-to-list 'exec-path (expand-file-name "~/sh"))
+(add-to-list 'exec-path "/nix/var/nix/gcroots/dev-profiles/user-extra-profile/bin/")
 (setenv "PATH" (mapconcat 'identity exec-path path-separator))
 
 ;; ========================================================================
