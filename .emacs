@@ -895,6 +895,9 @@ XXX argument untested"
 (use-package dumb-jump)
 ;; (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
 
+;; wgrep allows editing & search/replace directly in grep results and then saving
+(require 'wgrep)
+
 ;; Flycheck
 
 (use-package flycheck)
