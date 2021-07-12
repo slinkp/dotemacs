@@ -898,6 +898,11 @@ XXX argument untested"
 ;; wgrep allows editing & search/replace directly in grep results and then saving
 (require 'wgrep)
 
+;; Better defaults for file opening, eg C-x C-f defaults to file or URL at point.
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/FFAP.html
+(ffap-bindings)
+
+
 ;; Flycheck
 
 (use-package flycheck)
