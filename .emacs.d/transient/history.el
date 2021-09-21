@@ -1,3 +1,4 @@
 ((magit-blame
   ("-w")
-  nil))
+  nil)
+ (magit-log:-n "100"))
