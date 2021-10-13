@@ -15,6 +15,98 @@
 ;; Cleaner scratch buffer.
 (setq initial-scratch-message "**scratch**\n\n")
 
+;; =============================================================================
+;; Package management via straight.el
+;; See
+
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+;;============================================================================
+;; Load path
+;;============================================================================
+
+;; local stuff may be loaded from here.
+
+;; Try that again, per https://github.com/magnars/.emacs.d/blob/master/init.el
+;; Add external projects to load path
+(setq site-lisp-dir
+      (expand-file-name "site-lisp" user-emacs-directory))
+
+;; I like my ~/.emacs.d/ to override, so it goes first.
+(setq load-path (cons site-lisp-dir load-path))
+
+
+(dolist (project (directory-files site-lisp-dir t "\\w+"))
+  (when (file-directory-p project)
+    (add-to-list 'load-path project)))
+
+;; ========================================================================
+;; Package management
+;; https://github.com/raxod502/straight.el
+;; ========================================================================
+
+;; To reinstall all:
+;; M-x straight-pull-all
+;; This replaces the custom function we used to have, `package-reinstall-all-activated-packages`)
+;; May help after Emacs upgrades or moving to a new system
+
+;; To freeze versions:
+;; M-x straight-freeze-versions
+;; Then commit the lockfiles in ~/.emacs.d/straight/versions
+
+(straight-use-package 'use-package)
+
+(straight-use-package 'rg)
+(straight-use-package 'projectile-ripgrep)
+(straight-use-package 'helm)
+(straight-use-package 'helm-rg)
+(straight-use-package 'yaml-mode)
+(straight-use-package 'aggressive-indent)
+(straight-use-package 'flycheck)
+(straight-use-package 'helm-flycheck)
+(straight-use-package 'multi-web-mode)
+(straight-use-package 'git-link)
+(straight-use-package 'fill-column-indicator)
+(straight-use-package 'diminish)
+(straight-use-package 'sphinx-doc)
+(straight-use-package 'highlight-indentation)
+(straight-use-package 's)
+(straight-use-package 'pyvenv)
+(straight-use-package 'python-mode)
+(straight-use-package 'php-mode)
+(straight-use-package 'multiple-cursors)
+(straight-use-package 'markdown-preview-mode)
+(straight-use-package 'magit)
+(straight-use-package 'js2-mode)
+(straight-use-package 'jedi-core)
+(straight-use-package 'helm-projectile)
+(straight-use-package 'go-mode)
+(straight-use-package 'find-file-in-repository)
+(straight-use-package 'exec-path-from-shell)
+(straight-use-package 'dumb-jump)
+(straight-use-package 'ctable)
+(straight-use-package 'auto-complete)
+(straight-use-package 'wgrep)
+
+(eval-when-compile
+  ;; Following line is not needed if use-package.el is in ~/.emacs.d
+  ;; (add-to-list 'load-path "<path where use-package is installed>")
+  (require 'use-package))
+
+
+
 ;;============================================================================
 ;; Platform information, from mccutchen
 ;;============================================================================
@@ -42,62 +134,11 @@
 (defconst running-xemacs?
   (string-match "XEmacs\\|Lucid" emacs-version))
 
-;;============================================================================
-;; Load path
-;;============================================================================
 
-;; local stuff may be loaded from here.
-
-;; Try that again, per https://github.com/magnars/.emacs.d/blob/master/init.el
-;; Add external projects to load path
-(setq site-lisp-dir
-      (expand-file-name "site-lisp" user-emacs-directory))
-
-;; I like my ~/.emacs.d/ to override, so it goes first.
-(setq load-path (cons site-lisp-dir load-path))
-
-
-(dolist (project (directory-files site-lisp-dir t "\\w+"))
-  (when (file-directory-p project)
-    (add-to-list 'load-path project)))
-
-;; ========================================================================
-;; Package management
-;; ========================================================================
-
-(require 'package)
-(package-initialize)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-
-;; Bootstrap if missing on first load
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-;; use-package is New Improved package management?
-(eval-when-compile
-  ;; Following line is not needed if use-package.el is in ~/.emacs.d
-  ;; (add-to-list 'load-path "<path where use-package is installed>")
-  (require 'use-package))
-
-;; May help after Emacs upgrades or moving to a new system
-;; from https://stackoverflow.com/a/40272361
-(defun package-reinstall-all-activated-packages ()
-  "Refresh and reinstall all activated packages."
-  (interactive)
-  (package-refresh-contents)
-  (dolist (package-name package-activated-list)
-    (when (package-installed-p package-name)
-      (unless (ignore-errors                ;some packages may fail to install
-                (package-reinstall package-name))
-        (warn "Package %s failed to reinstall" package-name)))))
-
-
-
+;; Python
 ;; Per https://gitlab.com/python-mode-devs/python-mode set this nil??
 (setq py-load-pymacs-p nil)
 
-(use-package python-mode)
 
 ;; ========================================================================
 ;; FUNCTIONS AND COMMANDS
@@ -407,8 +448,8 @@ XXX argument untested"
    '("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification mode-line-position mode-line-misc-info mode-line-modes
      (vc-mode vc-mode)
      mode-line-end-spaces))
- '(package-selected-packages
-   '(rg projectile-ripgrep helm-rg yaml-mode aggressive-indent helm-flycheck multi-web-mode git-link fill-column-indicator diminish sphinx-doc highlight-indentation flycheck s use-package pyvenv python-mode php-mode multiple-cursors markdown-preview-mode magit js2-mode jedi-core helm-projectile go-mode find-file-in-repository exec-path-from-shell dumb-jump ctable auto-complete))
+ ;; '(package-selected-packages
+ ;;   '(rg projectile-ripgrep helm-rg yaml-mode aggressive-indent helm-flycheck multi-web-mode git-link fill-column-indicator diminish sphinx-doc highlight-indentation flycheck s use-package pyvenv python-mode php-mode multiple-cursors markdown-preview-mode magit js2-mode jedi-core helm-projectile go-mode find-file-in-repository exec-path-from-shell dumb-jump ctable auto-complete))
  '(protect-buffer-bury-p nil)
  '(py-load-pymacs-p nil)
  '(py-pdbtrack-do-tracking-p t)
@@ -445,6 +486,8 @@ XXX argument untested"
 ;; ========================================================================
 ;; MODES
 ;; ========================================================================
+
+;; (require 'flycheck)
 
 ;; turn on SYNTAX HIGHLIGHTING for language modes
 
@@ -508,10 +551,6 @@ XXX argument untested"
    (tab-mark 9 [9655 9] [92 9]) ; tab, ▷
 ))
 
-;; Prettier than whitespace-mode?
-(use-package highlight-indentation
-  :ensure t)
-
 ; (autoload 'cc-mode "cc-mode" "CC Mode" t)
 
 ;; TCL
@@ -528,15 +567,13 @@ XXX argument untested"
 ;; ReST
 ;; ========================================================================
 
-;; Turn on long line indicator
-(use-package fill-column-indicator)
 (add-hook 'rst-mode-hook 'fci-mode)
 
 ;; ========================================================================
 ;; PYTHON part 2 - main config
 ;; ========================================================================
 
-(require 'python-mode)
+;; (require 'python-mode)
 
 (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.vpy$" . python-mode))
@@ -544,6 +581,7 @@ XXX argument untested"
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 ;; No more flymake? I'm using flycheck and flycheck-flake8
+
 (add-hook 'python-mode-hook
   (lambda ()
     (require 'flycheck)
@@ -614,7 +652,6 @@ XXX argument untested"
 ;; https://github.com/naiquevin/sphinx-doc.el
 ;; use C-c M-d
 ;; can insert skeletons and update existing docstrings!
-(use-package sphinx-doc)
 (add-hook 'python-mode-hook
   (lambda ()
     (require 'sphinx-doc)
@@ -792,7 +829,6 @@ XXX argument untested"
 
 ;; Multi-web mode, see https://github.com/fgallina/multi-web-mode
 
-(use-package multi-web-mode)
 (setq mweb-default-major-mode 'html-mode)
  (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
                   ;; (js2-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
@@ -820,8 +856,7 @@ XXX argument untested"
 
 ;; TODO: after Catalina upgrade, shadowenv-global-mode seems to break commands that need
 ;; the minibuffer -just get `Buffer is read-only: #<buffer *shadowenv output*>`
-;; (use-package shadowenv
-;;    :ensure t
+;; (straight-use-package 'shadowenv
 ;;    :hook (after-init . shadowenv-global-mode))
 ;; (use-packge shadowenv)
 
@@ -891,8 +926,6 @@ XXX argument untested"
 ;; MISC UNSORTED
 ;; ===========================================================================
 
-(use-package s)
-(use-package dumb-jump)
 ;; (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
 
 ;; wgrep allows editing & search/replace directly in grep results and then saving
@@ -904,8 +937,6 @@ XXX argument untested"
 
 
 ;; Flycheck
-
-(use-package flycheck)
 
 (add-hook 'ruby-mode-hook
   (lambda ()
@@ -1185,8 +1216,8 @@ See `cycle-font'."
 ;;============================================================================
 ;; see http://whattheemacsd.com/init.el-04.html
 
-;; XXX Is this fucking up imenu?
-(use-package diminish)
+;; XXX Is diminish this fucking up imenu?
+
 ;(diminish 'wrap-region-mode)
 ;(diminish 'yas/minor-mode)
 
@@ -1258,9 +1289,6 @@ See `cycle-font'."
 ;; Git / Github
 ;; ===========================================
 
-(use-package git-link
-  :ensure t)
-
 (defun git-path ()
   "Find the path to the current file relative to repository root. Like git-link but just the relative path"
   (interactive)
@@ -1287,6 +1315,7 @@ See `cycle-font'."
 ;; from https://github.com/Shopify/spin.el
 ;; ============================================================
 
+;; Todo: can straight.el load from custom repos? then we can stop manually managing it
 (require 'spin)
 
 ;; Tramp speedups

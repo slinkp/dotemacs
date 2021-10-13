@@ -20,4 +20,5 @@
 .emacs.d/*~
 .emacs.d/*.eld
 .emacs.d/*.dat
-
+.emacs.d/straight/repos/*
+.emacs.d/straight/build/*
