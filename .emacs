@@ -502,6 +502,9 @@ XXX argument untested"
 (add-hook 'sh-mode-hook 'font-lock-mode)
 (add-hook 'shell-script-mode-hook 'font-lock-mode)
 
+;; Magit commit messages can get crazy slow esp after rebase. Don't need diff
+(remove-hook 'server-switch-hook 'magit-commit-diff)
+
 (setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.html\.raw$" . sgml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.dtml$" . sgml-mode) auto-mode-alist))
