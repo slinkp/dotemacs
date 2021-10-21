@@ -41,6 +41,7 @@
  ("projectile" . "7f64570d3e6829d767d340c8584f3e4f3472ee81")
  ("python-mode" . "c0ca60e1a83c635d96a76d36e912904e6d0e3446")
  ("pyvenv" . "045ff9476dac26086a04538d9b7ba186aa8f0fd1")
+ ("rainbow-delimiters" . "d576e6694ad3a3e88b2bb1363305b38fa364c149")
  ("rg.el" . "fa7293df75e1a3f2fb26add6bc96058000e6fbe3")
  ("ripgrep.el" . "40e871dcc4519a70981e9f28acea304692a60978")
  ("s.el" . "08661efb075d1c6b4fa812184c1e5e90c08795a9")

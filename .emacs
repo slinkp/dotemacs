@@ -99,6 +99,7 @@
 (straight-use-package 'ctable)
 (straight-use-package 'auto-complete)
 (straight-use-package 'wgrep)
+(straight-use-package 'rainbow-delimiters)
 
 (eval-when-compile
   ;; Following line is not needed if use-package.el is in ~/.emacs.d
