@@ -22,3 +22,4 @@
 .emacs.d/*.dat
 .emacs.d/straight/repos/*
 .emacs.d/straight/build/*
+.emacs.d/straight/build-cache.el
