@@ -1301,6 +1301,7 @@ See `cycle-font'."
 (defun git-path ()
   "Find the path to the current file relative to repository root. Like git-link but just the relative path"
   (interactive)
+  (require 'git-link)
   (setq filename    (git-link--relative-filename))
   (cond ((null filename)
           (message "Can't figure out what to link to"))
