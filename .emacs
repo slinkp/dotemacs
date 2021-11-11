@@ -926,21 +926,9 @@ XXX argument untested"
 )
 
 
-;; ===========================================================================
-;; MISC UNSORTED
-;; ===========================================================================
-
-;; (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
-
-;; wgrep allows editing & search/replace directly in grep results and then saving
-(require 'wgrep)
-
-;; Better defaults for file opening, eg C-x C-f defaults to file or URL at point.
-;; https://www.gnu.org/software/emacs/manual/html_node/emacs/FFAP.html
-(ffap-bindings)
-
-
+;; ======================================================================
 ;; Flycheck
+;; ======================================================================
 
 (add-hook 'ruby-mode-hook
   (lambda ()
@@ -953,9 +941,26 @@ XXX argument untested"
     )
 )
 
-;; gentoo stuff
-;; should be done by the global site-lisp.el
-; (load "/usr/share/emacs/site-lisp/site-gentoo")
+(defun my-find-file-hook ()
+  "If a file is over a given size, disable expensive things."
+  (when (> (buffer-size) (* 1024 50))
+    (set (make-variable-buffer-local 'flycheck-mode) nil)))
+
+(add-hook 'find-file-hook 'my-find-file-hook)
+
+
+;; ===========================================================================
+;; MISC UNSORTED
+;; ===========================================================================
+
+;; (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+
+;; wgrep allows editing & search/replace directly in grep results and then saving
+(require 'wgrep)
+
+;; Better defaults for file opening, eg C-x C-f defaults to file or URL at point.
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/FFAP.html
+(ffap-bindings)
 
 
 (fset 'yes-or-no-p 'y-or-n-p) ; stop forcing me to spell out "yes"
