@@ -100,6 +100,7 @@
 (straight-use-package 'auto-complete)
 (straight-use-package 'wgrep)
 (straight-use-package 'rainbow-delimiters)
+(straight-use-package 'undo-tree)
 
 (eval-when-compile
   ;; Following line is not needed if use-package.el is in ~/.emacs.d
