@@ -463,7 +463,8 @@ XXX argument untested"
  '(show-paren-mode t nil (paren))
  '(show-trailing-whitespace t)
  '(tramp-default-method "ssh")
- '(undo-outer-limit 24000000))
+ '(undo-outer-limit 24000000)
+ '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
