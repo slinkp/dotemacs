@@ -102,6 +102,7 @@
 (straight-use-package 'rainbow-delimiters)
 (straight-use-package 'undo-tree)
 (straight-use-package 'lua-mode)
+(straight-use-package 'graphql-mode)
 
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
