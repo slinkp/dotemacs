@@ -124,6 +124,9 @@
 (defconst running-on-darwin?
   (eq system-type 'darwin))
 
+(defconst running-on-spin?
+  (and running-on-linux? (equal (getenv "SPIN") "1")))
+
 (defconst running-on-unix?
   (or running-on-linux?
       running-on-darwin?
@@ -352,7 +355,11 @@ XXX argument untested"
 ;; URLs
 ;; ========================================================================
 
-(setq browse-url-generic-program "chrome")
+(setq browse-url-browser-function (quote browse-url-generic))
+(when (or running-on-spin? running-on-darwin?)
+  (setq browse-url-generic-program "open")
+)
+
 (global-set-key [S-mouse-2] 'browse-url-at-mouse)
 
 ;; ========================================================================
