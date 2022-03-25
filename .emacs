@@ -104,6 +104,8 @@
 (straight-use-package 'undo-tree)
 (straight-use-package 'lua-mode)
 (straight-use-package 'graphql-mode)
+(straight-use-package 'grip-mode) ;; another markdown preview, via github api, requires 'grip' command
+
 
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
@@ -455,7 +457,7 @@ XXX argument untested"
  '(helm-projectile-git-grep-command "git --no-pager grep -P --no-color -n%c -e %p -- %f")
  '(inhibit-startup-echo-area-message "pw")
  '(jit-lock-stealth-time 0.035)
- '(markdown-command "pandoc --from markdown_github --to html --standalone")
+ '(markdown-command "pandoc --from gfm --to html --standalone")
  '(mode-line-format
    '("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification mode-line-position mode-line-misc-info mode-line-modes
      (vc-mode vc-mode)
@@ -1093,12 +1095,15 @@ XXX argument untested"
 ;; Path
 ;; ======================================================================
 
-;; fixup exec-path and $PATH used for subprocesses
+;; fix up exec-path and $PATH used for subprocesses
+;; TODO: does "exec-path-from-shell" installed above affect this?
 (add-to-list 'exec-path "/usr/local/bin")
 (add-to-list 'exec-path (expand-file-name "~/bin"))
 (add-to-list 'exec-path (expand-file-name "~/bin/py"))
 (add-to-list 'exec-path (expand-file-name "~/sh"))
 (add-to-list 'exec-path "/nix/var/nix/gcroots/dev-profiles/user-extra-profile/bin/")
+(add-to-list 'exec-path "/opt/homebrew/bin")
+(add-to-list 'exec-path "/opt/homebrew/sbin")
 (setenv "PATH" (mapconcat 'identity exec-path path-separator))
 
 ;; ========================================================================
