@@ -104,8 +104,7 @@
 (straight-use-package 'undo-tree)
 (straight-use-package 'lua-mode)
 (straight-use-package 'graphql-mode)
-(straight-use-package 'grip-mode) ;; another markdown preview, via github api, requires 'grip' command
-
+(straight-use-package 'protobuf-mode)
 
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
