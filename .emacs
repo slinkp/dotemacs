@@ -1072,22 +1072,18 @@ XXX argument untested"
 (when running-on-darwin?
   ;; These seem to fix the command key
   ;; (from http://www.webweavertech.com/ovidiu/emacs.html)
-  (setq mac-option-modifier 'super)
-  (setq mac-command-modifier 'meta)
+  ;; ... Trying something new: Use right-command everywhere! thanks to karabiner
+  ;; (setq mac-option-modifier 'super)
+  ;; (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier 'meta)
+  ;(setq mac-super-modifier nil)
+  (setq mac-command-modifier nil)
+  ;; stop interference from OS X
+  (setq mac-pass-control-to-system nil)
+  ;; ... but maybe yes for command since i don't use it as meta anymore
+  (setq mac-pass-command-to-system t)
   ;; fix subprocess connections
   (setq process-connection-type nil)
-  ;; stop interference from OS X
-  (setq mac-pass-command-to-system nil)
-  (setq mac-pass-control-to-system nil)
-  ;; We may not have slinkp's favorite font.
-  ;; TODO: See http://emacswiki.org/emacs/SetFonts about how to detect if a font is installed before setting it.
-
-  ;; (set-frame-font "-outline-menlo-medium-r-normal--12-*-*-*-*-*-iso10646-1")
-  ;; ;; And in every new frame. 
-  ;; (add-to-list 'default-frame-alist
-  ;;   ;; '(font . "-apple-Source_Code_Pro-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1"))
-  ;;   '(font . "-outline-menlo-medium-r-normal--12-*-*-*-*-*-iso10646-1"))
-
 )
 
 ;; ======================================================================
