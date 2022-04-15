@@ -867,9 +867,9 @@ XXX argument untested"
 
 ;; TODO: after Catalina upgrade, shadowenv-global-mode seems to break commands that need
 ;; the minibuffer -just get `Buffer is read-only: #<buffer *shadowenv output*>`
-;; (straight-use-package 'shadowenv
-;;    :hook (after-init . shadowenv-global-mode))
-;; (use-packge shadowenv)
+(straight-use-package 'shadowenv
+   :hook (after-init . shadowenv-global-mode))
+;; (use-package shadowenv)
 
 ;; Navigation
 ;; ... nope too slow for Shopify/shopify
