@@ -105,7 +105,7 @@
 (straight-use-package 'lua-mode)
 (straight-use-package 'graphql-mode)
 (straight-use-package 'protobuf-mode)
-
+(straight-use-package 'shadowenv)
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
 ;;   ;; (add-to-list 'load-path "<path where use-package is installed>")
@@ -863,20 +863,9 @@ XXX argument untested"
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rbi\\'" . ruby-mode))
 
-;; Shopify ruby shadowenv support
-
-;; TODO: after Catalina upgrade, shadowenv-global-mode seems to break commands that need
-;; the minibuffer -just get `Buffer is read-only: #<buffer *shadowenv output*>`
-(straight-use-package 'shadowenv
-   :hook (after-init . shadowenv-global-mode))
-;; (use-package shadowenv)
-
 ;; Navigation
 ;; ... nope too slow for Shopify/shopify
 ;; (add-hook 'ruby-mode-hook 'robe-mode)
-
-;; Dumb navigation thanks to dumb-jump
-
 
 (defun annotate-pry ()
   (interactive)
