@@ -863,6 +863,8 @@ XXX argument untested"
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rbi\\'" . ruby-mode))
 
+(add-hook 'ruby-mode-hook 'shadowenv-mode)
+
 ;; Navigation
 ;; ... nope too slow for Shopify/shopify
 ;; (add-hook 'ruby-mode-hook 'robe-mode)
@@ -871,6 +873,7 @@ XXX argument untested"
   (interactive)
   (highlight-lines-matching-regexp "require 'pry'")
   (highlight-lines-matching-regexp "binding.pry"))
+
 (add-hook 'ruby-mode-hook 'annotate-pry)
 
 
@@ -998,7 +1001,7 @@ XXX argument untested"
       uniquify-after-kill-buffer-p t
 )
 
-;; etags maybe?
+;; xref navigation via tags file
 (setq tags-file-name "TAGS")
 (setq tags-revert-without-query 1)
 
