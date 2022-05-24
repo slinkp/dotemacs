@@ -41,7 +41,7 @@
  ("pyvenv" . "31ea715f2164dd611e7fc77b26390ef3ca93509b")
  ("queue" . "130c2d656cd5d7376552272fab9e50a7c37d0c4a")
  ("rainbow-delimiters" . "a32b39bdfe6c61c322c37226d66e1b6d4f107ed0")
- ("rg.el" . "c46c5167ac03f68fd6fee07972017282c62bc942")
+ ("rg.el" . "89343e9858787fa8d3651cd03ff7b0d03309dee8")
  ("ripgrep.el" . "4ed5c741233a81d96115f556784269042070901e")
  ("s.el" . "08661efb075d1c6b4fa812184c1e5e90c08795a9")
  ("shadowenv.el" . "dbcef650b906fec62608d5e4e3075bf251e675e1")
