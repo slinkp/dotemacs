@@ -864,6 +864,7 @@ XXX argument untested"
 (add-to-list 'auto-mode-alist '("\\.rbi\\'" . ruby-mode))
 
 (add-hook 'ruby-mode-hook 'shadowenv-mode)
+(add-hook 'ruby-mode-hook 'which-function-mode)
 
 ;; Navigation
 ;; ... nope too slow for Shopify/shopify
