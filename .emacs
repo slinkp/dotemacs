@@ -1059,6 +1059,23 @@ XXX argument untested"
   (align-regexp BEG END "\\(\\s-*\\)\\S-+" 1 1 t)
   (indent-region BEG END))
 
+
+;;============================================================================
+;; What function/class/method are we currently in?
+
+;; Show it at top instead of modeline, as per https://www.emacswiki.org/emacs/WhichFuncMode
+;; ... note this is not a straight copy/paste, there were some suggested edits,
+;; had to read the whole text and do the suggestions.
+
+(setq mode-line-misc-info (delete (assoc 'which-function-mode
+                                      mode-line-misc-info) mode-line-misc-info)
+      which-func-header-line-format '(which-function-mode ("" which-func-format)))
+(defadvice which-func-ff-hook (after header-line activate)
+  (when which-function-mode
+    (setq mode-line-misc-info (delete (assoc 'which-function-mode
+                                          mode-line-misc-info) mode-line-misc-info)
+          header-line-format which-func-header-line-format)))
+
 ;;============================================================================
 ;; OS X specific settings, thanks Will McCutchen & others
 ;;============================================================================
