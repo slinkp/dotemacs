@@ -106,6 +106,9 @@
 (straight-use-package 'graphql-mode)
 (straight-use-package 'protobuf-mode)
 (straight-use-package 'shadowenv)
+;; Shopify things
+(straight-use-package '(dev :type git :host github :repo "Shopify/dev.el"))
+
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
 ;;   ;; (add-to-list 'load-path "<path where use-package is installed>")
