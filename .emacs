@@ -107,7 +107,9 @@
 (straight-use-package 'protobuf-mode)
 (straight-use-package 'shadowenv)
 ;; Shopify things
-(straight-use-package '(dev :type git :host github :repo "Shopify/dev.el"))
+;; ... fails and blows up the whole config loading inside spin :(
+;; (straight-use-package '(dev :type git :host github :repo "Shopify/dev.el"))
+(straight-use-package '(spin :type git :host github :repo "Shopify/spin.el"))
 
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
@@ -1341,15 +1343,6 @@ See `cycle-font'."
                         (file-truename (buffer-file-name))))
   (kill-new filename)
   (message filename))
-
-
-;; ============================================================
-;; SPIN
-;; from https://github.com/Shopify/spin.el
-;; ============================================================
-
-;; Todo: can straight.el load from custom repos? then we can stop manually managing it
-(require 'spin)
 
 ;; Tramp speedups
 (setq vc-handled-backends '(Git))
