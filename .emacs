@@ -1,5 +1,15 @@
 ;; Paul M. Winkler .emacs file
 
+
+;;============================================================================
+;; Early stuff
+
+;; faster packages??
+(setq inhibit-automatic-native-compilation nil)
+(setq native-comp-always-compile t)
+(setq package-native-compile t)
+
+
 ;;============================================================================
 ;; Initial appearance.
 ;; Do these early to avoid things jumping in and out on startup.
@@ -18,7 +28,6 @@
 ;; =============================================================================
 ;; Package management via straight.el
 ;; See
-
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
