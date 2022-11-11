@@ -115,6 +115,9 @@
 (straight-use-package 'graphql-mode)
 (straight-use-package 'protobuf-mode)
 (straight-use-package 'shadowenv)
+(straight-use-package 'solaire-mode)
+(straight-use-package 'vscode-dark-plus-theme)
+
 ;; Shopify things
 ;; ... fails and blows up the whole config loading inside spin :(
 ;; (straight-use-package '(dev :type git :host github :repo "Shopify/dev.el"))
@@ -332,6 +335,10 @@ XXX argument untested"
 ;; ========================================================================
 ;; APPEARANCE
 ;; ========================================================================
+
+;; VSCode-like theme
+(solaire-global-mode 1)
+(load-theme 'vscode-dark-plus t)
 
 ; Try to allow scalable fonts under X, see 
 ; http://www.delorie.com/gnu/docs/elisp-manual-21/elisp_637.html

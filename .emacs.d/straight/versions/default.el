@@ -9,6 +9,7 @@
  ("el-get" . "0a9d5684089bb1be9bd2ff670358006add4c6aff")
  ("emacs-async" . "ffde304480421f497458077bf5d563504e1ba5dd")
  ("emacs-ctable" . "48b73742757a3ae5736d825fe49e00034cc453b5")
+ ("emacs-solaire-mode" . "8af65fbdc50b25ed3214da949b8a484527c7cc14")
  ("emacs-web-server" . "6357a1c2d1718778503f7ee0909585094117525b")
  ("emacs-websocket" . "82b370602fa0158670b1c6c769f223159affce9b")
  ("emacsmirror-mirror" . "be9d095bd1bc7159f51a5caf04d721590199632a")
@@ -53,6 +54,7 @@
  ("transient" . "afb7b250d4ee9669fdb82c4e40a23800f651ff96")
  ("undo-tree" . "16f4121032d09ef44b3d7d02c4d02c3c2f18041f")
  ("use-package" . "28531e9b94c72ed777803e10e391ea287496ffc2")
+ ("vscode-dark-plus-emacs-theme" . "d247fcf2b0c4f21398276e12faf3f2a4c26b2306")
  ("with-editor" . "4ca225bf1c54d6dab2ba7e734f594419c7769e36")
  ("yaml-mode" . "3fcb36d6039bef57e2a0f6e24c51f623c0bf5fb7"))
 :gamma
