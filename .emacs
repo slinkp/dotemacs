@@ -911,6 +911,25 @@ XXX argument untested"
   (indent-according-to-mode)
 )
 
+
+;; Smart TODO helper
+(defun smart-todo ()
+  "Insert a smart TODO as per https://github.com/Shopify/smart_todo"
+  (interactive)
+  (forward-line -1)
+  (end-of-line)
+  (insert "\n")
+  (indent-according-to-mode)
+  (insert
+   (concat
+    "# TODO(on: date('"
+    (format-time-string "%Y-%m-%d" (time-add (current-time) (* 60 60 24 60)))
+     "'), to: 'paul.winkler@shopify.com')\n"
+     ))
+  (indent-according-to-mode)
+  (insert "#   ")
+)
+
 ;; Hideshow support for ruby, minimal per https://chrisbarrettnz.wordpress.com/2013/06/15/ruby-code-folding-with-emacs/
 
 (eval-after-load "hideshow"
