@@ -884,6 +884,13 @@ XXX argument untested"
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rbi\\'" . ruby-mode))
 
+(add-to-list 'interpreter-mode-alist
+  '("ruby1.9" . ruby-mode))
+
+;; For some reason, shebang lines like '#!/usr/bin/env -S ruby --disable-gems' didn't work.
+(add-to-list 'magic-mode-alist
+ '("#\\!.*ruby.*" . ruby-mode))
+
 (add-hook 'ruby-mode-hook 'shadowenv-mode)
 (add-hook 'ruby-mode-hook 'which-function-mode)
 
