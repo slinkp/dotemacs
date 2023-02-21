@@ -506,6 +506,8 @@ XXX argument untested"
  '(font-lock-reference-face ((((class color) (background light)) (:foreground "Yellow"))) t)
  '(font-lock-string-face ((((class color) (min-colors 88) (background dark)) (:background "#253040" :foreground "#E0B93E"))))
  '(font-lock-variable-name-face ((((class color) (background light)) (:foreground "Goldenrod" :background "DarkSlateBlue"))))
+ '(font-lock-function-name-face ((((class color) (background dark)) (:foreground "#B0B0FF"))))
+ '(which-func ((((class color) (background dark)) (:foreground "#B0B0FF"))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "#c0bfcf"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "#c0c173"))))
  '(rainbow-delimiters-depth-4-face ((t (:foreground "#d79078"))))
