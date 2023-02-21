@@ -504,7 +504,7 @@ XXX argument untested"
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#c4deb0" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(font-lock-doc-face ((t (:inherit font-lock-string-face))))
  '(font-lock-reference-face ((((class color) (background light)) (:foreground "Yellow"))) t)
- '(font-lock-string-face ((((class color) (min-colors 88) (background dark)) (:background "#253040" :foreground "#E0B93E"))))
+ '(font-lock-string-face ((((class color) (min-colors 88) (background dark)) (:background "#303040" :foreground "#dd8070"))))
  '(font-lock-variable-name-face ((((class color) (background light)) (:foreground "Goldenrod" :background "DarkSlateBlue"))))
  '(font-lock-function-name-face ((((class color) (background dark)) (:foreground "#B0B0FF"))))
  '(which-func ((((class color) (background dark)) (:foreground "#B0B0FF"))))
