@@ -119,9 +119,10 @@
 (straight-use-package 'vscode-dark-plus-theme)
 
 ;; Shopify things
+;; TODO: Move these to a separate config that only loads on a shopify machine
 ;; ... fails and blows up the whole config loading inside spin :(
 ;; (straight-use-package '(dev :type git :host github :repo "Shopify/dev.el"))
-(straight-use-package '(spin :type git :host github :repo "Shopify/spin.el"))
+;; (straight-use-package '(spin :type git :host github :repo "Shopify/spin.el"))
 
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
