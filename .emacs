@@ -1398,3 +1398,8 @@ See `cycle-font'."
 ;; https://github.com/bbatsov/projectile/issues/1232#issuecomment-536281335
 (defadvice projectile-project-root (around ignore-remote first activate)
     (unless (file-remote-p default-directory) ad-do-it))
+
+;; =================================
+;; UNDO-TREE
+
+(setq undo-tree-auto-save-history 't)
