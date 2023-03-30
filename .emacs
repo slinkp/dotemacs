@@ -1380,7 +1380,15 @@ See `cycle-font'."
           (message filename))
   ))
 
-;; similar but based on projectile rather than git repo
+
+;; ==============================================
+;; Projectile
+;; ==============================================
+
+;; Makes helm-projectile usable on giant repos. Do `C-c p i` or `projectile-invalidate-cache` to refresh
+(setq projectile-enable-caching t)
+
+;; similar to git-path but based on projectile rather than git repo
 (defun projectile-path ()
   "Find the path to the current file relative to projectile root. Like git-path but for projects, not repos"
   (interactive)
@@ -1388,6 +1396,11 @@ See `cycle-font'."
                         (file-truename (buffer-file-name))))
   (kill-new filename)
   (message filename))
+
+
+;; ================================================
+;; Tramp
+;; ================================================
 
 ;; Tramp speedups
 (setq vc-handled-backends '(Git))
@@ -1400,7 +1413,8 @@ See `cycle-font'."
 (defadvice projectile-project-root (around ignore-remote first activate)
     (unless (file-remote-p default-directory) ad-do-it))
 
-;; =================================
-;; UNDO-TREE
 
+;; =====================================
+;; UNDO-TREE
+;; =====================================
 (setq undo-tree-auto-save-history 't)
