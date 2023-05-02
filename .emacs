@@ -917,7 +917,7 @@ XXX argument untested"
   (end-of-line)
   (insert "\n")
   (indent-according-to-mode)
-  (insert "require 'pry'; binding.pry")
+  (insert "require 'pry-byebug'; binding.pry")
   (indent-according-to-mode)
 )
 
