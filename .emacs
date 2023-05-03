@@ -121,7 +121,7 @@
 ;; Shopify things
 ;; TODO: Move these to a separate config that only loads on a shopify machine
 ;; ... fails and blows up the whole config loading inside spin :(
-;; (straight-use-package '(dev :type git :host github :repo "Shopify/dev.el"))
+(straight-use-package '(dev :type git :host github :repo "Shopify/dev.el" :branch "slinkp/fix-autoloading-for-straight-use-package"))
 ;; (straight-use-package '(spin :type git :host github :repo "Shopify/spin.el"))
 
 ;; (eval-when-compile
@@ -1056,7 +1056,6 @@ XXX argument untested"
 (setq tags-file-name "TAGS")
 (setq tags-revert-without-query 1)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; recent files
 (load "recentf")
 (recentf-mode 1)
@@ -1070,6 +1069,9 @@ XXX argument untested"
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
 (setq auto-window-vscroll nil)
+
+;; Don't prompt me to follow symlinks, just do it
+(setq vc-follow-symlinks t)
 
 ;;============================================================================
 ;; "Here's a pretty comprehensive group of magic invocations to make Emacs use
