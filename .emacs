@@ -118,12 +118,6 @@
 (straight-use-package 'solaire-mode)
 (straight-use-package 'vscode-dark-plus-theme)
 
-;; Shopify things
-;; TODO: Move these to a separate config that only loads on a shopify machine
-;; ... fails and blows up the whole config loading inside spin :(
-(straight-use-package '(dev :type git :host github :repo "Shopify/dev.el" :branch "slinkp/fix-autoloading-for-straight-use-package"))
-;; (straight-use-package '(spin :type git :host github :repo "Shopify/spin.el"))
-
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
 ;;   ;; (add-to-list 'load-path "<path where use-package is installed>")
@@ -934,7 +928,7 @@ XXX argument untested"
    (concat
     "# TODO(on: date('"
     (format-time-string "%Y-%m-%d" (time-add (current-time) (* 60 60 24 60)))
-     "'), to: 'paul.winkler@shopify.com')\n"
+     "'), to: 'slinkp@gmail.com')\n"
      ))
   (indent-according-to-mode)
   (insert "#   ")
