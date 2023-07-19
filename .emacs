@@ -1137,7 +1137,15 @@ XXX argument untested"
   (when which-function-mode
     (setq mode-line-misc-info (delete (assoc 'which-function-mode
                                           mode-line-misc-info) mode-line-misc-info)
-          header-line-format which-func-header-line-format)))
+          header-line-format which-func-header-line-format
+          )))
+
+;; Markdown-mode needs imenu enabled in order to work with which-function-mode?
+(add-hook 'markdown-mode-hook 'imenu-add-menubar-index)
+(setq imenu-auto-rescan t)
+;; ... does not seem to help :-(
+;; Issue filed & closed here: https://github.com/jrblevin/markdown-mode/issues/765
+
 
 ;;============================================================================
 ;; OS X specific settings, thanks Will McCutchen & others
