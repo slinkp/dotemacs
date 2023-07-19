@@ -997,7 +997,8 @@ XXX argument untested"
     (setq flycheck-checker-error-threshold 800)  ;; default 400
     (flycheck-mode t)
     (define-key ruby-mode-map (kbd "M-p") 'slinkp-binding-pry)
-    (setq flycheck-ruby-rubocop-executable "bundle-exec-rubocop.sh")
+    ;; (setq flycheck-ruby-rubocop-executable "bundle-exec-rubocop.sh")
+    (setq flycheck-ruby-executable "/var/folders/vc/0jdl4b553039ywqyjgl398m40000gn/T/frum_15129_1685631593134/bin/ruby")
     )
 )
 
