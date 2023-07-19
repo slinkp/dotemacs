@@ -129,9 +129,10 @@
 (straight-use-package 'lua-mode)
 (straight-use-package 'graphql-mode)
 (straight-use-package 'protobuf-mode)
-(straight-use-package 'shadowenv)
+; (straight-use-package 'shadowenv)
 (straight-use-package 'solaire-mode)
 (straight-use-package 'vscode-dark-plus-theme)
+(straight-use-package 'gdscript-mode)
 
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
@@ -903,7 +904,7 @@ XXX argument untested"
 (add-to-list 'magic-mode-alist
  '("#\\!.*ruby.*" . ruby-mode))
 
-(add-hook 'ruby-mode-hook 'shadowenv-mode)
+;(add-hook 'ruby-mode-hook 'shadowenv-mode)
 (add-hook 'ruby-mode-hook 'which-function-mode)
 
 ;; Navigation
