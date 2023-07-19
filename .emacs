@@ -1188,8 +1188,9 @@ XXX argument untested"
 
 ;; ========================================================================
 ;; FONTS
-;; Rotate fonts, with keybindings. Yay. 
+;; Rotate fonts globally in all frames & buffers, with keybindings. Yay.
 ;; Tweaked from http://ergoemacs.org/emacs/emacs_switching_fonts.html
+;; TODO: Check out another approach here https://www.emacswiki.org/emacs/GlobalTextScaleMode
 ;; ========================================================================
 
 (defun set-font-in-frames (frames fontToUse)
@@ -1212,7 +1213,11 @@ XXX argument untested"
 )
 
 (defun darwin-font (points)
-  (format "-outline-menlo-medium-r-normal--%d-*-*-*-*-*-iso10646-1" points)
+  ;; Old font:
+  ;; (format "-outline-menlo-medium-r-normal--%d-*-*-*-*-*-iso10646-1" points)
+  ;; Now trying: https://github.com/intel/intel-one-mono
+  ;; installed by downloading the OTF release file and using the "font book" application
+  (format " -*-IntelOne Mono-normal-normal-normal-*-%d-*-*-*-m-0-iso10646-1" points)
 )
 
 ;; Set the default.
@@ -1223,7 +1228,7 @@ XXX argument untested"
 
 
 (when (and running-on-darwin? we-have-gui?)
-  (set-font-in-frames (visible-frame-list) (darwin-font 12))
+  (set-font-in-frames (visible-frame-list) (darwin-font 13))
 )
 
 ;; TODO automate the copy/paste font name crap
