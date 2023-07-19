@@ -600,6 +600,13 @@ XXX argument untested"
 
 ; (autoload 'cc-mode "cc-mode" "CC Mode" t)
 
+
+;; ========================================================================
+;; Godot game scripts
+(add-to-list 'auto-mode-alist '("\\.gd$" . gdscript-mode))
+(add-to-list 'auto-mode-alist '("\\.tscn$" . gdscript-mode))
+
+;; ========================================================================
 ;; TCL
 
 (add-to-list 'auto-mode-alist '("\\.adp$" . tcl-mode))
