@@ -133,6 +133,7 @@
 (straight-use-package 'solaire-mode)
 (straight-use-package 'vscode-dark-plus-theme)
 (straight-use-package 'gdscript-mode)
+(straight-use-package '(chuck-mode :type git :host github :repo "jintwo/chuck-mode" :branch "master"))
 
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
@@ -622,6 +623,15 @@ XXX argument untested"
 ;; ========================================================================
 
 (add-hook 'rst-mode-hook 'fci-mode)
+
+;; ========================================================================
+;; ChucK
+;; ========================================================================
+
+;; Unclear why i need to `require` here, as straight seems to be symlinking properly?
+(require 'chuck-mode)
+(add-to-list 'auto-mode-alist '("\\.ck$" . chuck-mode))
+
 
 ;; ========================================================================
 ;; PYTHON part 2 - main config
