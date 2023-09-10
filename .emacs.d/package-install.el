@@ -1,7 +1,22 @@
 ;; ========================================================================
 ;; Package management
 ;; https://github.com/raxod502/straight.el
+;; See also https://github.com/radian-software/straight.el#faq
 ;; ========================================================================
+
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
 ;; To reinstall all:
 ;; M-x straight-pull-all
@@ -63,4 +78,3 @@
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
 ;;   ;; (add-to-list 'load-path "<path where use-package is installed>")
 ;;   (require 'use-package))
-

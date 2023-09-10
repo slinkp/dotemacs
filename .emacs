@@ -24,37 +24,6 @@
        "/opt/homebrew/opt/gcc/lib/gcc/13/gcc/aarch64-apple-darwin22/13")
          ":"))
 
-;;============================================================================
-;; Initial appearance.
-;; Do these early to avoid things jumping in and out on startup.
-;; ============================================================================
-
-;; Simple clean interface.
-(if (boundp 'tool-bar-mode) (tool-bar-mode 0))
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-
-;; Don't show the GNU splash screen on startup.
-(setq inhibit-startup-message t)
-;; Cleaner scratch buffer.
-(setq initial-scratch-message "**scratch**\n\n")
-
-;; =============================================================================
-;; Package management via straight.el
-;; See https://github.com/radian-software/straight.el#faq
-
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
 
 ;;============================================================================
 ;; Load path
@@ -78,7 +47,7 @@
 ;;============================================================================
 ;; Modularizing my config, gradually...
 
-(defconst slinkp:config-dir "~/.emacs.d" "")
+(defconst slinkp:config-dir "~/.emacs.d/" "")
 
 ;; utility function to auto-load other config files
 (defun slinkp:load-config-file (filelist)
@@ -90,39 +59,10 @@
 
 (slinkp:load-config-file
  '("package-install"
+   "initial-gui"
+   "platform-detection"
    ;; ... add more files here
    ))
-
-
-;;============================================================================
-;; Platform information, from mccutchen
-;;============================================================================
-(defconst running-on-windows?
-  (eq system-type 'windows-nt))
-
-(defconst running-on-linux?
-  (or (eq system-type 'gnu/linux)
-      (eq system-type 'linux)))
-
-(defconst running-on-darwin?
-  (eq system-type 'darwin))
-
-(defconst running-on-spin?
-  (and running-on-linux? (equal (getenv "SPIN") "1")))
-
-(defconst running-on-unix?
-  (or running-on-linux?
-      running-on-darwin?
-      (eq system-type 'usg-unix-v)
-      (eq system-type 'berkeley-unix)))
-
-(defconst we-have-gui?
-  (or (or window-system)
-      nil))
-
-;; Are we running XEmacs or Emacs?
-(defconst running-xemacs?
-  (string-match "XEmacs\\|Lucid" emacs-version))
 
 
 ;; Python
