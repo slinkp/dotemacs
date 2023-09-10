@@ -35,8 +35,8 @@
 (slinkp:load-config-file
  '("setup-native-comp"
    "package-install"
-   "initial-gui"
    "platform-detection"
+   "initial-gui"
    "setup-python"
    "setup-misc-functions"
    ;; ... add more files here
@@ -55,62 +55,16 @@
 (global-set-key [S-mouse-2] 'browse-url-at-mouse)
 
 ;; ========================================================================
-;; APPEARANCE
+;; KEYBOARD, MOVEMENT
 ;; ========================================================================
 
-;; VSCode-like theme
-(solaire-global-mode 1)
-(load-theme 'vscode-dark-plus t)
-
-; Try to allow scalable fonts under X, see 
-; http://www.delorie.com/gnu/docs/elisp-manual-21/elisp_637.html
-(setq scalable-fonts-allowed t)
-
-;; Show column number at cursor.
-(setq column-number-mode t)
-(setq line-number-mode t)
-
-;; Don't beep.
-(setq visible-bell t)
 
 ;; Don't add new lines when scrolling past end of buffer.
 (setq next-line-add-newlines nil)
 
-;; Turn on font-lock mode for Emacs
-(cond ((not running-xemacs?)
-	(global-font-lock-mode t)
-	(setq font-lock-maximum-decoration t)
-))
-
-;; show me the time
-; (display-time)
-
-;; Show selection.
-(transient-mark-mode t)
-
 ;; Typing when there's a selection causes delete.
 ;; Also, "DEL" deletes the selection.
 (delete-selection-mode t)
-
-(when (load "rainbow-delimiters" t)
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-)
-
-;; ========================================================================
-;; URLs
-;; ========================================================================
-
-(setq browse-url-browser-function (quote browse-url-generic))
-(when (or running-on-spin? running-on-darwin?)
-  (setq browse-url-generic-program "open")
-)
-
-(global-set-key [S-mouse-2] 'browse-url-at-mouse)
-
-;; ========================================================================
-;; KEYBOARD, MOVEMENT
-;; ========================================================================
-
 
 ;; Set up the keyboard so the delete key on both the regular keyboard
 ;; and the keypad delete the character under the cursor and to the right
@@ -140,9 +94,6 @@
 
 ;; Other handy keys courtesy of Chris M.
 (global-set-key "\M-g" 'goto-line)
-;; NO, this masks all the help keys
-;(define-key global-map "\C-h" 'backward-delete-char)
-
 
 ;; no tabs by default
 (setq-default indent-tabs-mode nil)
@@ -161,7 +112,6 @@
 (setq auto-mode-alist (cons '("mutt-" . mail-mode) auto-mode-alist))
 (add-hook 'mail-mode
     (lambda () (set-fill-column 73)))
-
 
 
 ;; ========================================================================
