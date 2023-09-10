@@ -13,7 +13,6 @@
 (add-hook 'sh-mode-hook 'font-lock-mode)
 (add-hook 'shell-script-mode-hook 'font-lock-mode)
 
-(setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.html\.raw$" . sgml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.dtml$" . sgml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.zpt$" . nxml-mode) auto-mode-alist))
@@ -149,16 +148,6 @@
 ;; ======================================================================
 ;; HTML / MULTI-WEB
 ;; ======================================================================
-
-;; Override new HTML template
-
-(setq html-helper-new-buffer-template
-  '(html-helper-htmldtd-version
-    "<html>\n<head>\n"
-    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
-    "<title>" p "</title>\n</head>\n\n"
-    "<body>\n"
-    "</body>\n</html>\n"))
 
 ;; Multi-web mode, see https://github.com/fgallina/multi-web-mode
 
