@@ -206,9 +206,6 @@
 (add-hook 'sh-mode-hook 'font-lock-mode)
 (add-hook 'shell-script-mode-hook 'font-lock-mode)
 
-;; Magit commit messages can get crazy slow esp after rebase. Don't need diff
-(remove-hook 'server-switch-hook 'magit-commit-diff)
-
 (setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.html\.raw$" . sgml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.dtml$" . sgml-mode) auto-mode-alist))
@@ -913,6 +910,8 @@ See `cycle-font'."
           (message filename))
   ))
 
+;; Magit commit messages can get crazy slow esp after rebase. Don't need diff
+(remove-hook 'server-switch-hook 'magit-commit-diff)
 
 ;; ==============================================
 ;; Projectile
@@ -930,6 +929,10 @@ See `cycle-font'."
   (kill-new filename)
   (message filename))
 
+;; Projectile speedup over tramp? UNTESTED
+;; https://github.com/bbatsov/projectile/issues/1232#issuecomment-536281335
+(defadvice projectile-project-root (around ignore-remote first activate)
+    (unless (file-remote-p default-directory) ad-do-it))
 
 ;; ================================================
 ;; Tramp
@@ -940,12 +943,6 @@ See `cycle-font'."
 
 ;; Avoid tramp hang per https://www.emacswiki.org/emacs/TrampMode#h5o-9
 (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
-
-;; Projectile speedup over tramp? UNTESTED
-;; https://github.com/bbatsov/projectile/issues/1232#issuecomment-536281335
-(defadvice projectile-project-root (around ignore-remote first activate)
-    (unless (file-remote-p default-directory) ad-do-it))
-
 
 ;; =====================================
 ;; UNDO-TREE
