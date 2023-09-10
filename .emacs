@@ -32,14 +32,16 @@
     ))
 
 (slinkp:load-config-file
- '("setup-native-comp"
+ '("early-init"
+   "setup-native-comp"
    "package-install"
    "platform-detection"
+   "setup-misc-behavior"
    "initial-gui"
-   "setup-python"
    "setup-misc-functions"
    "setup-font-defaults-and-switching"
    "misc-language-modes"
+   "setup-python"
    ;; ... add more files here
    ))
 
