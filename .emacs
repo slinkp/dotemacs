@@ -1335,13 +1335,15 @@ See `cycle-font'."
 ;; ===================================================
 
 ;; Mark continuous lines.
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-;; Or mark a keyword then use one of these to mark others like it.
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-;; Use newline to insert newline in multi cursors mode. Use Ctrl-G to exit.
-(define-key mc/keymap (kbd "<return>") nil)
+(add-hook 'multiple-cursors-mode-hook
+  (lambda ()
+    (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+    ;; Or mark a keyword then use one of these to mark others like it.
+    (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+    (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+    (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+    ;; Use newline to insert newline in multi cursors mode. Use Ctrl-G to exit.
+    (define-key mc/keymap (kbd "<return>") nil)))
 
 ;; ======================================================
 ;; String inflection. Useful for change between camel, snake, etc case
