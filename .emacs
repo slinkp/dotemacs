@@ -134,12 +134,13 @@
 (straight-use-package 'vscode-dark-plus-theme)
 (straight-use-package 'gdscript-mode)
 (straight-use-package '(chuck-mode :type git :host github :repo "jintwo/chuck-mode" :branch "master"))
+(straight-use-package 'haskell-mode)
+(straight-use-package 'string-inflection)
 
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
 ;;   ;; (add-to-list 'load-path "<path where use-package is installed>")
 ;;   (require 'use-package))
-
 
 
 ;;============================================================================
@@ -1461,3 +1462,29 @@ See `cycle-font'."
 ;; UNDO-TREE
 ;; =====================================
 (setq undo-tree-auto-save-history 't)
+
+;; ======================================================
+;; String inflection. Useful for change between camel, snake, etc case
+;; ======================================================
+
+(defun my-string-inflection-cycle-auto ()
+  "switching by major-mode"
+  (interactive)
+  (cond
+   ;; for emacs-lisp-mode
+   ((eq major-mode 'emacs-lisp-mode)
+    (string-inflection-all-cycle))
+   ;; for python
+   ((eq major-mode 'python-mode)
+    (string-inflection-python-style-cycle))
+   ;; for java
+   ((eq major-mode 'java-mode)
+    (string-inflection-java-style-cycle))
+   ;; for elixir
+   ((eq major-mode 'elixir-mode)
+    (string-inflection-elixir-style-cycle))
+   (t
+    ;; default
+    (string-inflection-ruby-style-cycle))))
+
+(global-set-key (kbd "C-c i") 'my-string-inflection-cycle-auto)
