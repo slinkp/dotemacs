@@ -91,3 +91,19 @@
 (require 'saveplace)
 (setq-default save-place t)
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
+
+
+;; ======================================================================
+;; Path
+;; ======================================================================
+
+;; fix up exec-path and $PATH used for subprocesses
+;; TODO: does "exec-path-from-shell" installed above affect this?
+(add-to-list 'exec-path "/usr/local/bin")
+(add-to-list 'exec-path (expand-file-name "~/bin"))
+(add-to-list 'exec-path (expand-file-name "~/bin/py"))
+(add-to-list 'exec-path (expand-file-name "~/sh"))
+(add-to-list 'exec-path "/nix/var/nix/gcroots/dev-profiles/user-extra-profile/bin/")
+(add-to-list 'exec-path "/opt/homebrew/bin")
+(add-to-list 'exec-path "/opt/homebrew/sbin")
+(setenv "PATH" (mapconcat 'identity exec-path path-separator))
