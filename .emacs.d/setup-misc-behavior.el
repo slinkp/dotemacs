@@ -62,3 +62,32 @@
 
 ;; Don't prompt me to follow symlinks, just do it
 (setq vc-follow-symlinks t)
+
+
+;;============================================================================
+;; "Here's a pretty comprehensive group of magic invocations to make Emacs use
+;; UTF-8 everywhere by default"
+;; http://stackoverflow.com/questions/2901541/x/2903256#2903256
+;;============================================================================
+(setq utf-translate-cjk-mode nil)
+(set-language-environment 'utf-8)
+(setq locale-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+
+;;============================================================================
+;; Remember where we were.
+;;============================================================================
+
+(when we-have-gui?
+  ;; Remember state of everything... if we're in a GUI.
+  ;; Otherwise I probably don't want that much.
+  (desktop-save-mode 1))
+
+;; Save point position between sessions.
+;; http://whattheemacsd.com/init.el-03.html
+(require 'saveplace)
+(setq-default save-place t)
+(setq save-place-file (expand-file-name ".places" user-emacs-directory))
