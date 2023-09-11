@@ -32,8 +32,7 @@
     ))
 
 (slinkp:load-config-file
- '("early-init"
-   "setup-native-comp"
+ '("setup-native-comp"
    "package-install"
    "platform-detection"
    "setup-misc-behavior"
