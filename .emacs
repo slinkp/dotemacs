@@ -1,24 +1,6 @@
 ;; Paul M. Winkler .emacs file
 
 ;;============================================================================
-;; Load path
-;;============================================================================
-
-;; local stuff may be loaded from here.
-
-;; Try that again, per https://github.com/magnars/.emacs.d/blob/master/init.el
-;; Add external projects to load path
-(setq site-lisp-dir
-      (expand-file-name "site-lisp" user-emacs-directory))
-
-;; I like my ~/.emacs.d/ to override, so it goes first.
-(setq load-path (cons site-lisp-dir load-path))
-
-(dolist (project (directory-files site-lisp-dir t "\\w+"))
-  (when (file-directory-p project)
-    (add-to-list 'load-path project)))
-
-;;============================================================================
 ;; Modularizing my config, gradually...
 
 (defconst slinkp:config-dir "~/.emacs.d/" "")
@@ -32,7 +14,8 @@
     ))
 
 (slinkp:load-config-file
- '("setup-native-comp"
+ '("setup-load-path"
+   "setup-native-comp"
    "package-install"
    "platform-detection"
    "setup-misc-behavior"
