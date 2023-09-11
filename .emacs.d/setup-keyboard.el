@@ -53,3 +53,27 @@
 ;; no tabs by default
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+
+;;============================================================================
+;; OS X specific settings, thanks Will McCutchen & others
+;;============================================================================
+(when running-on-darwin?
+  ;; I used to bind Command to meta but it conflicts with too much
+  ;; (from http://www.webweavertech.com/ovidiu/emacs.html)
+  ;; ... Trying something new:
+  ;; Use left-option OR right-command everywhere! thanks to karabiner
+  (setq mac-option-modifier 'meta)
+  ;; stop interference from OS X
+  (setq mac-pass-control-to-system nil)
+  (setq mac-pass-command-to-system nil)
+  ;; fix subprocess connections
+  (setq process-connection-type nil)
+
+  (global-set-key
+   ;; I like it bound to both command-` and option-`
+   (kbd "S-`") (lambda () (interactive) (other-frame 1)))
+)
+
+;; NEVER close frames via Command-W
+;; even if I change other bindings
+(global-set-key [(super w)] nil)

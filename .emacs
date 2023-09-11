@@ -139,53 +139,11 @@
   (align-regexp BEG END "\\(\\s-*\\)\\S-+" 1 1 t)
   (indent-region BEG END))
 
-
-;;============================================================================
-;; What function/class/method are we currently in?
-
-;; Show it at top instead of modeline, as per https://www.emacswiki.org/emacs/WhichFuncMode
-;; ... note this is not a straight copy/paste, there were some suggested edits,
-;; had to read the whole text and do the suggestions.
-
-(setq mode-line-misc-info (delete (assoc 'which-function-mode
-                                      mode-line-misc-info) mode-line-misc-info)
-      which-func-header-line-format '(which-function-mode ("" which-func-format)))
-(defadvice which-func-ff-hook (after header-line activate)
-  (when which-function-mode
-    (setq mode-line-misc-info (delete (assoc 'which-function-mode
-                                          mode-line-misc-info) mode-line-misc-info)
-          header-line-format which-func-header-line-format
-          )))
-
 ;; Markdown-mode needs imenu enabled in order to work with which-function-mode?
 (add-hook 'markdown-mode-hook 'imenu-add-menubar-index)
 (setq imenu-auto-rescan t)
 ;; ... does not seem to help :-(
 ;; Issue filed & closed here: https://github.com/jrblevin/markdown-mode/issues/765
-
-
-;;============================================================================
-;; OS X specific settings, thanks Will McCutchen & others
-;;============================================================================
-(when running-on-darwin?
-  ;; I used to bind Command to meta but it conflicts with too much
-  ;; (from http://www.webweavertech.com/ovidiu/emacs.html)
-  ;; ... Trying something new:
-  ;; Use left-option OR right-command everywhere! thanks to karabiner
-  (setq mac-option-modifier 'meta)
-  ;; stop interference from OS X
-  (setq mac-pass-control-to-system nil)
-  (setq mac-pass-command-to-system nil)
-  ;; fix subprocess connections
-  (setq process-connection-type nil)
-
-  (global-set-key
-   (kbd "S-`") (lambda () (interactive) (other-frame 1)))
-)
-
-;; NEVER close frames via Command-W
-;; even if I change other bindings
-(global-set-key [(super w)] nil)
 
 
 ;; ======================================================================
