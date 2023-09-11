@@ -41,3 +41,13 @@
 (when (load "rainbow-delimiters" t)
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 )
+
+
+;; ========================================================
+;; Default GUI windows.
+;; ========================================================
+
+(when we-have-gui?
+  (add-to-list 'initial-frame-alist '(height . 33))
+  (add-to-list 'initial-frame-alist '(width . 120))
+  (make-frame))

@@ -256,3 +256,12 @@
     (setq flycheck-ruby-executable "/var/folders/vc/0jdl4b553039ywqyjgl398m40000gn/T/frum_15129_1685631593134/bin/ruby")
     )
 )
+
+;; ======================================================================
+;; Markdown
+
+;; Markdown-mode needs imenu enabled in order to work with which-function-mode?
+(add-hook 'markdown-mode-hook 'imenu-add-menubar-index)
+(setq imenu-auto-rescan t)
+;; ... does not seem to help :-(
+;; Issue filed & closed here: https://github.com/jrblevin/markdown-mode/issues/765

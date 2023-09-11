@@ -107,3 +107,17 @@
 (add-to-list 'exec-path "/opt/homebrew/bin")
 (add-to-list 'exec-path "/opt/homebrew/sbin")
 (setenv "PATH" (mapconcat 'identity exec-path path-separator))
+
+;; ======================================================================
+;; Setting goal-column makes behavior more intuitive when moving up/down
+;; after deleting text, see:
+;; https://irreal.org/blog/?p=266
+
+(put 'set-goal-column 'disabled nil)
+
+;; ======================================================================
+;; emacsclient
+
+(require 'server)
+(unless (server-running-p)
+  (server-start))
