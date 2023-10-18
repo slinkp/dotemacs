@@ -88,9 +88,11 @@
 ;; Highlight lines with pdb.set_trace
 ;; from http://pedrokroger.net/2010/07/configuring-emacs-as-a-python-ide-2/
 (defun annotate-pdb ()
+  "Highlight lines with set_trace() in them"
   (interactive)
-  (highlight-lines-matching-regexp "import pdb")
-  (highlight-lines-matching-regexp "pdb.set_trace()"))
+  (highlight-lines-matching-regexp "import .*pdb")
+  (highlight-lines-matching-regexp ".set_trace()")
+  (highlight-lines-matching-regexp "breakpoint()"))
 (add-hook 'python-mode-hook 'annotate-pdb)
 
 
@@ -110,7 +112,7 @@
   (end-of-line)
   (insert "\n")
   (indent-according-to-mode)
-  (insert "import ipdb; ipdb.set_trace()")
+  (insert "breakpoint()")
   (indent-according-to-mode)
 ;;  (annotate-pdb)
 )
