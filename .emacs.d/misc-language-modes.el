@@ -190,7 +190,8 @@
 
 (defun annotate-pry ()
   (interactive)
-  (highlight-lines-matching-regexp "require 'pry'")
+  (highlight-lines-matching-regexp "require .*pry")
+  (highlight-lines-matching-regexp "require .*byebug")
   (highlight-lines-matching-regexp "binding.pry"))
 
 (add-hook 'ruby-mode-hook 'annotate-pry)

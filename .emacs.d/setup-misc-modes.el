@@ -77,8 +77,9 @@
 (eval-after-load "outline-mode"
   '(diminish 'outline-mode "out"))
 
-(eval-after-load "hi-lock-mode"
-  '(diminish 'hi-lock-mode ""))
+;; This causes warnings about archaic use of hi-lock-mode. TBD, do i still use it?
+;; (eval-after-load "hi-lock-mode"
+;;   '(diminish 'hi-lock-mode ""))
 
 ;; No dice with any variant of this I tried; hacked into the pymacs loading func
 ;; (eval-after-load "ropemacs-mode"
