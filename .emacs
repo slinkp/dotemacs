@@ -28,6 +28,7 @@
    "setup-python"
    "setup-misc-unorganized-junk"
    "cclisp"
+   "cc-edit-text-menu"
    ;; ... add more files here
    ))
 
@@ -104,3 +105,10 @@
  '(rst-level-2-face ((t (:background "grey78" :foreground "black" :inverse-video t))) t)
  '(rst-level-3-face ((t (:background "grey71" :foreground "black" :inverse-video t))) t)
  '(trailing-whitespace ((t (:background "#002232")))))
+
+;; Enable cc*el edit menus as per http://yummymelon.com/devnull/moving-text-elegantly-in-emacs.html
+(easy-menu-add-item (lookup-key global-map [menu-bar edit]) nil
+                    cc/transpose-menu "Fill")
+
+(easy-menu-add-item (lookup-key global-map [menu-bar edit]) nil
+                    cc/move-text-menu "Fill")
