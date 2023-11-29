@@ -1,7 +1,7 @@
 ;;; cclisp.el --- Utility functions used by Charles Choi
 
 ;;; Commentary:
-;; 
+;; Modified by Paul Winkler - removed a lot I don't use. Mainly want the text-moving functions
 
 ;;; Code:
 
@@ -49,76 +49,15 @@ A new frame will be created if `pop-up-frames' is t."
       (switch-to-buffer-other-frame new-shell-name)
       (switch-to-buffer new-shell-name))))
 
-(defun journal()
-  "Alias to invoke `status-report' for Charles Choi."
-  (interactive)
-  (status-report))
-
-(defun status-report()
-  "Open the daily journal file for Charles Choi and go to the end of buffer."
-  (interactive)
-  (find-file (format-time-string "~/org/%Y_%m_%d.org"))
-  (goto-char (point-max)))
-
-(defun dictate()
-   "Open a default text file to dictate into using macOS open."
-   (interactive)
-   (shell-command "open ~/Documents/Dictation.txt"))
-
-(load-file (concat user-emacs-directory "url-bookmarks.el"))
-
 (defun alist-keys (alist)
   "Return keys of an ALIST."
   (mapcar 'car alist))
-
-(defun cc/open-url (key)
-  "Open a URL referenced by KEY defined in `cc/url-bookmarks'."
-  (interactive (list (completing-read-default "Open URL: "
-                                              (alist-keys cc/url-bookmarks))))
-  (browse-url (cdr (assoc key cc/url-bookmarks))))
 
 (defun year ()
   "Open daily generated current year pdf file using macOS open."
   (interactive)
   (shell-command (format-time-string "open ~/org/%Y.pdf")))
 
-(defun make-year ()
-  "Invoke makefile target to generate daily current year pdf file."
-  (interactive)
-  (shell-command "cd ~/org; make year"))
-
-(defun ia-writer-timestamp-to-org (beginning end)
-  "Convert iA Writer timestamp in region demarked by BEGINNING and END to Org."
-  (interactive "r")
-  (if (use-region-p)
-      (let ((regionp (buffer-substring beginning end)))
-	(delete-region beginning end)
-	(insert (format-time-string "<%Y-%m-%d %a %H:%M>" (encode-time (parse-time-string regionp)))))
-    (message "The region is still there (from % d to %d), but it is inactive"
-             beginning end)))
-
-(cl-defun chance (&key (win "You win.") &key (lose "You lose."))
-  "Tell me my chances from 0 to 100 with either the WIN or LOSE string."
-  (interactive)
-  (message (if (<= (* 100 (cl-random 1.0)) (read-number "Chance (%): ")) win lose))
-  )
-
-(fset 'cc/start
-      (kmacro-lambda-form [f5 ?\C-c ?a ?a ?\C-x ?+ ?\C-x ?o] 0 "%d"))
-
-(defun cc/org-time-stamp-inactive ()
-  "Insert an inactive Org timestamp."
-  (interactive)
-  (org-time-stamp-inactive '(16)))
-
-(defun cc/select-journal-file ()
-  "Select one of Charles Choi's journal files to open in a buffer."
-  (interactive)
-  (find-file
-   (concat "~/org/"
-           (concat
-            (replace-regexp-in-string "-" "_" (org-read-date))
-            ".org"))))
 
 ;; This is a copy from s.el to enable early loading
 (defun s-replace (old new s)
@@ -130,56 +69,6 @@ A new frame will be created if `pop-up-frames' is t."
   "Insert a timestamp recognized by the Pelican static site generator."
   (interactive)
   (insert (format-time-string "%Y-%m-%d %H:%M")))
-
-(defun cc/new-blog-post ()
-  "Create a new blog post in a buffer for “notes from /dev/null”."
-  (interactive)
-    (cd "~/Projects/devnull/content")
-    (find-file (format-time-string "nfdn_%Y_%m_%d_%H%M%S.md"))
-    (yas-insert-snippet))
-
-(defun cc/launch-pelican ()
-  "Launch a local instance of the Pelican static site server.
-This function presumes that the buffer *pelican* is in the correct directory."
-  (interactive)
-  (process-send-string (get-buffer-process "*pelican*") "make devserver\n")
-  (sleep-for 3)
-  (shell-command "open http://localhost:8000")
-  )
-
-(defun cc/blog ()
-  "One-step operation to develop a blog post for “notes from /dev/null”."
-  (interactive)
-  (cond ((get-buffer "*pelican*")
-         (switch-to-buffer "*pelican*"))
-        (t
-         (shell-new)
-         (rename-buffer "*pelican*")
-         (process-send-string (get-buffer-process "*pelican*") "cd ~/Projects/pelican\n")
-         (process-send-string (get-buffer-process "*pelican*") "source .venv/bin/activate\n")
-         (process-send-string (get-buffer-process "*pelican*") "cd ~/Projects/devnull\n")
-         ()
-         (if (display-graphic-p)
-             (cc/launch-pelican)
-           ))))
-
-(defun cc/web-captee()
-  "One-step operation to startup a devserver for the Captee website."
-  (interactive)
-  (cond ((get-buffer "*pelican*")
-         (switch-to-buffer "*pelican*"))
-        (t
-         (shell-new)
-         (rename-buffer "*pelican*")
-         (process-send-string (get-buffer-process "*pelican*") "cd ~/Projects/pelican\n")
-         (process-send-string (get-buffer-process "*pelican*") "source .venv/bin/activate\n")
-         (process-send-string (get-buffer-process "*pelican*") "cd ~/Projects/pelican/captee\n")
-         ()
-         (if (display-graphic-p)
-             (cc/launch-pelican)
-           )
-         ))
-  )
 
 (defun cc/slugify (start end)
   "Slugify the region bounded by START and END."
@@ -327,40 +216,6 @@ ISO 8601."
     (message "Searching for %s" query-buf)
     (browse-url mapURL)))
 
-(defvar cc/pat-nanp-international "^+1 \
-[(]*\\([0-9]\\{3\\}\\)[)]*\
-[\\. -]\\([0-9]\\{3\\}\\)[\\. -]\\([0-9]\\{4\\}\\)$"
-  "Regexp for North American Numbering Plan phone number including +1.")
-
-(defvar cc/pat-nanp "^[(]*\\([0-9]\\{3\\}\\)[)]*[\\. -]\
-\\([0-9]\\{3\\}\\)[\\. -]\\([0-9]\\{4\\}\\)$"
-  "Regexp for North American Numbering Plan phone number without +1.")
-
-(defun cc/nanp-phone-number-to-url (phone)
-  "Convert PHONE number string to url \"tel:\"."
-  (cond
-   ((string-match cc/pat-nanp-international phone)
-    (replace-regexp-in-string cc/pat-nanp-international
-                              "tel:+1-\\1-\\2-\\3" phone))
-   ((string-match cc/pat-nanp phone)
-    (replace-regexp-in-string cc/pat-nanp "tel:+1-\\1-\\2-\\3" phone))))
-
-(defun cc/call-nanp-phone-number (&optional start end)
-  "Phone call the selected number (region) bounded between START and END"
-  (interactive "r")
-  (let ((phone-buf (buffer-substring start end)))
-    (browse-url (cc/nanp-phone-number-to-url phone-buf))))
-
-(defun cc/nanp-phone-number-p ()
-  "Predicate for PHONE number."
-  (let ((phone (buffer-substring (region-beginning) (region-end))))
-    (cond
-     ((string-match cc/pat-nanp-international phone)
-      t)
-     ((string-match cc/pat-nanp phone)
-      t)
-     (t
-      nil))))
 
 (defun cc/dired-duplicate-file ()
   "Duplicate the current file in Dired"
