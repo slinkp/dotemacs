@@ -27,6 +27,7 @@
    "setup-misc-modes"
    "setup-python"
    "setup-misc-unorganized-junk"
+   "cclisp"
    ;; ... add more files here
    ))
 
