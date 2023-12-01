@@ -75,6 +75,7 @@
 (straight-use-package '(chuck-mode :type git :host github :repo "jintwo/chuck-mode" :branch "master"))
 (straight-use-package 'haskell-mode)
 (straight-use-package 'string-inflection)
+(straight-use-package 'csv-mode)
 
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
