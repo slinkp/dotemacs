@@ -13,11 +13,6 @@
 ;; been killing by mistake a lot lately.
 (setq confirm-kill-emacs 'yes-or-no-p)
 
-;; Auto refresh buffers
-(global-auto-revert-mode 1)
-;; ... except that breaks buffer-menu
-;; ... this doesn't seem to help :(
-(add-to-list 'global-auto-revert-ignore-modes 'buffer-menu-mode)
 
 ;; Always end a file with a newline, avoids confusing some tools.
 (setq require-final-newline t)

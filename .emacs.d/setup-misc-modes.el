@@ -102,15 +102,28 @@
           header-line-format which-func-header-line-format
           )))
 
+
+;; ============================================================================
+;; AUTO REVERT
+;;
+;; This is handy for most things, but has a few things that need tweaking.
+;; ============================================================================
+
+;; Auto refresh buffers.
+(global-auto-revert-mode 1)
+;; Enable this to make it work for dired, but be quiet about it.
+(setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-verbose nil)
+
+;; Disable it for Buffer-menu, because refresh discards any changes in progress.
+;; GOTCHA: It's spelled Buffer-menu-mode, case sensitive >:-(
+(add-to-list 'global-auto-revert-ignore-modes 'Buffer-menu-mode)
+
 ;; ============================================================================
 ;; DIRED
 ;; Doing this last because the subtree stuff seems to break if I do it too early
 ;; but I'm not sure what it depends on.
 ;; ============================================================================
-
-;; Also auto refresh dired, but be quiet about it
-(setq global-auto-revert-non-file-buffers t)
-(setq auto-revert-verbose nil)
 
 ;; Dired: M-< and M-> should go to first and last file.
 ;; From http://whattheemacsd.com/setup-dired.el-02.html
