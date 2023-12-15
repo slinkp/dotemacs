@@ -17,13 +17,11 @@
 ;; DONE
 ;;
 ;; 3. Switch from python-mode.el to python.el, at least for now.
+;; DONE
 ;; 4. Disable all the various emacs virtualenv gunk I've tried.
 ;; 5. Confirm virtualenv correctly automatically activated for each python buffer in emacs
 ;; 6. THEN try LSP again.
 
-
-;; Per https://gitlab.com/python-mode-devs/python-mode set this nil??
-(setq py-load-pymacs-p nil)
 
 (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.vpy$" . python-mode))

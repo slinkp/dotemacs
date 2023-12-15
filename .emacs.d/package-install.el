@@ -4,9 +4,6 @@
 ;; See also https://github.com/radian-software/straight.el#faq
 ;; ========================================================================
 
-;; It seems we need to remove build-in python.el early.
-(when (featurep 'python) (unload-feature 'python t))
-
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -47,7 +44,6 @@
 (straight-use-package 'highlight-indentation)
 (straight-use-package 's)
 (straight-use-package 'pyvenv)
-(straight-use-package 'python-mode)
 (straight-use-package 'php-mode)
 (straight-use-package 'multiple-cursors)
 (straight-use-package 'markdown-preview-mode)
@@ -81,6 +77,3 @@
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
 ;;   ;; (add-to-list 'load-path "<path where use-package is installed>")
 ;;   (require 'use-package))
-
-;; More stuff to make python-mode use python-mode.el instead of python.el
-(autoload 'python-mode "python-mode" "Python Mode." t)
