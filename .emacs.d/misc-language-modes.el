@@ -181,7 +181,6 @@
 (add-to-list 'magic-mode-alist
  '("#\\!.*ruby.*" . ruby-mode))
 
-;(add-hook 'ruby-mode-hook 'shadowenv-mode)
 (add-hook 'ruby-mode-hook 'which-function-mode)
 
 ;; Navigation

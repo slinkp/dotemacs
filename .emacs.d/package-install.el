@@ -68,7 +68,6 @@
 (straight-use-package 'lua-mode)
 (straight-use-package 'graphql-mode)
 (straight-use-package 'protobuf-mode)
-; (straight-use-package 'shadowenv)
 (straight-use-package 'solaire-mode)
 (straight-use-package 'vscode-dark-plus-theme)
 (straight-use-package 'gdscript-mode)
