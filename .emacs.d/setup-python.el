@@ -2,6 +2,26 @@
 ;; PYTHON part 2 - main config
 ;; ========================================================================
 
+;; LSP AUTO-MAGIC TODO:
+;; 1. Get direnv working manually in shell:
+;;    ... yep "source bin/activate" in an .envrc works
+;; 1b. OPTIONAL Get direnv working in shell with my activator
+;;    ... possibly by adding something to ~/.config/direnv/direnvrc??
+;;        See https://direnv.net/man/direnv-stdlib.1.html
+;;    ... Also may require at least a stub .envrc in each project to trigger it, so, meh
+;;    So, no, skip it
+;; DONE
+;;
+;; 2. Get direnv working inside emacs as per https://github.com/purcell/envrc
+;; ... this should make it correctly buffer-local??
+;; DONE
+;;
+;; 3. Switch from python-mode.el to python.el, at least for now.
+;; 4. Disable all the various emacs virtualenv gunk I've tried.
+;; 5. Confirm virtualenv correctly automatically activated for each python buffer in emacs
+;; 6. THEN try LSP again.
+
+
 ;; Per https://gitlab.com/python-mode-devs/python-mode set this nil??
 (setq py-load-pymacs-p nil)
 
