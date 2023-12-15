@@ -28,6 +28,10 @@
 
 (straight-use-package 'use-package)
 
+;; Make use-package use straight under the hood by default.
+;; This makes it easier for me to reuse use-package recipes from the web that use eg the :command keyword.
+(setq straight-use-package-by-default 't)
+
 (straight-use-package 'rg)
 (straight-use-package 'projectile-ripgrep)
 (straight-use-package 'helm)
