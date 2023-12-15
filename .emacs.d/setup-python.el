@@ -19,6 +19,7 @@
 ;; 3. Switch from python-mode.el to python.el, at least for now.
 ;; DONE
 ;; 4. Disable all the various emacs virtualenv gunk I've tried.
+;; DONE
 ;; 5. Confirm virtualenv correctly automatically activated for each python buffer in emacs
 ;; 6. THEN try LSP again.
 
@@ -134,24 +135,6 @@
   (indent-according-to-mode)
 ;;  (annotate-pdb)
 )
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Virtualenvs for python
-;(require 'virtualenvwrapper)
-; (venv-initialize-interactive-shells) ;; if you want interactive shell support
-; (venv-initialize-eshell) ;; if you want eshell support
-;; note that setting `venv-location` is not necessary if you
-;; use the default location (`~/.virtualenvs`), or if the
-;; the environment variable `WORKON_HOME` points to the right place
-(setq venv-location "/Users/paul/.emacs.d/.python-environments/")
-
-
-
-;; Simpler way to activate as per https://github.com/porterjamesj/virtualenvwrapper.el#automatically-activating-a-virtualenv-when-using-projectile
-;; ... just use a venv or .venv dir in a projectile project root!
-(setq projectile-switch-project-action 'venv-projectile-auto-workon)
-(add-hook 'python-mode-hook 'jedi:setup)
 
 ;; These seem to be sensitive to order.
 ;; Works ok if I do which-function-mode late enough?

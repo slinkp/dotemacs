@@ -44,7 +44,6 @@
  ("popup-el" . "71cede0588c10526f88dd0375bce776ec2eed05e")
  ("projectile" . "271007c6611fcb08ddd326d7de9727c2ad5ef265")
  ("protobuf" . "20d22a92fe00ad2ccc00d407eaeccf009b1c549c")
- ("pyvenv" . "31ea715f2164dd611e7fc77b26390ef3ca93509b")
  ("queue" . "130c2d656cd5d7376552272fab9e50a7c37d0c4a")
  ("rainbow-delimiters" . "a32b39bdfe6c61c322c37226d66e1b6d4f107ed0")
  ("rg.el" . "e9dc4ed342e0212d08fb82554dfd3c57fdfa5b1a")

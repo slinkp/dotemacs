@@ -43,7 +43,6 @@
 (straight-use-package 'sphinx-doc)
 (straight-use-package 'highlight-indentation)
 (straight-use-package 's)
-(straight-use-package 'pyvenv)
 (straight-use-package 'php-mode)
 (straight-use-package 'multiple-cursors)
 (straight-use-package 'markdown-preview-mode)
