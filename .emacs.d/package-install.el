@@ -75,6 +75,7 @@
 (straight-use-package 'haskell-mode)
 (straight-use-package 'string-inflection)
 (straight-use-package 'csv-mode)
+(straight-use-package 'envrc) ;; This supports 'direnv' shell command for buffer-local environment vars.
 
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d

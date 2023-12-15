@@ -29,6 +29,7 @@
    "setup-misc-unorganized-junk"
    "cclisp"
    "cc-edit-text-menu"
+   "late-init"
    ;; ... add more files here
    ))
 
