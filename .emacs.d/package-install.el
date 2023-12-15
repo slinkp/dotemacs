@@ -72,6 +72,12 @@
 (straight-use-package 'csv-mode)
 (straight-use-package 'envrc) ;; This supports 'direnv' shell command for buffer-local environment vars.
 
+;; LSP for python at least
+(straight-use-package 'lsp-mode)
+(use-package lsp-ui
+  :commands lsp-ui-mode
+  :straight t)
+
 ;; (eval-when-compile
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
 ;;   ;; (add-to-list 'load-path "<path where use-package is installed>")

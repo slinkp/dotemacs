@@ -21,8 +21,9 @@
 ;; 4. Disable all the various emacs virtualenv gunk I've tried.
 ;; DONE
 ;; 5. Confirm virtualenv correctly automatically activated for each python buffer in emacs
+;; DONE
 ;; 6. THEN try LSP again.
-
+;; DONE. WORKS!!
 
 (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.vpy$" . python-mode))
@@ -169,3 +170,17 @@
     (setq jedi:complete-on-dot nil)
   )
 )
+
+
+;; TRYING LSP
+(add-hook 'python-mode-hook 'lsp-deferred)
+
+;; ;; Via lsp-pyright (Microsoft's thing)
+;; (straight-use-package 'lsp-pyright)
+;; (use-package lsp-pyright
+;;   :straight t
+;;   :ensure t
+;;   :hook (python-mode . (lambda ()
+;;                          (require 'lsp-pyright)
+;;                          (lsp))))
+
