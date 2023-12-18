@@ -77,6 +77,8 @@
 (eval-after-load "outline-mode"
   '(diminish 'outline-mode "out"))
 
+(diminish 'eldoc-mode)
+
 ;; This causes warnings about archaic use of hi-lock-mode. TBD, do i still use it?
 ;; (eval-after-load "hi-lock-mode"
 ;;   '(diminish 'hi-lock-mode ""))

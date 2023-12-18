@@ -103,7 +103,9 @@
 (add-hook 'python-mode-hook
   (lambda ()
     (require 'sphinx-doc)
-    (sphinx-doc-mode t)))
+    (sphinx-doc-mode t)
+    (diminish 'sphinx-doc-mode)
+    ))
 
 ;; Highlight lines with pdb.set_trace
 ;; from http://pedrokroger.net/2010/07/configuring-emacs-as-a-python-ide-2/
@@ -137,12 +139,6 @@
 ;;  (annotate-pdb)
 )
 
-;; These seem to be sensitive to order.
-;; Works ok if I do which-function-mode late enough?
-;; Show current function in status bar.
-;; ... was horribly slow on some .py files before emacs 24.5, seems ok now?
-(add-hook 'python-mode-hook 'which-function-mode)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Python keyboard overrides.
 ;; python-mode.el clobbers slinkp-vi-join, grr.
@@ -157,26 +153,34 @@
 
 (add-hook 'python-mode-hook
   (lambda ()
+    (message "Paul's python emacs hook")
     (define-key python-mode-map (kbd "C-j") 'slinkp-vi-join)
     (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace) 
-    ;;; DISABLING ROPE BY DEFAULT ... it is choking too much on big stuff.
-    ;;; ... or maybe that was just which-function-mode? Trying without that.
-    ;; (unless ropemacs-was-loaded
-    ;;   (load-pymacs-and-ropemacs))
-    ;; Override rope-goto-definition binding because jedi has a back button!
-    (define-key python-mode-map (kbd "C-c g") 'jedi:goto-definition)
-    (define-key python-mode-map (kbd "C-c C-g") 'jedi:goto-definition-pop-marker)
-    ;; Jedi complete is super annoying when implicit
-    (setq jedi:complete-on-dot nil)
+    ;;; DISABLING ROPE AND JEDI BY DEFAULT ... do I want it anymore?
+    ;; (unless ropemacs-was-loaded (load-pymacs-and-ropemacs))
+    ;; (my-jedi-setup)
+
+    ;; Don't need which-function-mode when using lsp-headerline-breadcrumb-mode
+    ;; (which-function-mode)
+
   )
 )
 
+;; Jedi config
+(defun my-jedi-setup ()
+  (define-key python-mode-map (kbd "C-c g") 'jedi:goto-definition)
+  (define-key python-mode-map (kbd "C-c C-g") 'jedi:goto-definition-pop-marker)
+  ;; Jedi complete is super annoying when implicit
+  (setq jedi:complete-on-dot nil)
+)
 
-;; TRYING LSP
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; LSP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-hook 'python-mode-hook 'lsp-deferred)
 
-;; ;; Via lsp-pyright (Microsoft's thing)
-;; (straight-use-package 'lsp-pyright)
+;; Could also try via lsp-pyright (Microsoft's thing)
 ;; (use-package lsp-pyright
 ;;   :straight t
 ;;   :ensure t
