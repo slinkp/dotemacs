@@ -36,6 +36,7 @@
     (setq flycheck-checker-error-threshold 800)  ;; default 400
     (flycheck-mode t)))
 
+
 ;; Get dired to consider .pyc and .pyo files to be uninteresting
 (add-hook 'dired-load-hook
   (lambda ()
@@ -50,28 +51,6 @@
 (setq dired-omit-extensions (append '(".pyc" ".pyo" ".bak")
                              dired-omit-extensions))
 
-(autoload 'pymacs-apply "pymacs")
-(autoload 'pymacs-call "pymacs")
-(autoload 'pymacs-eval "pymacs" nil t)
-(autoload 'pymacs-exec "pymacs" nil t)
-(autoload 'pymacs-load "pymacs" nil t)
-(autoload 'pymacs-autoload "pymacs")
-
-(defvar ropemacs-was-loaded nil)
-
-(defun load-pymacs-and-ropemacs ()
-  "Load pymacs and ropemacs"
-  (interactive)
-  (require 'pymacs)
-  (pymacs-load "ropemacs" "rope-")
-  ;; Automatically save project python buffers before refactorings
-  (setq ropemacs-confirm-saving 'nil)
-  (setq ropemacs-enable-shortcuts t)
-  (setq ropemacs-was-loaded t)
-  ;; Can't seem to find the right place to hook this :(
-  (diminish 'ropemacs-mode)
-)
-(global-set-key "\C-xpl" 'load-pymacs-and-ropemacs)
 
 ;; Neat function from Evan Bender: if a python function def is too long,
 ;; this splits it into multiple lines
@@ -122,7 +101,6 @@
 (add-hook 'python-mode-hook
   (lambda ()
      (set-fill-column 100)
-     ;; (fci-mode)
   )
 )
 
@@ -136,43 +114,17 @@
   (indent-according-to-mode)
   (insert "breakpoint()")
   (indent-according-to-mode)
-;;  (annotate-pdb)
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Python keyboard overrides.
-;; python-mode.el clobbers slinkp-vi-join, grr.
-;; TODO: Why does this seem to sometimes work, and sometimes not
-;; unless I've done (require 'python-mode)?
-;; Why isn't (portable-load-library) enough?
-;; (portable-load-library "pymacs")
-;; (portable-load-library "python-mode")
-;; (require 'python-mode)
-;; (require 'pymacs)
-
 
 (add-hook 'python-mode-hook
   (lambda ()
     (message "Paul's python emacs hook")
+    ;; python-mode.el clobbers slinkp-vi-join, grr.
     (define-key python-mode-map (kbd "C-j") 'slinkp-vi-join)
-    (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace) 
-    ;;; DISABLING ROPE AND JEDI BY DEFAULT ... do I want it anymore?
-    ;; (unless ropemacs-was-loaded (load-pymacs-and-ropemacs))
-    ;; (my-jedi-setup)
-
-    ;; Don't need which-function-mode when using lsp-headerline-breadcrumb-mode
-    ;; (which-function-mode)
-
-  )
-)
-
-;; Jedi config
-(defun my-jedi-setup ()
-  (define-key python-mode-map (kbd "C-c g") 'jedi:goto-definition)
-  (define-key python-mode-map (kbd "C-c C-g") 'jedi:goto-definition-pop-marker)
-  ;; Jedi complete is super annoying when implicit
-  (setq jedi:complete-on-dot nil)
-)
+    (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -187,4 +139,3 @@
 ;;   :hook (python-mode . (lambda ()
 ;;                          (require 'lsp-pyright)
 ;;                          (lsp))))
-
