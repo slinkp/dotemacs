@@ -24,7 +24,9 @@
 ;; 8. Try pylsp-mypy
 ;; WORKS! Have to `pip install pylsp-mypy`
 ;; 9. TODO more cleanup, there's crap here I don't use: pymacs, ropemacs, jedi
+;; DONE
 ;; 10. TODO Try going back to python-mode, I miss the indentation support
+;; DONE
 
 (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.vpy$" . python-mode))

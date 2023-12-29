@@ -4,6 +4,10 @@
 ;; See also https://github.com/radian-software/straight.el#faq
 ;; ========================================================================
 
+
+;; It seems we need to remove build-in python.el early.
+(when (featurep 'python) (unload-feature 'python t))
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -32,6 +36,7 @@
 ;; This makes it easier for me to reuse use-package recipes from the web that use eg the :command keyword.
 (setq straight-use-package-by-default 't)
 
+(straight-use-package 'python-mode)
 (straight-use-package 'rg)
 (straight-use-package 'projectile-ripgrep)
 (straight-use-package 'helm)
@@ -86,3 +91,6 @@
 ;;   ;; Following line is not needed if use-package.el is in ~/.emacs.d
 ;;   ;; (add-to-list 'load-path "<path where use-package is installed>")
 ;;   (require 'use-package))
+
+;; More stuff to make python-mode use python-mode.el instead of python.el
+(autoload 'python-mode "python-mode" "Python Mode." t)
