@@ -2,32 +2,6 @@
 ;; PYTHON part 2 - main config
 ;; ========================================================================
 
-;; LSP AUTO-MAGIC TODO:
-;; 1. Get direnv working manually in shell:
-;;    ... yep "source bin/activate" in an .envrc works.
-;;    Adding stub .envrc files seems worth it, very handy in shell too!
-;; DONE
-;;;
-; 2. Get direnv working inside emacs as per https://github.com/purcell/envrc
-;; ... this should make it correctly buffer-local.
-;; DONE
-;; 3. Switch from python-mode.el to python.el, at least for now.
-;; DONE
-;; 4. Disable all the various emacs virtualenv gunk I've tried.
-;; DONE
-;; 5. Confirm virtualenv correctly automatically activated for each python buffer in emacs
-;; DONE
-;; 6. THEN try LSP again.
-;; DONE. WORKS!! Have to `pip install python-lsp-server`
-;; 7. Try flake8 w/ LSP
-;; WORKS! have to `pip install flake8`
-;; 8. Try pylsp-mypy
-;; WORKS! Have to `pip install pylsp-mypy`
-;; 9. TODO more cleanup, there's crap here I don't use: pymacs, ropemacs, jedi
-;; DONE
-;; 10. TODO Try going back to python-mode, I miss the indentation support
-;; DONE
-
 (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.vpy$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.cpy$" . python-mode))
