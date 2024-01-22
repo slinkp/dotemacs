@@ -104,6 +104,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-hook 'python-mode-hook 'lsp-deferred)
 
+(setq lsp-pylsp-plugins-black-enabled 't)
+
+;; TODO I don't seem to have completion enabled.
+;; Does that require one of jedi or rope?
+;; https://emacs-lsp.github.io/lsp-mode/page/lsp-pylsp/
+
 ;; Could also try via lsp-pyright (Microsoft's thing)
 ;; (use-package lsp-pyright
 ;;   :straight t
