@@ -81,6 +81,10 @@
 (straight-use-package 'csv-mode)
 (straight-use-package 'envrc) ;; This supports 'direnv' shell command for buffer-local environment vars.
 
+(use-package which-key
+  :config
+    (which-key-mode))
+
 ;; LSP for python at least
 (straight-use-package 'lsp-mode)
 (use-package lsp-ui
