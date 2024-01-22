@@ -157,10 +157,10 @@ XXX argument untested"
   (interactive)
   (unwind-protect
       (progn
-        (linum-mode 1)
+        (display-line-numbers-mode 1)
         (with-no-warnings
           (goto-line (read-number "Goto line: "))))
-    (linum-mode -1)))
+    (display-line-numbers-mode -1)))
 
 ;; Cool function from Dante Catafalmo to align code in columns
 
