@@ -7,13 +7,6 @@
 (add-to-list 'auto-mode-alist '("\\.cpy$" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
-;; TODO - disable flycheck IF pylsp is enabled
-(add-hook 'python-mode-hook
-  (lambda () 
-   (require 'flycheck)
-    (setq flycheck-checker-error-threshold 800)  ;; default 400
-    (flycheck-mode t)))
-
 
 ;; Get dired to consider .pyc and .pyo files to be uninteresting
 (add-hook 'dired-load-hook
