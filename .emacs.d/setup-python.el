@@ -95,7 +95,8 @@
     (message "Paul's python emacs hook")
     ;; python-mode.el clobbers slinkp-vi-join, grr.
     (define-key python-mode-map (kbd "C-j") 'slinkp-vi-join)
-    (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace)))
+    (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace)
+    ))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
