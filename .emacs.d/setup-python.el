@@ -96,6 +96,8 @@
     ;; python-mode.el clobbers slinkp-vi-join, grr.
     (define-key python-mode-map (kbd "C-j") 'slinkp-vi-join)
     (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace)
+    ;; TODO: (kbd "TAB") is normally bound to 'py-indent-or-complete'.
+    ;; Can I rebind that to a function that does "indent or complete via LSP if LSP is active"?
     ))
 
 
@@ -104,6 +106,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-hook 'python-mode-hook 'lsp-deferred)
 
+;; TODO - UI is not ideal, tooltips could be cleaner, the inline display is weird
+
+;; Backend for formatting
 (setq lsp-pylsp-plugins-black-enabled 't)
 
 ;; TODO I don't seem to have completion enabled.
