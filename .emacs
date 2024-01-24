@@ -68,7 +68,9 @@
  '(helm-projectile-git-grep-command "git --no-pager grep -P --no-color -n%c -e %p -- %f")
  '(inhibit-startup-echo-area-message "pw")
  '(jit-lock-stealth-time 0.035)
- '(markdown-command "pandoc --from gfm --to html --standalone")
+ '(markdown-command
+   "pandoc -f gfm -t html --highlight-style espresso --standalone --metadata pagetitle=preview")
+ '(markdown-preview-delay-time 1.0)
  '(mode-line-format
    '("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification mode-line-position mode-line-misc-info mode-line-modes
      (vc-mode vc-mode)
