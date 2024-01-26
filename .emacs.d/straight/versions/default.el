@@ -16,6 +16,7 @@
  ("emacs-solaire-mode" . "8af65fbdc50b25ed3214da949b8a484527c7cc14")
  ("emacs-web-server" . "6357a1c2d1718778503f7ee0909585094117525b")
  ("emacs-websocket" . "1a08093b122d8cf20366a1cba5faddf7a53d08ed")
+ ("emacs-which-key" . "4d20bc852545a2e602f59084a630f888542052b1")
  ("emacsmirror-mirror" . "10251c5dd9c59ea4e3381536c047231a0249316e")
  ("envrc" . "1385e72a730924664697a0961d43516a47a977d7")
  ("epl" . "78ab7a85c08222cd15582a298a364774e3282ce6")
