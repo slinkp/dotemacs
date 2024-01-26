@@ -19,7 +19,6 @@
 (setq auto-mode-alist (cons '("\\.pt$" . nxml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.zcml$" . nxml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.rdf$" . nxml-mode) auto-mode-alist))
-;;(setq auto-mode-alist (cons '("\\.php3$" . html-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.mako$" . html-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.sgml$" . sgml-mode) auto-mode-alist))
@@ -143,24 +142,6 @@
   (autoload 'go-mode "go-mode" nil t)
   (add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
   (add-hook 'go-mode-hook 'my-go-mode-hook))
-
-
-;; ======================================================================
-;; HTML / MULTI-WEB
-;; ======================================================================
-
-;; Multi-web mode, see https://github.com/fgallina/multi-web-mode
-
-(setq mweb-default-major-mode 'html-mode)
- (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-                  ;; (js2-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
-                  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
-                  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")
-;;                   (ruby-mode "<%= " " %>")
-))
-
- (setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
-(multi-web-global-mode 1)
 
 
 ;; ========================================================================

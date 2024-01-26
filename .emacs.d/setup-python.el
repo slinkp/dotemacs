@@ -45,18 +45,6 @@
   ;; back to normal
   (widen))
 
-
-;; sphinx-doc
-;; https://github.com/naiquevin/sphinx-doc.el
-;; use C-c M-d
-;; can insert skeletons and update existing docstrings!
-(add-hook 'python-mode-hook
-  (lambda ()
-    (require 'sphinx-doc)
-    (sphinx-doc-mode t)
-    (diminish 'sphinx-doc-mode)
-    ))
-
 ;; Highlight lines with pdb.set_trace
 ;; from http://pedrokroger.net/2010/07/configuring-emacs-as-a-python-ide-2/
 (defun annotate-pdb ()

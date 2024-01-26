@@ -68,9 +68,6 @@
 ;; (eval-after-load "python"
 ;;   '(diminish 'python-mode "Py"))
 
-(eval-after-load "multi-web"
-  '(diminish 'multi-web-mode "mw"))
-
 (eval-after-load "auto-complete-mode"
   '(diminish 'auto-complete-mode ""))
 
