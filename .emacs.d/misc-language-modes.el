@@ -269,7 +269,13 @@
 ;; This is closer to github with white background.
 ;; Decent, usable, kind of narrow document body.
 ;; Problem: links look like plain text.
-(setq markdown-preview-stylesheets (list "https://cdn.jsdelivr.net/gh/pixelbrackets/gfm-stylesheet/dist/gfm.min.css"))
+(setq markdown-preview-stylesheets
+      (list
+       "https://cdn.jsdelivr.net/gh/pixelbrackets/gfm-stylesheet/dist/gfm.min.css"
+       ;; This site proxies github and changes content-type to text/css
+       "https://raw.githack.com/slinkp/dotemacs/main/.emacs.d/markdown-preview-local-overrides.css"
+       ;; https://raw.githubusercontent.com/slinkp/dotemacs/main/.emacs.d/markdown-preview-local-overrides.css"
+       ))
 
 ;; Similar, like github but dark theme.
 ;; Problem: links are dark/invisible.
