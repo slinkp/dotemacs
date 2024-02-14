@@ -84,8 +84,8 @@
     ;; python-mode.el clobbers slinkp-vi-join, grr.
     (define-key python-mode-map (kbd "C-j") 'slinkp-vi-join)
     (define-key python-mode-map (kbd "M-p") 'slinkp-pdb-set-trace)
-    ;; TODO: (kbd "TAB") is normally bound to 'py-indent-or-complete'.
-    ;; Can I rebind that to a function that does "indent or complete via LSP if LSP is active"?
+    ;; Apparently (kbd "TAB") is still bound to 'py-indent-or-complete',
+    ;; but somehow that Just Works with LSP and the jedi completion backend?
     ))
 
 
@@ -94,14 +94,38 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-hook 'python-mode-hook 'lsp-deferred)
 
-;; TODO - UI is not ideal, tooltips could be cleaner, the inline display is weird
-
 ;; Backend for formatting
 (setq lsp-pylsp-plugins-black-enabled 't)
 
-;; TODO I don't seem to have completion enabled.
-;; Does that require one of jedi or rope?
-;; https://emacs-lsp.github.io/lsp-mode/page/lsp-pylsp/
+;; Which-key helps me remember / learn keybindings
+(setq lsp-enable-which-key-integration 't)
+
+;; Completion
+(setq lsp-pylsp-plugins-jedi-completion-enabled 't)
+
+;; Key overrides.
+(define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)  ; M-.
+(define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)  ; M-?
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; LSP UI config
+
+;; Sideline UI
+(setq lsp-ui-sideline-enable 't
+      lsp-ui-sideline-show-diagnostics 't ; show diagnostics messages in sideline, eg type errors.
+      lsp-ui-sideline-show-hover 't ; show hover messages in sideline. Often type info.
+      lsp-ui-sideline-show-code-actions 't ; show code actions in sideline. Example??
+      lsp-ui-sideline-update-mode "point" ; When set to 'line' the information will be updated when
+      ;; user changes current line otherwise the information will be updated when user changes current point.
+      lsp-ui-sideline-delay 0.02 ; seconds to wait before showing sideline
+      )
+
+;; Other UI
+(setq lsp-ui-doc-enable 't ; docstrings on hover.
+      lsp-ui-peek-enable 't ; peek at definition or matches, instead of a big context switch
+      lsp-ui-peek-always-show 't
+      )
+
 
 ;; Could also try via lsp-pyright (Microsoft's thing)
 ;; (use-package lsp-pyright

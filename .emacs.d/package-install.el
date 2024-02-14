@@ -85,6 +85,7 @@
 (straight-use-package 'lsp-mode)
 (use-package lsp-ui
   :commands lsp-ui-mode
+  :after lsp-mode
   :straight t)
 
 ;; (eval-when-compile
