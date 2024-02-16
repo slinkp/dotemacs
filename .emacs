@@ -68,6 +68,7 @@
  '(helm-projectile-git-grep-command "git --no-pager grep -P --no-color -n%c -e %p -- %f")
  '(inhibit-startup-echo-area-message "pw")
  '(jit-lock-stealth-time 0.035)
+ '(lsp-ui-doc-position 'bottom)
  '(markdown-command
    "pandoc -f gfm -t html --highlight-style espresso --standalone --metadata pagetitle=preview")
  '(markdown-preview-delay-time 1.0)
