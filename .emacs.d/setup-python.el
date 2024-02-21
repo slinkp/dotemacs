@@ -94,23 +94,20 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-hook 'python-mode-hook 'lsp-deferred)
 
-;; Backend for formatting
-(setq lsp-pylsp-plugins-black-enabled 't)
-
-;; Which-key helps me remember / learn keybindings
-(setq lsp-enable-which-key-integration 't)
-
-;; Completion
-(setq lsp-pylsp-plugins-jedi-completion-enabled 't)
-
-;; Key overrides.
-(add-hook
- 'python-mode-hook
- (lambda ()
-   (
-    (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)  ; M-.
-    (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)  ; M-?
-    )))
+(with-eval-after-load 'lsp-mode
+  ;; Which-key helps me remember / learn keybindings
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+  ;; Backend for formatting
+  (setq lsp-pylsp-plugins-black-enabled 't)
+  ;; Completion
+  (setq lsp-pylsp-plugins-jedi-completion-enabled 't)
+  ;; Rebind xref reference keys
+  (add-hook 'lsp-mode-hook
+   (lambda ()
+     (
+      (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)  ; M-.
+      (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)  ; M-?
+      ))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LSP UI config
