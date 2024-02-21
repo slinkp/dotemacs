@@ -102,12 +102,13 @@
   ;; Completion
   (setq lsp-pylsp-plugins-jedi-completion-enabled 't)
   ;; Rebind xref reference keys
-  (add-hook 'lsp-mode-hook
-   (lambda ()
-     (
-      (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)  ; M-.
-      (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)  ; M-?
-      ))))
+  ;; (add-hook 'lsp-mode-hook
+  ;;  (lambda ()
+  ;;    (
+  ;;     (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)  ; M-.
+  ;;     (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)  ; M-?
+  ;;     )))
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LSP UI config
