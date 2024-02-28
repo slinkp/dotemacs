@@ -23,4 +23,8 @@
 .emacs.d/straight/repos/*
 .emacs.d/straight/build/*
 .emacs.d/straight/build-cache.el
+.emacs.d/straight/modified/magit
 .emacs.d/eln-cache/*
+.emacs.d/.lsp-session*
+.emacs.d/.markdown-preview.html
+*.zip
