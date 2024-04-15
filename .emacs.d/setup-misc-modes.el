@@ -237,3 +237,18 @@
     (string-inflection-ruby-style-cycle))))
 
 (global-set-key (kbd "C-c i") 'my-string-inflection-cycle-auto)
+
+;; ===================================================================
+;; World clock. Invoke via M-x world-clock
+;; ======================================================================
+
+(setq world-clock-list
+    '(
+      ("US/Eastern" "New York")
+      ("US/Pacific" "Seattle")
+      ("Etc/UTC" "UTC")
+      ("Europe/London" "London")
+      ("Europe/Paris" "Paris")
+      ("Asia/Calcutta" "Bangalore")
+      ("Asia/Tokyo" "Tokyo")
+))
