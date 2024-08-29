@@ -78,12 +78,15 @@
 (straight-use-package 'envrc) ;; This supports 'direnv' shell command for buffer-local environment vars.
 (straight-use-package 'yasnippet) ;; used by lsp
 
+(use-package copilot
+  :ensure t
 (use-package which-key
   :config
     (which-key-mode))
 
 ;; LSP for python at least
 (straight-use-package 'lsp-mode)
+
 (use-package lsp-ui
   :commands lsp-ui-mode
   :after lsp-mode
@@ -96,3 +99,16 @@
 
 ;; More stuff to make python-mode use python-mode.el instead of python.el
 (autoload 'python-mode "python-mode" "Python Mode." t)
+
+;; ========================================================================
+;; Copilot, per https://github.com/copilot-emacs/copilot.el
+;; you can utilize :map :hook and :config to customize copilot
+(use-package copilot
+  :straight (:host github :repo "copilot-emacs/copilot.el" :files ("*.el"))
+  :ensure t
+  :config
+  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion))
+
+;; Copilot bootstrapping
+(copilot-install-server)
