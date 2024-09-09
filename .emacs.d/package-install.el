@@ -78,8 +78,6 @@
 (straight-use-package 'envrc) ;; This supports 'direnv' shell command for buffer-local environment vars.
 (straight-use-package 'yasnippet) ;; used by lsp
 
-(use-package copilot
-  :ensure t
 (use-package which-key
   :config
     (which-key-mode))
@@ -108,7 +106,15 @@
   :ensure t
   :config
   (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
-  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion))
+  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "C-<right>") 'copilot-accept-completion-by-word)
+  (define-key copilot-completion-map (kbd "C-<escape>") 'copilot-clear-overlay)
+  (define-key copilot-completion-map (kbd "s-<escape>") 'copilot-clear-overlay)
+  (define-key copilot-completion-map (kbd "s-<down>") 'copilot-next-completion)
+  (define-key copilot-completion-map (kbd "s-<up>") 'copilot-previous-completion)
+  ;; Consider also 'copilot-panel-complete
+  )
 
 ;; Copilot bootstrapping
 (copilot-install-server)
+
