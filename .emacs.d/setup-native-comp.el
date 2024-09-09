@@ -11,12 +11,9 @@
 (setenv "LIBRARY_PATH"
 	(mapconcat 'identity
 	 '(
-       "/usr/local/Cellar/gcc/13.1.0/lib/gcc/13/"
-       "/opt/homebrew/opt/gcc/lib/gcc/13"
-       "/usr/local/Cellar/libgccjit/13.1.0/lib/gcc/13/"
-       "/opt/homebrew/opt/libgccjit/lib/gcc/13"
-       "/usr/local/Cellar/gcc/13.1.0/lib/gcc/13/gcc/x86_64-apple-darwin22/13/"
-       "/opt/homebrew/opt/gcc/lib/gcc/13/gcc/aarch64-apple-darwin22/13")
-         ":"))
+       "/opt/homebrew/lib/gcc/current"
+       "/opt/homebrew/opt/libgccjit"
+       )
+     ":"))
 
 
