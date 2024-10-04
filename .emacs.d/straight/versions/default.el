@@ -28,8 +28,6 @@
  ("git-link" . "a0a2fff2d2fba516bc4c08cae10e067c3eb10529")
  ("gnu-elpa-mirror" . "1d6212f9a78a521d1fddbeb4d03c4d67fe4d7a78")
  ("go-mode.el" . "602d73e22646b1b98b2eb97927fd426c0d1d2f92")
- ("graphql-mode" . "ef4aecaeada77f46d1f0465ab62b9e9f537ec260")
- ("haskell-mode" . "727f72a2a4b8e4fd0a7b62129668baea55a2c3e0")
  ("helm" . "886a72999187efb5719ddcc7d24a03615a1211aa")
  ("helm-flycheck" . "3cf7d3bb194acacc6395f88360588013d92675d6")
  ("helm-projectile" . "e2e38825c975269a4971df25e79b2ae98929624e")
