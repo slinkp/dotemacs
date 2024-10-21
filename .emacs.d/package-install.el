@@ -75,6 +75,7 @@
 (straight-use-package 'csv-mode)
 (straight-use-package 'envrc) ;; This supports 'direnv' shell command for buffer-local environment vars.
 (straight-use-package 'yasnippet) ;; used by lsp
+(straight-use-package '(rainbow-csv :type git :host github :repo "emacs-vs/rainbow-csv" :branch "master"))
 
 (use-package which-key
   :config
