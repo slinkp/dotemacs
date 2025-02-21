@@ -1,6 +1,11 @@
 
 ;; (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
 
+;; Dynamic timestamps of the form `Time-stamp: <>` or `Time-stamp: ""`
+;; as per https://www.gnu.org/software/emacs/manual/html_node/emacs/Time-Stamps.html
+
+(add-hook 'before-save-hook 'time-stamp)
+
 ;; wgrep allows editing & search/replace directly in grep results and then saving
 (require 'wgrep)
 
