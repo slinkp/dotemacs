@@ -80,7 +80,20 @@
  '(py-load-pymacs-p nil)
  '(py-pdbtrack-do-tracking-p t)
  '(safe-local-variable-values
-   '((test-case-name . buildbot.test.test_transfer)
+   '((eval progn
+           (require 'autoinsert)
+           (define-auto-insert "\\.md\\'"
+             (lambda nil
+               (when
+                   (=
+                    (buffer-size)
+                    0)
+                 (insert
+                  (concat "Title: \12" "Date: "
+                          (format-time-string "%Y-%m-%d")
+                          "\12" "Status: draft\12" "Tags:\12\12")))))
+           (auto-insert-mode 1))
+     (test-case-name . buildbot.test.test_transfer)
      (test-case-name . buildbot.test.test_vc)
      (test-case-name . buildbot.test.test_steps\,buildbot.test.test_properties)
      (test-case-name . buildbot.test.test_run)))
