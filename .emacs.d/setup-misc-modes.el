@@ -142,6 +142,14 @@
 (define-key dired-mode-map
   (vector 'remap 'end-of-buffer) 'dired-jump-to-bottom)
 
+;; dired quick sort binds an S key to a useful sort menu.
+;; But depends on the right flavor of `ls` (gnu)
+
+(when running-on-darwin?
+  (setq insert-directory-program "/opt/homebrew/opt/coreutils/libexec/gnubin/ls"))
+(require 'dired-quick-sort)
+(dired-quick-sort-setup)
+
 ;; ===========================================
 ;; Git / Github
 ;; ===========================================
