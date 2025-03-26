@@ -27,4 +27,7 @@
 .emacs.d/eln-cache/*
 .emacs.d/.lsp-session*
 .emacs.d/.markdown-preview.html
+.emacs.d/.cache/
+.emacs.d/straight/modified/
+.emacs.d/transient/
 *.zip
