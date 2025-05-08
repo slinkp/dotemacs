@@ -30,4 +30,5 @@
 .emacs.d/.cache/
 .emacs.d/straight/modified/
 .emacs.d/transient/
+.emacs.d/tramp*
 *.zip
