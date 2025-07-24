@@ -70,7 +70,6 @@
 (straight-use-package 'solaire-mode)
 (straight-use-package 'vscode-dark-plus-theme)
 (straight-use-package 'gdscript-mode)
-(straight-use-package '(chuck-mode :type git :host github :repo "jintwo/chuck-mode" :branch "master"))
 (straight-use-package 'string-inflection)
 (straight-use-package 'csv-mode)
 (straight-use-package 'envrc) ;; This supports 'direnv' shell command for buffer-local environment vars.
