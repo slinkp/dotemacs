@@ -116,6 +116,16 @@
 (put 'set-goal-column 'disabled nil)
 
 ;; ======================================================================
+;; Smoother visual scrolling
+;; ======================================================================
+
+(pixel-scroll-precision-mode +1)
+(setq pixel-scroll-precision-interpolate-page t)
+(setq pixel-scroll-precision-interpolate-mice t)
+
+
+
+;; ======================================================================
 ;; emacsclient
 
 (require 'server)
