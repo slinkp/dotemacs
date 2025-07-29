@@ -111,9 +111,11 @@
   (define-key copilot-completion-map (kbd "s-<escape>") 'copilot-clear-overlay)
   (define-key copilot-completion-map (kbd "s-<down>") 'copilot-next-completion)
   (define-key copilot-completion-map (kbd "s-<up>") 'copilot-previous-completion)
+  (define-key copilot-completion-map (kbd "C-<down>") 'copilot-next-completion)
   ;; Consider also 'copilot-panel-complete
   )
 
 ;; Copilot bootstrapping
 (copilot-install-server)
+
 
