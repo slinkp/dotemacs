@@ -83,7 +83,8 @@
   (defun my-js2-mode-hook ()
     ;; However, its indentation is really obnoxious when working with existing
     ;; code.  This helps... some.
-        (setq js2-auto-indent-flag nil)
+    (setq indent-tabs-mode f)
+    (setq js2-auto-indent-flag nil)
     (setq js2-enter-indents-newline nil)
     (setq js2-mode-indent-ignore-first-tab t)
     (setq js2-mode-indent-inhibit-undo t)
@@ -94,6 +95,7 @@
           js2-consistent-level-indent-inner-bracket-p t
           js2-pretty-multiline-decl-indentation-p t)
     (whitespace-mode 1)  ;; I like to see wtf is going on with indentation
+    (setq js2-strict-missing-semi-warning nil) ;; modern stuff sometimes no semis??
     (message "Custom js2-mode hook"))
 
   (autoload 'js2-mode "js2-mode" nil t)
