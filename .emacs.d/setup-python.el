@@ -99,7 +99,7 @@
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
   ;; Backend for formatting
   (setq lsp-pylsp-plugins-black-enabled 't)
-  ;; Completion
+  ;; Completion. Invoke via alt-tab
   (setq lsp-pylsp-plugins-jedi-completion-enabled 't)
   ;; Rebind xref reference keys
   ;; (add-hook 'lsp-mode-hook
@@ -120,7 +120,7 @@
       lsp-ui-sideline-show-code-actions 't ; show code actions in sideline. Example??
       lsp-ui-sideline-update-mode "point" ; When set to 'line' the information will be updated when
       ;; user changes current line otherwise the information will be updated when user changes current point.
-      lsp-ui-sideline-delay 0.02 ; seconds to wait before showing sideline
+      lsp-ui-sideline-delay 0.1 ; seconds to wait before showing sideline
       )
 
 ;; Other UI
