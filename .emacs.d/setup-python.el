@@ -101,6 +101,10 @@
   (setq lsp-pylsp-plugins-black-enabled 't)
   ;; Completion. Invoke via alt-tab
   (setq lsp-pylsp-plugins-jedi-completion-enabled 't)
+  (setq lsp-pylsp-plugins-mypy-enabled 't)
+  ;;;; Enable this to get mypy updating as you type; by default updates on save
+  ;; (setq lsp-pylsp-plugins-mypy-live-mode 't)
+
   ;; Rebind xref reference keys
   ;; (add-hook 'lsp-mode-hook
   ;;  (lambda ()
