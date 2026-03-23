@@ -30,8 +30,6 @@
 
 (require 'helm)
 (when (fboundp 'helm)
-  ;; Let Helm handle `completion-at-point` / `completion-in-region`.
-  (helm-mode 1)
   ;; way cooler than default M-x
   (global-set-key (kbd "M-x") 'helm-M-x)
   ;; I never use the default M-y "yank-pop" command.

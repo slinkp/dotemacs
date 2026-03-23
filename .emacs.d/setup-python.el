@@ -117,6 +117,15 @@
 ;; Temporarily disable Corfu while testing Helm as the completion UI for CAPF/LSP.
 ;; If Helm doesn't feel right here, we can restore the Corfu block.
 
+(defun slinkp-python-helm-capf-setup ()
+  "Use Helm for completion-at-point in Python buffers only."
+  (require 'helm-mode)
+  (add-function :around (local 'completion-in-region-function)
+                #'helm--completion-in-region)
+  (setq-local helm-completion-style 'helm-fuzzy))
+
+(add-hook 'python-mode-hook #'slinkp-python-helm-capf-setup)
+
 (add-hook 'python-mode-hook 'lsp-deferred)
 
 (with-eval-after-load 'lsp-mode
