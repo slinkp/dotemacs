@@ -78,6 +78,7 @@
 (straight-use-package 'dired-quick-sort)
 
 (use-package which-key
+  :straight t
   :config
     (which-key-mode))
 
@@ -100,22 +101,25 @@
 ;; ========================================================================
 ;; Copilot, per https://github.com/copilot-emacs/copilot.el
 ;; you can utilize :map :hook and :config to customize copilot
-(use-package copilot
-  :straight (:host github :repo "copilot-emacs/copilot.el" :files ("*.el"))
-  :ensure t
-  :config
-  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
-  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
-  (define-key copilot-completion-map (kbd "C-<right>") 'copilot-accept-completion-by-word)
-  (define-key copilot-completion-map (kbd "C-<escape>") 'copilot-clear-overlay)
-  (define-key copilot-completion-map (kbd "s-<escape>") 'copilot-clear-overlay)
-  (define-key copilot-completion-map (kbd "s-<down>") 'copilot-next-completion)
-  (define-key copilot-completion-map (kbd "s-<up>") 'copilot-previous-completion)
-  (define-key copilot-completion-map (kbd "C-<down>") 'copilot-next-completion)
-  ;; Consider also 'copilot-panel-complete
-  )
+;;
+;; TEMPORARILY REMOVED FOR FRACTIONAL INTERVIEW
+;;
+;; (use-package copilot
+;;   :straight (:host github :repo "copilot-emacs/copilot.el" :files ("*.el"))
+;;   :ensure t
+;;   :config
+;;   (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+;;   (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+;;   (define-key copilot-completion-map (kbd "C-<right>") 'copilot-accept-completion-by-word)
+;;   (define-key copilot-completion-map (kbd "C-<escape>") 'copilot-clear-overlay)
+;;   (define-key copilot-completion-map (kbd "s-<escape>") 'copilot-clear-overlay)
+;;   (define-key copilot-completion-map (kbd "s-<down>") 'copilot-next-completion)
+;;   (define-key copilot-completion-map (kbd "s-<up>") 'copilot-previous-completion)
+;;   (define-key copilot-completion-map (kbd "C-<down>") 'copilot-next-completion)
+;;   ;; Consider also 'copilot-panel-complete
+;;   )
 
-;; Copilot bootstrapping
-(copilot-install-server)
+;; ;; Copilot bootstrapping
+;; (copilot-install-server)
 
 
