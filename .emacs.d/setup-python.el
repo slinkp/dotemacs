@@ -89,6 +89,28 @@
     ))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; EGLOT instead of LSP
+;;
+;; If want to try, uncomment this and comment out the lsp-mode stuff.
+;; Seems to basically work.
+;; Completion is via completion-at-tab, so whatever that's bound to,
+;; eg M-TAB
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; (use-package eglot
+;;   :ensure nil
+;;   :defer t
+;;   :hook ((python-mode . eglot-ensure)
+;;   :config
+;;   (add-to-list 'eglot-server-programs
+;;                `(python-mode
+;;                  . ,(eglot-alternatives '(("pylsp"
+;;                                           "pyright-langserver" "--stdio")
+;;                                           "jedi-language-server"
+;;                                           )))))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LSP
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -99,8 +121,11 @@
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
   ;; Backend for formatting
   (setq lsp-pylsp-plugins-black-enabled 't)
-  ;; Completion. Invoke via alt-tab
-  (setq lsp-pylsp-plugins-jedi-completion-enabled 't)
+
+  ;; Completion. Invoke via what?
+  ;; (setq lsp-pylsp-plugins-jedi-completion-enabled 't)
+
+  ;; Type checking
   (setq lsp-pylsp-plugins-mypy-enabled 't)
   ;;;; Enable this to get mypy updating as you type; by default updates on save
   ;; (setq lsp-pylsp-plugins-mypy-live-mode 't)
@@ -112,7 +137,7 @@
   ;;     (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)  ; M-.
   ;;     (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)  ; M-?
   ;;     )))
-  )
+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LSP UI config
