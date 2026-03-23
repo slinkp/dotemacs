@@ -114,6 +114,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LSP
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Temporarily disable Corfu while testing Helm as the completion UI for CAPF/LSP.
+;; If Helm doesn't feel right here, we can restore the Corfu block.
+
 (add-hook 'python-mode-hook 'lsp-deferred)
 
 (with-eval-after-load 'lsp-mode
