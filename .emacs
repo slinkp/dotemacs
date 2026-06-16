@@ -29,6 +29,7 @@
    "setup-misc-unorganized-junk"
    "cclisp"
    "cc-edit-text-menu"
+   "setup-web-static"
    "late-init"
    ;; ... add more files here
    ))
@@ -80,7 +81,8 @@
  '(py-load-pymacs-p nil)
  '(py-pdbtrack-do-tracking-p t)
  '(safe-local-variable-values
-   '((eval progn
+   '((eval slinkp-sharkweasel-web-mode-setup)
+     (eval progn
            (require 'autoinsert)
            (define-auto-insert "\\.md\\'"
              (lambda nil

@@ -122,4 +122,5 @@
 ;; ;; Copilot bootstrapping
 ;; (copilot-install-server)
 
-
+;; Used for invoking Prettier for js et al
+(straight-use-package 'apheleia)
