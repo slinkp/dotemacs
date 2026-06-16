@@ -59,7 +59,7 @@
 ;; Long line column marker
 (add-hook 'python-mode-hook
   (lambda ()
-     (set-fill-column 100)
+     (set-fill-column 90)
   )
 )
 
@@ -130,17 +130,18 @@
 
 (with-eval-after-load 'lsp-mode
   ;; Which-key helps me remember / learn keybindings
-  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+  (add-hook 'lsp-mode-hook 'lsp-enable-which-key-integration)
   ;; Backend for formatting
   (setq lsp-pylsp-plugins-black-enabled 't)
-
+  (setq lsp-pylsp-plugins-flake8-enabled 't)
+  (setq lsp-pylsp-plugins-flake8-max-line-length 90)
   ;; Completion. Invoke via what?
   ;; (setq lsp-pylsp-plugins-jedi-completion-enabled 't)
 
   ;; Type checking
   (setq lsp-pylsp-plugins-mypy-enabled 't)
   ;;;; Enable this to get mypy updating as you type; by default updates on save
-  ;; (setq lsp-pylsp-plugins-mypy-live-mode 't)
+  ; (setq lsp-pylsp-plugins-mypy-live-mode 't)
 
   ;; Rebind xref reference keys
   ;; (add-hook 'lsp-mode-hook
