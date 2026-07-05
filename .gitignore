@@ -1,5 +1,6 @@
 *.elc
 *~
+.emacs.d/agent
 .emacs.d/session.*
 .emacs.d/projectile-bookmarks.eld
 .emacs.d/projectile.cache
