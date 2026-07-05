@@ -31,4 +31,5 @@
 .emacs.d/straight/modified/
 .emacs.d/transient/
 .emacs.d/tramp*
+.emacs.d/projects
 *.zip
