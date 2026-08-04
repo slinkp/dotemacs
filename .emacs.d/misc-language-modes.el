@@ -67,8 +67,8 @@
 ;; CSV
 ;; =============================================================================
 
-(add-hook 'csv-mode 'rainbow-csv-mode)
-(add-hook 'csv-mode 'csv-align-mode)
+(add-hook 'csv-mode-hook #'rainbow-csv-mode)
+(add-hook 'csv-mode-hook #'csv-align-mode)
 
 
 ;; ========================================================================
