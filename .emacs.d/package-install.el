@@ -76,6 +76,7 @@
 (straight-use-package 'yasnippet) ;; used by lsp
 (straight-use-package '(rainbow-csv :type git :host github :repo "emacs-vs/rainbow-csv" :branch "master"))
 (straight-use-package 'dired-quick-sort)
+(straight-use-package 'agent-shell)
 
 (use-package which-key
   :straight t
