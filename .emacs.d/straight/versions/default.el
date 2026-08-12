@@ -1,6 +1,6 @@
 (("Emacs-wgrep" . "49f09ab9b706d2312cab1199e1eeb1bcd3f27f6f")
  ("Highlight-Indentation-for-Emacs" . "d88db4248882da2d4316e76ed673b4ac1fa99ce3")
- ("acp.el" . "3ddfa907eb7f17949a4a8e731ea5c5241e6cbcb4")
+ ("acp.el" . "7d5c16ebcf2af86aa0f14ad9ae0ce45df4e8c8a5")
  ("agent-shell" . "ab620f37dd88089afa559de2b0f189dc8c9566e5")
  ("aggressive-indent-mode" . "a437a45868f94b77362c6b913c5ee8e67b273c42")
  ("apheleia" . "1c00a5acfb438c833616ebeb134270c01850363f")
