@@ -260,3 +260,9 @@
       ("Asia/Calcutta" "Bangalore")
       ("Asia/Tokyo" "Tokyo")
 ))
+
+;; ======================================================================
+;; agent-shell
+;; ======================================================================
+
+(setq agent-shell-preferred-agent-config '(preselect . cursor)) 
